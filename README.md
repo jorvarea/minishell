@@ -2,7 +2,7 @@
 Creating our own shell
 
 
-### Mini-guide for branch usage
+## Mini-guide for branch usage
 ### Available Branches
 - main
 - dev-ana
@@ -14,13 +14,14 @@ Creating our own shell
 - Change branches: git checkout name | Ex: git checkout dev-ana
 - Update actual branch with main branch: git rebase main
 
-## Things to do before starting / Update dev branch to be like main
+### Things to do before starting / Update dev branch to be like main
 - [ ] Check [Network Graph](https://github.com/jandrana/minishell/network)
 - [ ] git pull (on main and your dev branch)
 - [ ] Go to your working dev branch using git checkout
 - [ ] Update your dev branch to be up to date with main -> git rebase main
 
-## Things to do after coding
+
+### Things to do after coding
 - [ ] Add and commit each change (as specified as possible) - on the dev branch
 - [ ] Push your commits
 - [ ] Merge dev branch with main with a merge pull request on Github (or merge on local + push)
