@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/05/17 20:54:39 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/05/17 21:30:07 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ typedef struct s_parsed
 	char	*input;
 }	t_parsed;
 
-
 // Main.c functions
 
-char	*read_input(void);
-void	exit_program_nl(void);
+char		*read_input(void);
+void		exit_program_nl(void);
 
 // Parser functions
 
