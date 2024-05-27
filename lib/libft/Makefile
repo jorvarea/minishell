@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 21:00:35 by ana-cast          #+#    #+#              #
-#    Updated: 2024/03/05 18:42:23 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/05/27 20:19:35 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 ################################################################################
 
 NAME = libft.a
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
+CC = clang
+FLAGS = -Wall -Wextra -Werror -fPIC
 RM = rm -f
 LIBFT = include
 DEPS = -I include
