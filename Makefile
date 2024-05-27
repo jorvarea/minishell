@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/17 20:48:57 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/05/27 20:22:04 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,22 @@
 
 NAME = minishell
 LIBFT = lib/libft/
-CC_FLAGS = gcc -Wall -Wextra -Werror
+
+# Check if gcc is installed
+HAS_GCC := $(shell command -v gcc 2> /dev/null)
+
+# Check if clang is installed
+HAS_CLANG := $(shell command -v clang 2> /dev/null)
+
+ifdef HAS_GCC
+  CC = gcc
+else ifdef HAS_CLANG
+  CC = clang
+else
+  $(error No compiler found)
+endif
+
+FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 MINISHELL = include/
 INCLUDE = -lreadline -L ./lib/libft -lft
@@ -55,21 +70,22 @@ TURQUOISE=\033[36m
 all : libft $(NAME)
 
 libft :
-	@make -C $(LIBFT)
+	@make -s -C $(LIBFT)
 
 $(NAME) : line $(OBJECTS)
 	@echo "✦ ---------------------- ✦$(END)"
-	@$(CC_FLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME)
 
 bonus : all line $(BONUS_OB)
 	@echo "✦ ---------------------- ✦$(END)"
-	@$(CC_FLAGS) $(BONUS_OB) $(INCLUDE) -o $(NAME)
+	@$(CC) $(FLAGS) $(BONUS_OB) $(INCLUDE) -o $(NAME)
 
 %.o : %.c $(MINISHELL)
-	@$(CC_FLAGS) -c $< -o $@ $(DEPS)
+	@$(CC) $(FLAGS) -c $< -o $@ $(DEPS)
 	@echo "$(GREEN)  ✓ Compiled: $(notdir $<)"
 
 line :
+	@printf "$(BLUE) 🛠   Compiler: $(CC) $(END)\n"
 	@echo "$(GREEN) $(BOLD)"
 	@echo "    COMPILING MINISHELL...$(END) $(GREEN)"
 	@echo "✦ ---------------------- ✦"
@@ -78,12 +94,12 @@ clean :
 	@printf "\n$(YELLOW) 🗑   Removing objects$(END)"
 	@$(RM) $(OBJECTS) $(BONUS_OB)
 	@echo "$(GREEN)\r  ✓  $(RED)Removed  objects from $(NAME) $(END)"
-	@make clean -C $(LIBFT)
+	@make clean -s -C $(LIBFT)
 
 fclean: clean
 	@printf "$(YELLOW) 🗑   Removing $(NAME) $(END)"
 	@$(RM) $(NAME)
-	@make fclean -C $(LIBFT)
+	@make fclean -s -C $(LIBFT)
 	@echo "$(GREEN)\r  ✓  $(RED)Removed  $(NAME) $(END)\n"
 
 re :
