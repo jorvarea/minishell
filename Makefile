@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/27 20:22:04 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/05/28 20:16:02 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ HAS_GCC := $(shell command -v gcc 2> /dev/null)
 # Check if clang is installed
 HAS_CLANG := $(shell command -v clang 2> /dev/null)
 
-ifdef HAS_GCC
-  CC = gcc
-else ifdef HAS_CLANG
+ifdef HAS_CLANG
   CC = clang
+else ifdef HAS_GCC
+  CC = gcc
 else
   $(error No compiler found)
 endif
