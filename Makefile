@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/28 20:16:02 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/05/29 12:20:07 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ OBJECTS = $(SRC:.c=.o)
 ##                                    COLORS                                 ##
 ################################################################################
 
-WHITE=\033[0m
+END=\033[0m
 BOLD=\033[1m
 GREEN=\033[0;32m
 RED=\033[0;31m
@@ -67,7 +67,20 @@ TURQUOISE=\033[36m
 ##                                     RULES                                  ##
 ################################################################################
 
-all : libft $(NAME)
+all : head libft $(NAME)
+
+head :
+	@echo "$(MAGENTA)"
+	@echo "\t███    ███ ██ ███    ██ ██ ███████ ██   ██ ███████ ██      ██      "
+	@echo "\t████  ████ ██ ████   ██ ██ ██      ██   ██ ██      ██      ██      "
+	@echo "\t██ ████ ██ ██ ██ ██  ██ ██ ███████ ███████ █████   ██      ██      "
+	@echo "\t██  ██  ██ ██ ██  ██ ██ ██      ██ ██   ██ ██      ██      ██      "
+	@echo "\t██      ██ ██ ██   ████ ██ ███████ ██   ██ ███████ ███████ ███████ "
+	@echo ""
+	@echo "\t        42MLG: by ana-cast && jorvarea"
+	@echo "\tProyect: \033[36m minishell $(MAGENTA)"
+	@echo "\tCommands:\033[36m all clean fclean re bonus $(BLUE)"
+	@echo "\t🛠   Compiler: $(CC) $(END)\n"
 
 libft :
 	@make -s -C $(LIBFT)
@@ -85,9 +98,8 @@ bonus : all line $(BONUS_OB)
 	@echo "$(GREEN)  ✓ Compiled: $(notdir $<)"
 
 line :
-	@printf "$(BLUE) 🛠   Compiler: $(CC) $(END)\n"
 	@echo "$(GREEN) $(BOLD)"
-	@echo "    COMPILING MINISHELL...$(END) $(GREEN)"
+	@echo "  COMPILING MINISHELL...$(END) $(GREEN)"
 	@echo "✦ ---------------------- ✦"
 
 clean :
@@ -103,8 +115,8 @@ fclean: clean
 	@echo "$(GREEN)\r  ✓  $(RED)Removed  $(NAME) $(END)\n"
 
 re :
-	@$(MAKE) fclean
+	@$(MAKE) -s fclean
 	@clear
-	@$(MAKE) all
+	@$(MAKE) -s all
 
 .PHONY: all bonus clean fclean re
