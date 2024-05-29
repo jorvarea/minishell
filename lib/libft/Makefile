@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 21:00:35 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/28 20:17:13 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/05/29 12:20:31 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,14 +120,14 @@ BONUS_OB = $(BONUS_SR:.c=.o)
 ##                                    COLOURS                                 ##
 ################################################################################
 
+END=\033[0m
+BOLD=\033[1m
 GREEN=\033[0;32m
 RED=\033[0;31m
 BLUE=\033[0;34m
-YELLOW= \033[33m
+YELLOW=\033[33m
 MAGENTA=\033[35m
-TURQUOISE=\033[36m	
-WHITE=\033[0m
-
+TURQUOISE=\033[36m
 
 ################################################################################
 ##                                     RULES                                  ##
@@ -138,16 +138,15 @@ all : $(NAME)
 $(NAME) : $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "$(TURQUOISE)"
-	@echo "✦ --------------- ✦"
-	@echo "|  Created $(basename $(NAME))  |"
-	@echo "✦ --------------- ✦$(WHITE)\n"
+	@echo "$(TURQUOISE)✦ ---------------------- ✦$(BOLD)"
+	@echo "      COMPILED LIBFT$(END)$(TURQUOISE)"
+	@echo "✦ ---------------------- ✦$(END)\n"
 
 bonus : bon_head $(OBJECTS) $(BONUS_OB)
 	@printf "\n  🤑  Creating BONUS $(NAME)"
 	@ar rc $(NAME) $(OBJECTS) $(BONUS_OB)
 	@ranlib $(NAME)
-	@echo "$(GREEN)\r  ✓  Created  BONUS $(NAME) $(WHITE)\n"
+	@echo "$(GREEN)\r  ✓  Created  BONUS $(NAME) $(END)\n"
 
 %.o : %.c $(LIBFT)
 	@$(CC) $(FLAGS) -c $< -o $@ $(DEPS)
