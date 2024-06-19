@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/29 12:20:07 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/06/19 19:33:45 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,9 @@ DEPS = -I include -I $(LIBFT)/include
 ################################################################################
 
 SRC = src/main.c \
-	src/parser/parser.c
+	src/parser/parser.c \
+	src/parser/init.c \
+	src/parser/free.c
 
 OBJECTS = $(SRC:.c=.o)
 

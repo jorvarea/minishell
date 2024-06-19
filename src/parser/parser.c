@@ -6,20 +6,33 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/05/17 20:50:32 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/19 19:52:32 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_parsed	*parser(char *input)
+/*
+	FUNCIONALIDAD: 
+	Convertir input en lista de comandos. Teniendo en cuenta: 
+		- argumentos, redirecciones y pipes
+
+	PASOS: 
+		- Crear + init command_lst y node
+		- Dividir input en tokens (tokenizar)
+		- Parsear tokens (while tokens...)
+			- Crear comandos a partir de los tokens (init? mirar redirecciones)
+			- 1st cmd
+			- manejar pipe si es necesario (crear sig comando etc ?)
+*/
+t_cmd	*parser(char *input)
 {
-	t_parsed	*parsed_input;
+	t_cmd	*command_lst;
 
 	if (!input)
 		return (NULL);
-	parsed_input = (t_parsed *)malloc(sizeof(t_parsed));
-	if (!parsed_input)
+	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
+	if (!command_lst)
 		return (NULL);
-	return (parsed_input);
+	return (command_lst);
 }
