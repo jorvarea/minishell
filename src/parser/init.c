@@ -6,11 +6,29 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/19 19:42:15 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/21 13:43:27 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+char	**init_shell_env(char **envp)
+{
+	char	**env;
+	int		len;
+
+	len = 0;
+	while (envp[len])
+		len++;
+	env = (char **)malloc(sizeof(char *) * len + 1);
+	if (!env)
+		return (NULL);
+	len = -1;
+	while (envp[++len])
+		env[len] = ft_strdup(envp[len]);
+	env[len] = NULL;
+	return (env);
+}
 
 /*
 TO-DO:
@@ -21,11 +39,10 @@ t_shell *init_shell(char **envp)
 {
 	t_shell	*shell;
 
-	(void)envp; // Change when finish assigning shell->env to envp
 	shell = (t_shell *)malloc(sizeof(t_shell));
 	if (!shell)
 		exit_program_nl();
-	shell->env = NULL; // copy envp to env (use malloc 4 env + strdup 4 env[i])
+	shell->env = init_shell_env(envp);
 	shell->exit_status = 0;
 	return (shell);
 }
