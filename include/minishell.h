@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/19 19:43:05 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:16:13 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,33 @@ extern pid_t	g_signal;
 
 // ------------------- STRUCTURES ------------------- //
 
+// NOT FINISHED
+enum	e_token
+{
+	CMD = 0,
+	AND = 1,
+	OR = 2,
+	PIPE = 4
+} t_token;
+
+/*
+ESTA ESTRUCTURA CONTIENE LAS REDIRECCIONES DE CADA COMANDO
+*/
+typedef struct s_redir
+{
+	char	*file;
+	int		type;	// INFILE/OUTFILE/HEREDOC (make enum for this instead of int)
+	t_redir	*next;	
+	t_redir	*prev;
+}	t_redir;
+
+typedef struct s_args
+{
+	char	*arg;
+	t_args	*next;	
+	t_args	*prev;
+}	t_args;
+
 /**
  * @struct Command List structure
  * @details
@@ -55,14 +82,54 @@ extern pid_t	g_signal;
  * char *outfile: If cmd uses (> or >>), it stores the name of the output file 
  * int	out_append: If there is an outfile. Value 1 for (>>) and 0 for (<)
  * char *heredoc: Stores the end delimiter (string) as: cat << hola --> heredoc="hola"
+ * t_token	type: Contains the type of command (AND OR CMD PIPE...);
+ * char	*cmd: Contains a string with the complete command;
+ * char	**args: Contains an array with each argument of the command, incluiding the command itself;
+ * t_args *l_args: Contains the args array as a list (for expandind wildcards + env);
+ * t_redir *redir: Contains a redir list with the file, type and next/prev;
+ * struct s_cmd	*next: Pointer to the next command;
+ * struct s_cmd	*prev: Pointer to the previous command;
+*/
+/*
+EJEMPLO COMPLETO:
+COMANDO: echo hola > que * > tal && echo Malaga
+1.
+ - type = commando
+ - cmd = echo hola *
+ - args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
+ - l_args -> 1: arg="echo" next-> arg="hola" next -> arg="file0" (...) next -> arg="fileN"
+ - redir -> 1: infile file="que" next -> infile file="tal"
+ - next: siguiente comando (2.)
+ - prev: NULL
+2.
+ - type = &&
+ - todo lo demas NULL excepto el next
+ - next: siguiente comando (3.)
+ - prev: anterior comando (1.)
+3. 
+ - type = COMMAND
+ - cmd = "echo Malaga"
+ - args -> args[0] = "echo", args[1] = "Malaga"
+ - l_args -> 1: arg="echo" next-> arg="Malaga"
+ - redir -> NULL
+ - next: NULL
+ - prev: anterior comando (2.)
+
+BORRADOR NOTAS: Al expandir las wildcards en l_args, se actualiza args (?) (NO ESTA DECIDIDO AUN)
+ - EJEMPLO CON EL PRIMER COMANDO:
+ 	- args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
+	- l_args -> 1: arg="echo" next-> arg="hola" next -> arg="file0" (...) next -> arg="fileN"
+	- args -> args[0] = "echo", args[1] = "hola", args[2] = "file0" (...), args[N + 2] = "fileN"
 */
 typedef struct s_cmd
 {
+	t_token			type;
+	char			*cmd;
 	char			**args;
-	char			*infile;
-	char			*outfile;
-	char			*heredoc;
+	t_args			*l_args;
+	t_redir			*redir;
 	struct s_cmd	*next;
+	struct s_cmd	*prev;
 }	t_cmd;
 
 /**
@@ -70,11 +137,17 @@ typedef struct s_cmd
  * @details
  * char **env: Array that contains environment variables as: evn[n]="VAR=VAR_VALUE"
  * int exit_status: Stores the exit status of the last command executed (0 = OK | !0 = KO)
+ * t_cmd	*tokens: Contains the list of commands/tokens;
+ * t_env	*l_env: Contains the env array as a list/structure;
+ * t_args	*files: Contains a list with the wildcards file to introduce in the needed token (?);
 */
 typedef struct s_shell
 {
 	char	**env;
 	int		exit_status;
+	t_cmd	*tokens;
+	t_env	*l_env;
+	t_args	*files;
 }	t_shell;
 
 // ------------------------------------------------------ //
@@ -95,6 +168,7 @@ t_cmd	*parser(char *input); // ?
 
 // ------------------- INIT FUNCTIONS ------------------- //
 t_cmd	init_command(void); // NOT STARTED
+char	**init_shell_env(char **envp);
 t_shell *init_shell(char **envp); // ?
 
 
