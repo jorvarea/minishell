@@ -1,45 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/19 19:27:25 by ana-cast         ###   ########.fr       */
+/*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
+/*   Updated: 2024/06/24 15:07:07 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	free_array(char **array)
+void	print_shell_env(char **env)
 {
-	if (array)
-	{
-		while (*array)
-			free(*array++);
-	}
-	free(array);
-}
-
-void	free_commands(t_cmd *command_lst)
-{
-	t_cmd	*next;
-
-	while (command_lst)
-	{
-		next = command_lst->next;
-		free_array(args);
-		free(infile);
-		free(outfile);
-		free(heredoc);
-		free(command_lst);
-		command_lst = next;
-	}
-}
-
-void free_shell(t_shell *shell)
-{
-	free_array(shell->env);
-	free(shell);
+	while (*env)
+		printf("%s\n", *env++);
 }
