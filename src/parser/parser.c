@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 19:33:54 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:51:02 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ t_cmd	*parser(char *input, t_shell *shell)
 	return (command_lst);
 }
 
+/*
+FUNCION BORRADOR, NO TENER EN CUENTA
+*/
 char	**trim_input(char **input)
 {
 	char	*trim;
@@ -57,6 +60,9 @@ char	**trim_input(char **input)
 	return (input);
 }
 
+/*
+FUNCION BORRADOR, NO TENER EN CUENTA
+*/
 char	**split_input(char *input)
 {
 	char	**input_split;
@@ -71,6 +77,9 @@ char	**split_input(char *input)
 	return (NULL);
 }
 
+/*
+FUNCION BORRADOR, NO TENER EN CUENTA
+*/
 size_t	command_counter(char *input)
 {
 	int		i;
