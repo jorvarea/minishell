@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/19 19:45:34 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:36:27 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 pid_t	g_signal;
 
 /*
+	FUNCTIONALITY:
+	 - Updates g_signal (global variable) with signal received (SIGINT)
+	 - Redisplays the prompt when receiving SIGINT (printf should only be '\n')
 	TO-DO:
-	quitar printf y sustituir por "\n" (mientras es para recordar que Ctrl + C no quitea)
+	quitar printf y sustituir por "\n" (Ahora recuerda que Ctrl + C no quitea)
 */
 void	signal_handler(int signal)
 {
 	g_signal = signal;
-	// Redisplay the prompt (SIGINT)
-	printf("Type 'exit' for quitting minishell\n"); // remove after implementing 'exit'
+	printf("Type 'exit' for quitting minishell\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
@@ -44,35 +46,34 @@ char	*read_input(void)
 	return (input);
 }
 
+/*
+	TO-DO:
+	quitar if (!ft_strncmp(input, "exit", 10)) cuando implementemos 'exit'
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
 	t_shell	*shell;
 	t_cmd	*parsed_input;
 
+	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
 	signal(SIGQUIT, SIG_IGN);
-	if (argc == 1)
+	while (1)
 	{
-		while (1)
+		signal(SIGINT, signal_handler);
+		input = read_input();
+		if (!input)
+			return (1);
+		parsed_input = parser(input);
+		free(parsed_input);
+		if (!ft_strncmp(input, "exit", 10))
 		{
-			signal(SIGINT, signal_handler);
-			input = read_input();
-			if (!input)
-				return (0);
-			printf("%s\n", input);
-			parsed_input = parser(input);
-			free(parsed_input);
-			if (!ft_strncmp(input, "exit", 10) && g_signal == 2) // Quitar IF en el futuro 'exit'
-			{
-				free(input);
-				break ;
-			} 
+			free(input);
+			break ;
 		}
 	}
-	else
-		ft_putstr_fd("Invalid number of arguments", 2);
 	free_shell(shell);
-	return (1);
+	return (0);
 }
