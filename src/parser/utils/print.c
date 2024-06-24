@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 18:14:25 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:20:52 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,17 @@ void	print_shell_l_env(t_env *l_env)
 		next = l_env->next;
 		printf("%i \n\tKEY:%s\n\tVALUE:%s\n", i++, l_env->key, l_env->value);
 		l_env = next;
+	}
+}
+
+void	print_array(char **array)
+{
+	int	i;
+
+	i = -1;
+	printf("PRINTING ARRAY:\n");
+	while (array[++i])
+	{
+		printf("\t%i:|%s|\n", i, array[i]);
 	}
 }
