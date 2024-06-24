@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 15:22:55 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:23:19 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ int	main(int argc, char **argv, char **envp)
 		signal(SIGINT, signal_handler);
 		input = read_input();
 		if (!input)
-			return (0);
+			return (1);
 		parsed_input = parser(input);
 		free(parsed_input);
 		if (!ft_strncmp(input, "exit", 10)) // Quitar IF en el futuro 'exit'
 		{
 			free(input);
 			break ;
-		} 
+		}
 	}
 	free_shell(shell);
-	return (1);
+	return (0);
 }
