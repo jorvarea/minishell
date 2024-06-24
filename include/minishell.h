@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 16:32:25 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 19:20:08 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ typedef enum e_token
 typedef enum e_type_redir
 {
 	INFILE = 0,
-	OUTFILE = 1,
-	HEREDOC = 2
+	IN_APPEND = 1,
+	OUTFILE = 2,
+	HEREDOC = 3
 }	t_type_redir;
 
 /*
@@ -179,23 +180,32 @@ void	signal_handler(int signal);
 // ------------------------------------------------------ //
 
 // ------------------ PARSER FUNCTIONS ------------------ //
-t_cmd	*parser(char *input); // ?
+t_cmd	*parser(char *input, t_shell *shell); // ?
+char	**split_input(char *input);
+size_t	command_counter(char *input);
 
 // ------------------- INIT FUNCTIONS ------------------- //
 t_cmd	*init_command(void); // NOT STARTED
-char	**init_shell_env(char **envp);
 t_shell	*init_shell(char **envp); // ?
+
+// ------------------- ENV FUNCTIONS ------------------- //
+char	**init_shell_env(char **envp);
+t_env	*env_last_node(t_env *l_env);
+t_env	*assign_env_values(char *env, t_env *new_env);
+t_env	*set_env_list(char **env);
 
 // ------------------- FREE FUNCTIONS ------------------- //
 void	sh_free_str(char *str);
 void	free_array(char **array);
 void	free_arg_lst(t_args *l_args);
 void	free_redir(t_redir	*redir);
-void	free_commands(t_cmd *command_lst);
 void	free_env_list(t_env	*l_env);
+void	free_commands(t_cmd *command_lst);
 void	free_shell(t_shell *shell);
 
 // ------------------- PRINT FUNCTIONS ------------------- //
 void	print_shell_env(char **env);
+void	print_shell_l_env(t_env *l_env);
+void	print_array(char **array);
 
 #endif /* MINISHELL_H */

@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 16:36:27 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:23:51 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	main(int argc, char **argv, char **envp)
 		input = read_input();
 		if (!input)
 			return (1);
-		parsed_input = parser(input);
+		parsed_input = parser(input, shell);
 		free(parsed_input);
 		if (!ft_strncmp(input, "exit", 10))
 		{

@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/06/24 14:55:34 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/06/24 18:13:34 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ DEPS = -I include -I $(LIBFT)/include
 SRC = src/main.c \
 	src/parser/parser.c \
 	src/parser/init.c \
+	src/parser/env.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c
 
