@@ -6,20 +6,22 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 16:38:29 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 18:14:51 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+/*
 void	sh_free_str(char *str)
 {
 	if (str)
 	{
-		str = NULL;
 		free(str);
+		str = NULL;
 	}
 }
+*/
 
 void	free_array(char **array)
 {
@@ -42,7 +44,7 @@ void	free_arg_lst(t_args *l_args)
 	while (l_args)
 	{
 		next = l_args->next;
-		sh_free_str(l_args->arg);
+		free(l_args->arg);
 		free(l_args);
 		l_args = NULL;
 		l_args = next;
@@ -57,7 +59,7 @@ void	free_redir(t_redir	*redir)
 	while (redir)
 	{
 		next = redir->next;
-		sh_free_str(redir->file);
+		free(redir->file);
 		free(redir);
 		redir = NULL;
 		redir = next;
@@ -72,11 +74,12 @@ void	free_env_list(t_env	*l_env)
 	while (l_env)
 	{
 		next = l_env->next;
-		sh_free_str(l_env->key);
-		sh_free_str(l_env->value);
+		if (next)
+			next->prev = NULL;
+		free(l_env->key);
+		free(l_env->value);
 		free(l_env);
 		l_env = NULL;
 		l_env = next;
-		l_env->prev = NULL;
 	}
 }
