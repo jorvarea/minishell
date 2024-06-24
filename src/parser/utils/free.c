@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 14:51:07 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:38:06 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,16 @@ void	free_commands(t_cmd *command_lst)
 	}
 }
 
-void free_shell(t_shell *shell)
+void	free_shell(t_shell *shell)
 {
-	//printf("FREEING SHELL \n\n");
 	if (shell->env)
 		free_array(shell->env);
-	//printf("FREEING ARRAY \n\n");
 	if (shell->tokens)
 		free_commands(shell->tokens);
-	//printf("FREEING COMMANDS \n\n");
 	if (shell->l_env)
 		free_env_list(shell->l_env);
-	//printf("FREEING ENV LIST \n\n");
 	if (shell->files)
 		free_arg_lst(shell->files);
-	//printf("FREEING ARG LIST \n\n");
 	free(shell);
 	printf("%sSuccesfully freed shell%s\n", GREEN, WHITE);
 }

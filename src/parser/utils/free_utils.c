@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 15:10:00 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:38:29 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sh_free_str(char *str)
 {
 	if (str)
 	{
-		str = NULL;	
+		str = NULL;
 		free(str);
 	}
 }

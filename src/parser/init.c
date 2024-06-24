@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 15:17:44 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:37:16 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,15 @@ char	**init_shell_env(char **envp)
 	return (env);
 }
 
-
 t_cmd	*init_command(void)
 {
 	t_cmd	*tokens;
-	
+
 	tokens = (t_cmd *)malloc(sizeof(t_cmd));
 	return (tokens);
 }
 
-/*
-TO-DO:
- - (void)envp: Eliminar cuando haya hecho la copia de envp en shell->env
- - shell->env = NULL: Puesto mientras no programe la asignacion/copia
-*/
-t_shell *init_shell(char **envp)
+t_shell	*init_shell(char **envp)
 {
 	t_shell	*shell;
 

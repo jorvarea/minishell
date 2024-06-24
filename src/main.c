@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 16:23:19 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:36:27 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 pid_t	g_signal;
 
 /*
+	FUNCTIONALITY:
+	 - Updates g_signal (global variable) with signal received (SIGINT)
+	 - Redisplays the prompt when receiving SIGINT (printf should only be '\n')
 	TO-DO:
-	quitar printf y sustituir por "\n" (mientras es para recordar que Ctrl + C no quitea)
+	quitar printf y sustituir por "\n" (Ahora recuerda que Ctrl + C no quitea)
 */
 void	signal_handler(int signal)
 {
 	g_signal = signal;
-	// Redisplay the prompt (SIGINT)
-	printf("Type 'exit' for quitting minishell\n"); // remove after implementing 'exit'
+	printf("Type 'exit' for quitting minishell\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
@@ -44,6 +46,10 @@ char	*read_input(void)
 	return (input);
 }
 
+/*
+	TO-DO:
+	quitar if (!ft_strncmp(input, "exit", 10)) cuando implementemos 'exit'
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
@@ -62,7 +68,7 @@ int	main(int argc, char **argv, char **envp)
 			return (1);
 		parsed_input = parser(input);
 		free(parsed_input);
-		if (!ft_strncmp(input, "exit", 10)) // Quitar IF en el futuro 'exit'
+		if (!ft_strncmp(input, "exit", 10))
 		{
 			free(input);
 			break ;
