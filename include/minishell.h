@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 13:50:10 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:55:16 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,13 @@ void	signal_handler(int signal);
 t_cmd	*parser(char *input); // ?
 
 // ------------------- INIT FUNCTIONS ------------------- //
-t_cmd	init_command(void); // NOT STARTED
+t_cmd	*init_command(void); // NOT STARTED
 char	**init_shell_env(char **envp);
 t_shell *init_shell(char **envp); // ?
 
 
 // ------------------- FREE FUNCTIONS ------------------- //
+void	sh_free_str(char *str);
 void	free_array(char **array);
 void	free_arg_lst(t_args *l_args);
 void	free_redir(t_redir	*redir);
@@ -188,5 +189,7 @@ void	free_commands(t_cmd *command_lst);
 void	free_env_list(t_env	*l_env);
 void 	free_shell(t_shell *shell);
 
+// ------------------- PRINT FUNCTIONS ------------------- //
+void	print_shell_env(char **env);
 
 #endif /* MINISHELL_H */
