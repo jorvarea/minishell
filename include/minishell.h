@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/21 15:16:13 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 13:50:10 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,30 @@ extern pid_t	g_signal;
 // ------------------- STRUCTURES ------------------- //
 
 // NOT FINISHED
-enum	e_token
+typedef enum	e_token
 {
 	CMD = 0,
 	AND = 1,
 	OR = 2,
 	PIPE = 4
-} t_token;
+}	t_token;
 
 /*
 ESTA ESTRUCTURA CONTIENE LAS REDIRECCIONES DE CADA COMANDO
 */
 typedef struct s_redir
 {
-	char	*file;
-	int		type;	// INFILE/OUTFILE/HEREDOC (make enum for this instead of int)
-	t_redir	*next;	
-	t_redir	*prev;
+	char			*file;
+	int				type;	// INFILE/OUTFILE/HEREDOC (make enum for this instead of int)
+	struct s_redir	*next;	
+	struct s_redir	*prev;
 }	t_redir;
 
 typedef struct s_args
 {
-	char	*arg;
-	t_args	*next;	
-	t_args	*prev;
+	char			*arg;
+	struct s_args	*next;
+	struct s_args	*prev;
 }	t_args;
 
 /**
@@ -123,14 +123,22 @@ BORRADOR NOTAS: Al expandir las wildcards en l_args, se actualiza args (?) (NO E
 */
 typedef struct s_cmd
 {
-	t_token			type;
+	enum e_token	type;
 	char			*cmd;
 	char			**args;
-	t_args			*l_args;
-	t_redir			*redir;
+	struct s_args	*l_args;
+	struct s_redir	*redir;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
 }	t_cmd;
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	struct s_env	*next;
+	struct s_env	*prev;
+}	t_env;
 
 /**
  * @struct Shell Structure
@@ -143,11 +151,11 @@ typedef struct s_cmd
 */
 typedef struct s_shell
 {
-	char	**env;
-	int		exit_status;
-	t_cmd	*tokens;
-	t_env	*l_env;
-	t_args	*files;
+	char			**env;
+	int				exit_status;
+	struct s_cmd	*tokens;
+	struct s_env	*l_env;
+	struct s_args	*files;
 }	t_shell;
 
 // ------------------------------------------------------ //
@@ -174,7 +182,10 @@ t_shell *init_shell(char **envp); // ?
 
 // ------------------- FREE FUNCTIONS ------------------- //
 void	free_array(char **array);
+void	free_arg_lst(t_args *l_args);
+void	free_redir(t_redir	*redir);
 void	free_commands(t_cmd *command_lst);
+void	free_env_list(t_env	*l_env);
 void 	free_shell(t_shell *shell);
 
 
