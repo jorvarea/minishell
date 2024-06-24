@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 14:00:11 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/24 15:22:55 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,24 @@ int	main(int argc, char **argv, char **envp)
 	t_shell	*shell;
 	t_cmd	*parsed_input;
 
+	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
 	signal(SIGQUIT, SIG_IGN);
-	if (argc == 1)
+	while (1)
 	{
-		while (1)
+		signal(SIGINT, signal_handler);
+		input = read_input();
+		if (!input)
+			return (0);
+		parsed_input = parser(input);
+		free(parsed_input);
+		if (!ft_strncmp(input, "exit", 10)) // Quitar IF en el futuro 'exit'
 		{
-			signal(SIGINT, signal_handler);
-			input = read_input();
-			if (!input)
-				return (0);
-			parsed_input = parser(input);
-			free(parsed_input);
-			if (!ft_strncmp(input, "exit", 10)) // Quitar IF en el futuro 'exit'
-			{
-				free(input);
-				break ;
-			} 
-		}
+			free(input);
+			break ;
+		} 
 	}
-	else
-		ft_putstr_fd("Invalid number of arguments", 2);
 	free_shell(shell);
 	return (1);
 }
