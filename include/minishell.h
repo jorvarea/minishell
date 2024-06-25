@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 00:55:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/26 01:03:32 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,6 @@ void	print_array(char **array);
 // ------------------------------------------------------ //
 
 // ------------------- ECHO FUNCTIONS ------------------- //
-void echo(char **args);
+void	echo(char **args);
 
 #endif /* MINISHELL_H */
