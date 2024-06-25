@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 19:20:08 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/26 00:55:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include <sys/ioctl.h>
 # include <termios.h>
 # include <term.h>
+# include <stdbool.h>
 
 // ------------------ COLOR MACROS ------------------ //
 
@@ -207,5 +208,12 @@ void	free_shell(t_shell *shell);
 void	print_shell_env(char **env);
 void	print_shell_l_env(t_env *l_env);
 void	print_array(char **array);
+
+// ------------------------------------------------------ //
+//                     EXEC FOLDER                      //
+// ------------------------------------------------------ //
+
+// ------------------- ECHO FUNCTIONS ------------------- //
+void echo(char **args);
 
 #endif /* MINISHELL_H */
