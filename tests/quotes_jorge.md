@@ -32,87 +32,177 @@ echo -e "It's a test"
 	It's a test
 ```
 
+---
 
-### echo
+## echo
 
-## Test Case 1
+### Test Case 1: Simple Echo
 **Command:**
+```bash
 echo hola
-
+```
 **Expected Output:**
+```bash
 hola\n
+```
 
-## Test Case 2
+**Minishell Output:** ✅ OK
+```bash
+hola\n
+```
+
+### Test Case 2: No Newline with -n Option
 **Command:**
+```bash
 echo -n hola
-
+```
 **Expected Output:**
+```bash
 hola
+```
 
-## Test Case 3
+**Minishell Output:** ✅ OK
+```bash
+hola
+```
+
+### Test Case 3: Multiple -n Options Ignored
 **Command:**
+```bash
 echo -nnnnnnn hola
-
+```
 **Expected Output:**
+```bash
 hola
+```
 
-## Test Case 4
+**Minishell Output:** ✅ OK
+```bash
+hola
+```
+
+### Test Case 4: Multiple -n Options with Other Flags
 **Command:**
+```bash
 echo -n -n -n hola
-
+```
 **Expected Output:**
+```bash
 hola
+```
 
-## Test Case 5
+**Minishell Output:** ✅ OK
+```bash
+hola
+```
+
+### Test Case 5: Invalid Option with -n Flag
 **Command:**
+```bash
 echo -nvcfyjh hola
-
+```
 **Expected Output:**
+```bash
 -nvcfyjh hola\n
+```
 
-## Test Case 6
+**Minishell Output:** ✅ OK
+```bash
+-nvcfyjh hola\n
+```
+
+### Test Case 6: Invalid Option with -n Flag at Beginning
 **Command:**
+```bash
 echo -n -nvcfyjh hola
-
+```
 **Expected Output:**
+```bash
 -nvcfyjh hola
+```
 
-## Test Case 7
+**Minishell Output:** ✅ OK
+```bash
+-nvcfyjh hola
+```
+
+### Test Case 7: Multiple Arguments
 **Command:**
+```bash
 echo hola adios pedro por su casa
-
+```
 **Expected Output:**
-echo hola adios pedro por su casa\n
+```bash
+hola adios pedro por su casa\n
+```
+
+**Minishell Output:** ✅ OK
+```bash
+hola adios pedro por su casa\n
+```
 
 ---
 
-### pwd
+## pwd
 
-## Test Case 1
+### Test Case 1: Simple Pwd
 **Command:**
+```bash
 pwd
-
+```
 **Expected Output:**
+```bash
 /Users/jorvarea/
+```
 
-## Test Case 2
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/
+```
+
+### Test Case 2: Pwd with Invalid Arguments
 **Command:**
+```bash
 pwd ftyh fhgj
-
+```
 **Expected Output:**
-/Users/jorvarea
+```bash
+/Users/jorvarea/
+```
 
-## Test Case 3
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/
+```
+
+### Test Case 3: Pwd with Invalid Option
 **Command:**
+```bash
 pwd bgyhb -m
-
+```
 **Expected Output:**
-/Users/jorvarea
+```bash
+/Users/jorvarea/
+```
 
-## Test Case 4
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/
+```
+
+### Test Case 4: Pwd with Invalid Flag
 **Command:**
+```bash
 pwd -asf
-
+```
 **Expected Output:**
+```bash
+-bash: pwd: -a: invalid option
+pwd: usage: pwd [-LP]
+```
+
+**Minishell Output:** ✅ OK
+```bash
 -minishell: pwd: -a: invalid option
 pwd: usage: pwd
+```
