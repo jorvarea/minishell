@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 13:42:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 00:31:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 # define YELLOW "\033[33m"
 # define MAGENTA "\033[35m"
 # define TURQUOISE "\033[36m"
+
+// ------------------ CONSTANT MACROS ------------------ //
+
+# define MAX_ENV_SIZE 4096
 
 // ---------- GLOBAL VAR: Signal Reception ---------- //
 extern pid_t	g_signal;
@@ -214,6 +218,9 @@ void	print_array(char **array);
 //                     EXEC FOLDER                      //
 // ------------------------------------------------------ //
 
+// ------------------- EXEC FUNCTIONS ------------------- //
+void	exec(t_shell *shell, char **args);
+
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
 bool	valid_flag(char *flag, char *valid_flags);
@@ -221,10 +228,16 @@ int		count_valid_flag_arg(char **args, char *valid_flags);
 bool	found_flags(char **args);
 void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
 
+// ------------------- ENV_UTILS FUNCTIONS ------------------- //
+bool	get_value(t_shell *shell, char *key, char *value, size_t value_size);
+
 // ------------------- ECHO FUNCTIONS ------------------- //
-void	echo(char **args);
+void	echo(t_shell *shell, char **args);
 
 // ------------------- PWD FUNCTIONS ------------------- //
 void	pwd(t_shell *shell, char **args);
+
+// ------------------- ENV FUNCTIONS ------------------- //
+void	env(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */

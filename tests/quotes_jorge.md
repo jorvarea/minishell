@@ -206,3 +206,40 @@ pwd: usage: pwd [-LP]
 -minishell: pwd: -a: invalid option
 pwd: usage: pwd
 ```
+
+---
+
+
+## env
+
+### Test Case 1
+**Command:**
+```bash
+env
+```
+**Expected Output:**
+```bash
+PWD=/Users/jorvarea/Desktop/cursus/minishell
+...
+```
+
+**Minishell Output:** ✅ OK
+```bash
+PWD=/Users/jorvarea/Desktop/cursus/minishell
+...
+```
+
+### Test Case 2
+**Command:**
+```bash
+env vgjn
+```
+**Expected Output:**
+```bash
+env: ‘vgjn’: No such file or directory
+```
+
+**Minishell Output:** ✅ OK
+```bash
+env: too many arguments
+```
