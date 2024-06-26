@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 19:51:02 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:48:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_cmd	*parser(char *input, t_shell *shell)
 		return (NULL);
 	num_cmd = command_counter(input);
 	split_input(input);
-	printf("Input: %s\nNodes in command_lst: %zu\n", input, num_cmd);
+	//printf("Input: %s\nNodes in command_lst: %zu\n", input, num_cmd);
 	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!command_lst)
 		return (NULL);
@@ -72,7 +72,7 @@ char	**split_input(char *input)
 	input_trimmed = trim_input(input_split);
 	if (!input_split)
 		return (NULL);
-	print_array(input_split);
+	//print_array(input_split);
 	free_array(input_split);
 	return (NULL);
 }
