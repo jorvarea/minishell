@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 01:03:32 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:42:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <termios.h>
 # include <term.h>
 # include <stdbool.h>
+# include <limits.h>
 
 // ------------------ COLOR MACROS ------------------ //
 
@@ -213,7 +214,17 @@ void	print_array(char **array);
 //                     EXEC FOLDER                      //
 // ------------------------------------------------------ //
 
+// ------------------- FLAG_UTILS FUNCTIONS ------------------- //
+bool	char_in_str(char c, char *str);
+bool	valid_flag(char *flag, char *valid_flags);
+int		count_valid_flag_arg(char **args, char *valid_flags);
+bool	found_flags(char **args);
+void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
+
 // ------------------- ECHO FUNCTIONS ------------------- //
 void	echo(char **args);
+
+// ------------------- PWD FUNCTIONS ------------------- //
+void	pwd(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */
