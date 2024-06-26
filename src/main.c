@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 18:23:51 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/27 00:28:32 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!input)
 			return (1);
 		parsed_input = parser(input, shell);
+		exec(shell, ft_split(input, ' '));
 		free(parsed_input);
 		if (!ft_strncmp(input, "exit", 10))
 		{

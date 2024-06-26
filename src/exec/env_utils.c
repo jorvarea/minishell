@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 11:40:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 00:08:27 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/06/27 00:06:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pwd(t_shell *shell, char **args)
+bool	get_value(t_shell *shell, char *key, char *value, size_t value_size)
 {
-	char	cwd[MAX_ENV_SIZE];
+	t_env	*ptr;
+	bool	found;
 
-	shell->exit_status = 0;
-	if (found_flags(args))
+	found = false;
+	ptr = shell->l_env;
+	while (ptr && ptr->next)
 	{
-		shell->exit_status = 1;
-		print_invalid_flag_error_msg("pwd", args[1][1], "pwd");
-	}
-	else
-	{
-		if (get_value(shell, "PWD", cwd, sizeof(cwd)))
-			ft_putendl_fd(cwd, STDOUT_FILENO);
-		else
+		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0
+			&& ft_strlen(ptr->value) < value_size)
 		{
-			shell->exit_status = 1;
-			perror("PWD not found");
+			found = true;
+			ft_strlcpy(value, ptr->value, value_size);
 		}
+		ptr = ptr->next;
 	}
+	return (found);
 }

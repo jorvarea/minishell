@@ -6,17 +6,18 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:07:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 13:22:51 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:50:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	echo(char **args)
+void	echo(t_shell *shell, char **args)
 {
 	bool	no_newline_flag;
 	int		i;
 
+	shell->exit_status = 0;
 	i = count_valid_flag_arg(args, "n") + 1;
 	no_newline_flag = false;
 	if (i > 1 && char_in_str('n', args[1]))
