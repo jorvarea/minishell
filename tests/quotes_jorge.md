@@ -33,72 +33,86 @@ echo -e "It's a test"
 ```
 
 
-## Simple Quotes
+### echo
 
-### Test Case 1: Single Quotes Inside Single Quotes
+## Test Case 1
 **Command:**
-(Insert single quotes inside single quotes command here)
+echo hola
 
 **Expected Output:**
-(Insert expected output here)
+hola\n
 
-**Minishell Output:** (✅ Pass / ❌ KO)
-(Insert actual output here)
+## Test Case 2
+**Command:**
+echo -n hola
+
+**Expected Output:**
+hola
+
+## Test Case 3
+**Command:**
+echo -nnnnnnn hola
+
+**Expected Output:**
+hola
+
+## Test Case 4
+**Command:**
+echo -n -n -n hola
+
+**Expected Output:**
+hola
+
+## Test Case 5
+**Command:**
+echo -nvcfyjh hola
+
+**Expected Output:**
+-nvcfyjh hola\n
+
+## Test Case 6
+**Command:**
+echo -n -nvcfyjh hola
+
+**Expected Output:**
+-nvcfyjh hola
+
+## Test Case 7
+**Command:**
+echo hola adios pedro por su casa
+
+**Expected Output:**
+echo hola adios pedro por su casa\n
 
 ---
 
-## Double Quotes
+### pwd
 
-### Test Case 1: Double Quotes Inside Single Quotes
+## Test Case 1
 **Command:**
-(Insert double quotes inside single quotes command here)
+pwd
 
 **Expected Output:**
-(Insert expected output here)
+/Users/jorvarea/
 
-**Minishell Output:** (✅ Pass / ❌ KO)
-(Insert actual output here)
-
----
-
-## Nested Quotes
-
-### Test Case 1: Nested Single and Double Quotes
+## Test Case 2
 **Command:**
-(Insert nested single and double quotes command here)
+pwd ftyh fhgj
 
 **Expected Output:**
-(Insert expected output here)
+/Users/jorvarea
 
-**Minishell Output:** (✅ Pass / ❌ KO)
-(Insert actual output here)
-
----
-
-## Escaped Quotes
-
-### Test Case 1: Escaped Single Quotes
+## Test Case 3
 **Command:**
-(Insert escaped single quotes command here)
+pwd bgyhb -m
 
 **Expected Output:**
-(Insert expected output here)
+/Users/jorvarea
 
-**Minishell Output:** (✅ Pass / ❌ KO)
-(Insert actual output here)
-
----
-
-## Combination of Quotes and Commands
-
-### Test Case 1: Quotes in Command Substitution
+## Test Case 4
 **Command:**
-(Insert quotes in command substitution command here)
+pwd -asf
 
 **Expected Output:**
-(Insert expected output here)
-
-**Minishell Output:** (✅ Pass / ❌ KO)
-(Insert actual output here)
-
----
+-minishell: pwd: -a: invalid option
+pwd: usage: pwd
