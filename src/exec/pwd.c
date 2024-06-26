@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 21:07:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 13:22:51 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/06/26 11:40:24 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/06/26 13:27:43 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
-void	echo(char **args)
+void	pwd(t_shell *shell, char **args)
 {
-	bool	no_newline_flag;
-	int		i;
+	char	cwd[PATH_MAX];
 
-	i = count_valid_flag_arg(args, "n") + 1;
-	no_newline_flag = false;
-	if (i > 1 && char_in_str('n', args[1]))
-		no_newline_flag = true;
-	while (args[i])
+	shell->exit_status = 0;
+	if (found_flags(args))
 	{
-		ft_putstr_fd(args[i], STDOUT_FILENO);
-		if (args[i + 1])
-			ft_putstr_fd(" ", STDOUT_FILENO);
-		i++;
+		shell->exit_status = 1;
+		print_invalid_flag_error_msg("pwd", args[1][1], "pwd");
 	}
-	if (!no_newline_flag)
-		ft_putstr_fd("\n", STDOUT_FILENO);
+	else
+	{
+		if (getcwd(cwd, sizeof(cwd)))
+			ft_putendl_fd(cwd, STDOUT_FILENO);
+		else
+		{
+			shell->exit_status = 1;
+			perror("getcwd");
+		}
+	}
 }
