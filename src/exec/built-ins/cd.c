@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 21:34:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:43:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ void	cd(t_shell *shell, char **args)
 {
 	shell->exit_status = 0;
 	if (found_flags(args))
-	{
-		shell->exit_status = 1;
-		print_invalid_flag_error_msg("cd", args[1][1], "cd [dir]");
-	}
+		set_and_print_invalid_flag_error(shell, "cd", args[1][1], "cd [dir]");
 	else if (count_words(args) > 2)
 		set_and_print_minishell_error(shell,
 			"-minishell: cd: too many arguments");

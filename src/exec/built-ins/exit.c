@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 12:44:12 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 14:58:20 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/06/27 23:41:34 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	count_words(char **ptr)
+void	exit_cmd(t_shell *shell, char **args)
 {
-	int	i;
-
-	i = 0;
-	while (ptr[i])
-		i++;
-	return (i);
-}
-
-void	free_array_null(char ***array)
-{
-	int	i;
-
-	i = -1;
-	if (*array)
+	shell->exit_status = 0;
+	if (args[1])
 	{
-		while ((*array)[++i])
-			free((*array)[i]);
-		free(*array);
-		*array = NULL;
+		shell->exit_status = 1;
+		ft_putendl_fd("-minishell: exit: too many arguments", STDERR_FILENO);
 	}
 }

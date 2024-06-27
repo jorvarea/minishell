@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 21:34:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:40:39 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,17 +219,17 @@ void	print_array(char **array);
 // ------------------------------------------------------ //
 
 // ------------------- EXEC FUNCTIONS ------------------- //
-void	exec(t_shell *shell, char **args);
+bool	exec(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
 bool	valid_flag(char *flag, char *valid_flags);
 int		count_valid_flag_arg(char **args, char *valid_flags);
 bool	found_flags(char **args);
-void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
 
 // ------------------- ENV_UTILS FUNCTIONS ------------------- //
 bool	get_value(t_shell *shell, char *key, char *value, int value_size);
+bool	remove_key(t_shell *shell, char *key);
 void	add_new_env(t_shell *shell, char *key, char *value);
 bool	valid_key_value(char **key_value);
 bool	update_env(t_shell *shell, char *key, char *value);
@@ -237,8 +237,11 @@ bool	update_env(t_shell *shell, char *key, char *value);
 // ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
 void	free_array_null(char ***array);
+bool	equal_str(char *s1, char *s2);
 
 // ------------------- ERROR_UTILS FUNCTIONS ------------------- //
+void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
+			char invalid_flag, char *usage);
 void	set_and_print_perror(t_shell *shell, char *function, char *arg);
 void	set_and_print_minishell_error(t_shell *shell, char *msg);
 
@@ -259,5 +262,11 @@ void	change_directory(t_shell *shell, char *path);
 
 // ------------------- EXPORT FUNCTIONS ------------------- //
 void	export(t_shell *shell, char **args);
+
+// ------------------- UNSET FUNCTIONS ------------------- //
+void	unset(t_shell *shell, char **args);
+
+// ------------------- EXIT FUNCTIONS ------------------- //
+void	exit_cmd(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */

@@ -6,22 +6,33 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 15:51:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:40:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_shell *shell, char **args)
+bool	exec(t_shell *shell, char **args)
 {
-	if (args && ft_strncmp(args[0], "echo", ft_strlen("echo")) == 0)
+	bool	exit;
+
+	exit = false;
+	if (args && equal_str(args[0], "echo"))
 		echo(shell, args);
-	else if (ft_strncmp(args[0], "pwd", ft_strlen("pwd")) == 0)
+	else if (equal_str(args[0], "pwd"))
 		pwd(shell, args);
-	else if (ft_strncmp(args[0], "env", ft_strlen("env")) == 0)
+	else if (equal_str(args[0], "env"))
 		env(shell, args);
-	else if (ft_strncmp(args[0], "cd", ft_strlen("cd")) == 0)
+	else if (equal_str(args[0], "cd"))
 		cd(shell, args);
-	else if (ft_strncmp(args[0], "export", ft_strlen("export")) == 0)
+	else if (equal_str(args[0], "export"))
 		export(shell, args);
+	else if (equal_str(args[0], "unset"))
+		unset(shell, args);
+	else if (equal_str(args[0], "exit"))
+	{
+		exit = true;
+		exit_cmd(shell, args);
+	}
+	return (exit);
 }
