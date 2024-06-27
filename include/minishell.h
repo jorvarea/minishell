@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 23:36:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:40:39 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,6 @@ void	export(t_shell *shell, char **args);
 void	unset(t_shell *shell, char **args);
 
 // ------------------- EXIT FUNCTIONS ------------------- //
-void	exit(t_shell *shell, char **args);
+void	exit_cmd(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */

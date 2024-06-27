@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 23:33:59 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:40:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	exec(t_shell *shell, char **args)
 	else if (equal_str(args[0], "exit"))
 	{
 		exit = true;
-		exit(shell, args);
+		exit_cmd(shell, args);
 	}
 	return (exit);
 }
