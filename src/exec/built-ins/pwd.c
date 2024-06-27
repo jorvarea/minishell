@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:40:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 17:43:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:44:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	pwd(t_shell *shell, char **args)
 
 	shell->exit_status = 0;
 	if (found_flags(args))
-	{
-		shell->exit_status = 1;
-		print_invalid_flag_error_msg("pwd", args[1][1], "pwd");
-	}
+		set_and_print_invalid_flag_error(shell, "pwd", args[1][1], "pwd");
 	else
 	{
 		if (getcwd(cwd, sizeof(cwd)))
