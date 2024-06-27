@@ -6,14 +6,17 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 22:33:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:33:59 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_shell *shell, char **args)
+bool	exec(t_shell *shell, char **args)
 {
+	bool	exit;
+
+	exit = false;
 	if (args && equal_str(args[0], "echo"))
 		echo(shell, args);
 	else if (equal_str(args[0], "pwd"))
@@ -26,4 +29,10 @@ void	exec(t_shell *shell, char **args)
 		export(shell, args);
 	else if (equal_str(args[0], "unset"))
 		unset(shell, args);
+	else if (equal_str(args[0], "exit"))
+	{
+		exit = true;
+		exit(shell, args);
+	}
+	return (exit);
 }

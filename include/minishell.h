@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 22:46:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:36:18 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ void	print_array(char **array);
 // ------------------------------------------------------ //
 
 // ------------------- EXEC FUNCTIONS ------------------- //
-void	exec(t_shell *shell, char **args);
+bool	exec(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
@@ -265,5 +265,8 @@ void	export(t_shell *shell, char **args);
 
 // ------------------- UNSET FUNCTIONS ------------------- //
 void	unset(t_shell *shell, char **args);
+
+// ------------------- EXIT FUNCTIONS ------------------- //
+void	exit(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */

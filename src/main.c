@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 23:17:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:35:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ int	main(int argc, char **argv, char **envp)
 		if (!input)
 			return (1);
 		parsed_input = parser(input, shell);
-		exec(shell, ft_split(input, ' '));
-		free(parsed_input);
-		if (equal_str(input, "exit"))
+		if (exec(shell, ft_split(input, ' ')))
 		{
 			free(input);
 			break ;
 		}
+		free(parsed_input);
 	}
 	free_shell(shell);
 	return (0);
