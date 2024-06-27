@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 18:42:42 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:23:43 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,10 @@ void	env(t_shell *shell, char **args);
 
 // ------------------- CD FUNCTIONS ------------------- //
 void	cd(t_shell *shell, char **args);
+
+// ------------------- CD_UTILS FUNCTIONS ------------------- //
+void	take_me_home(t_shell *shell);
+void	take_me_back(t_shell *shell);
 
 // ------------------- EXPORT FUNCTIONS ------------------- //
 void	export(t_shell *shell, char **args);
