@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/06/27 19:54:43 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/06/27 21:45:18 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,16 +48,16 @@ SRC = src/main.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c \
 	src/exec/exec.c \
-	src/exec/flag_utils.c \
-	src/exec/env_utils.c \
-	src/exec/error_utils.c \
-	src/exec/utils.c \
-	src/exec/echo.c \
-	src/exec/pwd.c \
-	src/exec/env.c \
-	src/exec/cd.c \
-	src/exec/cd_utils.c \
-	src/exec/export.c
+	src/exec/utils/flag_utils.c \
+	src/exec/utils/env_utils.c \
+	src/exec/utils/error_utils.c \
+	src/exec/utils/cd_utils.c \
+	src/exec/utils/utils.c \
+	src/exec/built-ins/echo.c \
+	src/exec/built-ins/pwd.c \
+	src/exec/built-ins/env.c \
+	src/exec/built-ins/cd.c \
+	src/exec/built-ins/export.c
 
 OBJECTS = $(SRC:.c=.o)
 
