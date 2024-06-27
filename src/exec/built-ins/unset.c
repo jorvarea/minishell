@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 00:12:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 01:21:52 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/06/27 21:52:17 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/06/28 00:19:15 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	env(t_shell *shell, char **args)
+void	unset(t_shell *shell, char **args)
 {
-	t_env	*env;
+	int	i;
 
 	shell->exit_status = 0;
-	if (args[1])
-	{
-		shell->exit_status = 1;
-		ft_putendl_fd("env: too many arguments", STDERR_FILENO);
-	}
+	if (found_flags(args))
+		set_and_print_invalid_flag_error(shell, "unset", args[1][1],
+			"unset [name ...]");
 	else
 	{
-		env = shell->l_env;
-		while (env)
-		{
-			ft_printf("%s=", env->key);
-			if (env->value)
-				ft_printf("%s\n", env->value);
-			else
-				ft_printf("\n");
-			env = env->next;
-		}
+		i = 1;
+		while (args[i]) 
+			remove_key(shell, args[i++]);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 16:31:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:52:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,49 @@ bool	get_value(t_shell *shell, char *key, char *value, int value_size)
 
 	found = false;
 	ptr = shell->l_env;
-	while (ptr)
+	while (!found && ptr)
 	{
-		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0
-			&& ft_strlen(ptr->value) < value_size)
+		if (equal_str(ptr->key, key))
 		{
 			found = true;
-			ft_strlcpy(value, ptr->value, value_size);
+			if (ptr->value)
+				ft_strlcpy(value, ptr->value, value_size);
+			else
+				value = NULL;
 		}
 		ptr = ptr->next;
+	}
+	return (found);
+}
+
+bool	remove_key(t_shell *shell, char *key)
+{
+	t_env	*ptr;
+	bool	found;
+
+	found = false;
+	ptr = shell->l_env;
+	while (!found && ptr)
+	{
+		ft_printf("hola\n");
+		if (equal_str(ptr->key, key))
+		{
+			found = true;
+			ft_printf("%s\n", ptr->prev->key);
+			if (ptr->prev)
+				ptr->prev->next = ptr->next;
+			else
+				shell->l_env = ptr->next;
+			ft_printf("%s\n", ptr->prev->key);
+			if (ptr->next)
+				ptr->next->prev = ptr->prev;
+			free(ptr->key);
+			if (ptr->value)
+				free(ptr->value);
+			free(ptr);
+		}
+		else
+			ptr = ptr->next;
 	}
 	return (found);
 }
@@ -35,12 +69,17 @@ bool	get_value(t_shell *shell, char *key, char *value, int value_size)
 void	add_new_env(t_shell *shell, char *key, char *value)
 {
 	t_env	*env;
+	t_env 	*last_env;
 
 	env = (t_env *)malloc(sizeof(t_env));
 	env->key = ft_strdup(key);
-	env->value = ft_strdup(value);
-	env_last_node(shell->l_env)->next = env;
-	env->prev = env_last_node(shell->l_env);
+	if (value)
+		env->value = ft_strdup(value);
+	else
+		env->value = NULL;
+	last_env = find_last_env(shell->l_env);
+	env->prev = last_env;
+	last_env->next = env;
 	env->next = NULL;
 }
 
@@ -49,13 +88,17 @@ bool	valid_key_value(char **key_value)
 	bool	valid;
 	int		i;
 
-	valid = ft_isalpha(key_value[0][0]) || key_value[0][0] == '_';
-	i = 1;
-	while (valid && key_value[0][i])
+	valid = false;
+	if (key_value && key_value[0])
 	{
-		if (!ft_isalnum(key_value[0][i]) && key_value[0][i] != '_')
-			valid = false;
-		i++;
+		valid = ft_isalpha(key_value[0][0]) || key_value[0][0] == '_';
+		i = 1;
+		while (valid && key_value[0][i])
+		{
+			if (!ft_isalnum(key_value[0][i]) && key_value[0][i] != '_')
+				valid = false;
+			i++;
+		}	
 	}
 	return (valid);
 }
@@ -67,12 +110,13 @@ bool	update_env(t_shell *shell, char *key, char *value)
 
 	found = false;
 	ptr = shell->l_env;
-	while (ptr)
+	while (!found && ptr)
 	{
-		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0)
+		if (equal_str(ptr->key, key))
 		{
 			found = true;
-			free(ptr->value);
+			if (ptr->value)
+				free(ptr->value);
 			ptr->value = ft_strdup(value);
 		}
 		ptr = ptr->next;
