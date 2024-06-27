@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:02:59 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 18:32:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:40:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,4 @@ bool	found_flags(char **args)
 	if (args[1] && args[1][0] == '-' && args[1][1] && args[1][1] != '-')
 		found = true;
 	return (found);
-}
-
-void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage)
-{
-	ft_putstr_fd("-minishell: ", STDERR_FILENO);
-	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putstr_fd(": -", STDERR_FILENO);
-	ft_putchar_fd(invalid_flag, STDERR_FILENO);
-	ft_putendl_fd(": invalid option", STDERR_FILENO);
-	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putstr_fd(": usage: ", STDERR_FILENO);
-	ft_putendl_fd(usage, STDERR_FILENO);
 }
