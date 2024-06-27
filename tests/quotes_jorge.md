@@ -576,3 +576,37 @@ pwd
 ```bash
 -minishell: chdir: .DS_Store: Not a directory
 ```
+
+---
+
+## exit
+
+### Test Case 1
+**Command:**
+```bash
+exit ghj
+```
+
+**Expected Output:**
+```bash
+-bash: exit: ghj: numeric argument required
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: exit: too many arguments
+```
+
+### Test Case 2
+**Command:**
+```bash
+exit
+```
+
+**Expected Output:**
+```bash
+```
+
+**Minishell Output:** ✅ OK
+```bash
+```
