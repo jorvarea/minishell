@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 16:31:23 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:34:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,11 +232,15 @@ void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
 bool	get_value(t_shell *shell, char *key, char *value, int value_size);
 void	add_new_env(t_shell *shell, char *key, char *value);
 bool	valid_key_value(char **key_value);
-bool    update_env(t_shell *shell, char *key, char *value);
+bool	update_env(t_shell *shell, char *key, char *value);
 
 // ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
 void	free_array_null(char ***array);
+
+// ------------------- ERROR_UTILS FUNCTIONS ------------------- //
+void	set_and_print_perror(t_shell *shell, char *function, char *arg);
+void	set_and_print_minishell_error(t_shell *shell, char *msg);
 
 // ------------------- ECHO FUNCTIONS ------------------- //
 void	echo(t_shell *shell, char **args);
@@ -249,6 +253,9 @@ void	env(t_shell *shell, char **args);
 
 // ------------------- CD FUNCTIONS ------------------- //
 void	cd(t_shell *shell, char **args);
+
+// ------------------- CD_UTILS FUNCTIONS ------------------- //
+void	change_directory(t_shell *shell, char *path);
 
 // ------------------- EXPORT FUNCTIONS ------------------- //
 void	export(t_shell *shell, char **args);
