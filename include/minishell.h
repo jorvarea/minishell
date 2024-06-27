@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 15:49:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:31:23 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,7 @@ void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
 bool	get_value(t_shell *shell, char *key, char *value, int value_size);
 void	add_new_env(t_shell *shell, char *key, char *value);
 bool	valid_key_value(char **key_value);
+bool    update_env(t_shell *shell, char *key, char *value);
 
 // ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);

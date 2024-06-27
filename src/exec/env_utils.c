@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 15:16:47 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:31:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	get_value(t_shell *shell, char *key, char *value, int value_size)
 
 	found = false;
 	ptr = shell->l_env;
-	while (ptr && ptr->next)
+	while (ptr)
 	{
 		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0
 			&& ft_strlen(ptr->value) < value_size)
@@ -58,4 +58,24 @@ bool	valid_key_value(char **key_value)
 		i++;
 	}
 	return (valid);
+}
+
+bool	update_env(t_shell *shell, char *key, char *value)
+{
+	t_env	*ptr;
+	bool	found;
+
+	found = false;
+	ptr = shell->l_env;
+	while (ptr)
+	{
+		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0)
+		{
+			found = true;
+			free(ptr->value);
+			ptr->value = ft_strdup(value);
+		}
+		ptr = ptr->next;
+	}
+	return (found);
 }
