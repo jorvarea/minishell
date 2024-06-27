@@ -401,3 +401,178 @@ ana=varea
 ...
 ana=varea
 ```
+
+---
+
+## cd
+
+### Test Case 1
+**Command:**
+```bash
+cd ..
+pwd
+env
+```
+
+**Expected Output:**
+```bash
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus
+OLDPWD=/Users/jorvarea/Desktop/cursus/minishell
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus
+OLDPWD=/Users/jorvarea/Desktop/cursus/minishell
+```
+
+### Test Case 2
+**Command:**
+```bash
+cd ..
+pwd
+cd -
+env
+```
+
+**Expected Output:**
+```bash
+/Users/jorvarea/Desktop
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus
+OLDPWD=/Users/jorvarea/Desktop
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/Desktop
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus
+OLDPWD=/Users/jorvarea/Desktop
+```
+
+### Test Case 3
+**Command:**
+```bash
+cd ~
+pwd
+env
+```
+
+**Expected Output:**
+```bash
+/Users/jorvarea
+...
+PWD=/Users/jorvarea
+OLDPWD=/Users/jorvarea/Desktop/cursus
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea
+...
+PWD=/Users/jorvarea
+OLDPWD=/Users/jorvarea/Desktop/cursus
+```
+
+### Test Case 4
+**Command:**
+```bash
+cd ghj
+```
+
+**Expected Output:**
+```bash
+-bash: cd: ghj: No such file or directory
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: chdir: No such file or directory
+```
+
+### Test Case 5
+**Command:**
+```bash
+cd -u
+```
+
+**Expected Output:**
+```bash
+-bash: cd: -u: invalid option
+cd: usage: cd [-L|[-P [-e]] [-@]] [dir]
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: cd: -u: invalid option
+cd: usage: cd [dir]
+```
+
+### Test Case 6
+**Command:**
+```bash
+pwd
+cd minishell/
+env
+```
+
+**Expected Output:**
+```bash
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus/minishell
+OLDPWD=/Users/jorvarea/Desktop/cursus
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus/minishell
+OLDPWD=/Users/jorvarea/Desktop/cursus
+```
+
+### Test Case 7
+**Command:**
+```bash
+cd minishell/ fghj
+pwd
+```
+
+**Expected Output:**
+```bash
+-minishell: cd: too many arguments
+/Users/jorvarea/Desktop/cursus
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/Desktop/cursus
+...
+PWD=/Users/jorvarea/Desktop/cursus/minishell
+OLDPWD=/Users/jorvarea/Desktop/cursus
+```
+
+### Test Case 8
+**Command:**
+```bash
+cd .DS_Store
+pwd
+```
+
+**Expected Output:**
+```bash
+-bash: cd: .DS_Store: Not a directory
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: chdir: .DS_Store: Not a directory
+```

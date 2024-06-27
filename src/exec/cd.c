@@ -6,11 +6,38 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 19:54:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:34:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	take_me_home(t_shell *shell)
+{
+	char	home[MAX_ENV_SIZE];
+
+	if (get_value(shell, "HOME", home, MAX_ENV_SIZE))
+		change_directory(shell, home);
+	else
+		set_and_print_minishell_error(shell, "-minishell: cd: HOME not set");
+}
+
+static void	take_me_back(t_shell *shell)
+{
+	char	oldpwd[MAX_ENV_SIZE];
+	char	pwd[MAX_ENV_SIZE];
+
+	if (get_value(shell, "OLDPWD", oldpwd, MAX_ENV_SIZE))
+	{
+		change_directory(shell, oldpwd);
+		if (getcwd(pwd, MAX_ENV_SIZE))
+			ft_putendl_fd(pwd, STDOUT_FILENO);
+		else
+			set_and_print_perror(shell, "getcwd", "");
+	}
+	else
+		set_and_print_minishell_error(shell, "-minishell: cd: OLDPWD not set");
+}
 
 static char	*expand_home(t_shell *shell, char *path)
 {
@@ -25,29 +52,6 @@ static char	*expand_home(t_shell *shell, char *path)
 	return (new_path);
 }
 
-// I need to expand the relative paths and the . ..
-static void update_pwd_oldpwd(t_shell *shell, char *path)
-{
-    char pwd[MAX_ENV_SIZE];
-    
-    if (get_value(shell, "PWD", pwd, MAX_ENV_SIZE))
-    {
-        update_env(shell, "OLDPWD", pwd);
-        if (!update_env(shell, "PWD", path))
-		    add_new_env(shell, "PWD", path);
-    }
-    else
-        set_and_print_minishell_error(shell, "-minishell: cd: PWD not set");
-}
-
-static void	change_directory(t_shell *shell, char *path)
-{
-	if (chdir(path) == 0)
-		update_pwd_oldpwd(shell, path);
-	else
-		set_and_print_perror(shell, "chdir");
-}
-
 static void	process_cd_args(t_shell *shell, char **args)
 {
 	char	*path;
@@ -60,7 +64,10 @@ static void	process_cd_args(t_shell *shell, char **args)
 	{
 		path = expand_home(shell, &args[1][1]);
 		if (path)
+		{
 			change_directory(shell, path);
+			free(path);
+		}
 	}
 	else
 		change_directory(shell, args[1]);
@@ -72,7 +79,7 @@ void	cd(t_shell *shell, char **args)
 	if (found_flags(args))
 	{
 		shell->exit_status = 1;
-		print_invalid_flag_error_msg("pwd", args[1][1], "pwd");
+		print_invalid_flag_error_msg("cd", args[1][1], "cd [dir]");
 	}
 	else if (count_words(args) > 2)
 		set_and_print_minishell_error(shell,

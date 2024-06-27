@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 19:23:43 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 21:34:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ int		count_words(char **ptr);
 void	free_array_null(char ***array);
 
 // ------------------- ERROR_UTILS FUNCTIONS ------------------- //
-void	set_and_print_perror(t_shell *shell, char *msg);
+void	set_and_print_perror(t_shell *shell, char *function, char *arg);
 void	set_and_print_minishell_error(t_shell *shell, char *msg);
 
 // ------------------- ECHO FUNCTIONS ------------------- //
@@ -255,8 +255,7 @@ void	env(t_shell *shell, char **args);
 void	cd(t_shell *shell, char **args);
 
 // ------------------- CD_UTILS FUNCTIONS ------------------- //
-void	take_me_home(t_shell *shell);
-void	take_me_back(t_shell *shell);
+void	change_directory(t_shell *shell, char *path);
 
 // ------------------- EXPORT FUNCTIONS ------------------- //
 void	export(t_shell *shell, char **args);
