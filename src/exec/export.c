@@ -6,14 +6,12 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 15:50:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:34:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// if count_words == 1 I need to find the local env variable 
-// and export it (export VAR)
 static char	**extract_key_value(char *arg)
 {
 	char	**key_value;
@@ -34,7 +32,10 @@ static void	process_export_args(t_shell *shell, char **args)
 	{
 		key_value = extract_key_value(args[i]);
 		if (key_value)
-			add_new_env(shell, key_value[0], key_value[1]);
+		{
+			if (!update_env(shell, key_value[0], key_value[1]))
+				add_new_env(shell, key_value[0], key_value[1]);
+		}
 		else
 		{
 			shell->exit_status = 1;
@@ -59,7 +60,6 @@ static void	show_exported_variables(t_shell *shell)
 	}
 }
 
-// I need to program export VAR behaviour as well (exporting local variables)
 void	export(t_shell *shell, char **args)
 {
 	shell->exit_status = 0;

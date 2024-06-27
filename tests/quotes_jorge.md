@@ -381,3 +381,23 @@ export jor=varea -k
 -minishell: export: '-k': not a valid identifier
 ```
 (variable added to env)
+
+### Test Case 9
+**Command:**
+```bash
+export ana=cast
+export ana=varea
+env
+```
+
+**Expected Output:**
+```bash
+...
+ana=varea
+```
+
+**Minishell Output:** ✅ OK
+```bash
+...
+ana=varea
+```
