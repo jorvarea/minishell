@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/06/27 21:45:18 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/06/27 22:17:34 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ SRC = src/main.c \
 	src/exec/built-ins/pwd.c \
 	src/exec/built-ins/env.c \
 	src/exec/built-ins/cd.c \
-	src/exec/built-ins/export.c
+	src/exec/built-ins/export.c \
+	src/exec/built-ins/unset.c \
 
 OBJECTS = $(SRC:.c=.o)
 
