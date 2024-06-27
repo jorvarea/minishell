@@ -243,3 +243,141 @@ env: ‘vgjn’: No such file or directory
 ```bash
 env: too many arguments
 ```
+
+---
+
+## export
+
+### Test Case 1
+**Command:**
+```bash
+export
+```
+**Expected Output:**
+```bash
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x HOME="/home/jorvarea"
+...
+...
+```
+
+**Minishell Output:** ✅ OK
+```bash
+declare -x PWD="/Users/jorvarea/Desktop/cursus/minishell"
+declare -x NVM_RC_VERSION="(null)"
+...
+...
+```
+
+### Test Case 2
+**Command:**
+```bash
+export key=value
+```
+**Expected Output:**
+```bash
+```
+(variable added to env)
+
+**Minishell Output:** ✅ OK
+```bash
+```
+(variable added to env)
+
+### Test Case 3
+**Command:**
+```bash
+export 9tor=tor
+```
+**Expected Output:**
+```bash
+-bash: export: `9tor=tor': not a valid identifier
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: export: `9tor=tor': not a valid identifier
+```
+
+### Test Case 4
+**Command:**
+```bash
+export _tor=tor
+```
+**Expected Output:**
+```bash
+```
+(variable added to env)
+
+**Minishell Output:** ✅ OK
+```bash
+```
+(variable added to env)
+
+### Test Case 5
+**Command:**
+```bash
+export t0r=tor
+```
+**Expected Output:**
+```bash
+```
+(variable added to env)
+
+**Minishell Output:** ✅ OK
+```bash
+```
+(variable added to env)
+
+### Test Case 6
+**Command:**
+```bash
+export t@r=tor
+```
+**Expected Output:**
+```bash
+-bash: export: 't@r=tor': not a valid identifier
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: export: 't@r=tor': not a valid identifier
+```
+
+### Test Case 7
+**Command:**
+```bash
+export -y ana=cast
+```
+
+**Expected Output:**
+```bash
+-bash: export: -y: invalid option
+export: usage: export [-fn] [name[=value] ...] or export -p
+```
+(variable not added to env)
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: export: -y: invalid option
+export: usage: export [name[=value] ...]
+```
+(variable not added to env)
+
+### Test Case 8
+**Command:**
+```bash
+export jor=varea -k
+```
+
+**Expected Output:**
+```bash
+-bash: export: `-k': not a valid identifier
+```
+(variable added to env)
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: export: '-k': not a valid identifier
+```
+(variable added to env)

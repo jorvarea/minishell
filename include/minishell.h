@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 00:31:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:49:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,13 @@ bool	found_flags(char **args);
 void	print_invalid_flag_error_msg(char *cmd, char invalid_flag, char *usage);
 
 // ------------------- ENV_UTILS FUNCTIONS ------------------- //
-bool	get_value(t_shell *shell, char *key, char *value, size_t value_size);
+bool	get_value(t_shell *shell, char *key, char *value, int value_size);
+void	add_new_env(t_shell *shell, char *key, char *value);
+bool	valid_key_value(char **key_value);
+
+// ------------------- UTILS FUNCTIONS ------------------- //
+int		count_words(char **ptr);
+void	free_array_null(char ***array);
 
 // ------------------- ECHO FUNCTIONS ------------------- //
 void	echo(t_shell *shell, char **args);
@@ -239,5 +245,11 @@ void	pwd(t_shell *shell, char **args);
 
 // ------------------- ENV FUNCTIONS ------------------- //
 void	env(t_shell *shell, char **args);
+
+// ------------------- CD FUNCTIONS ------------------- //
+void	cd(t_shell *shell, char **args);
+
+// ------------------- EXPORT FUNCTIONS ------------------- //
+void	export(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */
