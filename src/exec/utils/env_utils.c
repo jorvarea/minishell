@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 01:52:27 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:59:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ bool	remove_key(t_shell *shell, char *key)
 	ptr = shell->l_env;
 	while (!found && ptr)
 	{
-		ft_printf("hola\n");
 		if (equal_str(ptr->key, key))
 		{
 			found = true;
-			ft_printf("%s\n", ptr->prev->key);
 			if (ptr->prev)
 				ptr->prev->next = ptr->next;
 			else
 				shell->l_env = ptr->next;
-			ft_printf("%s\n", ptr->prev->key);
 			if (ptr->next)
 				ptr->next->prev = ptr->prev;
 			free(ptr->key);
