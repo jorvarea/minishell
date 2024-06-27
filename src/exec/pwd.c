@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:40:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 00:08:27 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:43:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	pwd(t_shell *shell, char **args)
 	}
 	else
 	{
-		if (get_value(shell, "PWD", cwd, sizeof(cwd)))
+		if (getcwd(cwd, sizeof(cwd)))
 			ft_putendl_fd(cwd, STDOUT_FILENO);
 		else
 		{
 			shell->exit_status = 1;
-			perror("PWD not found");
+			perror("getcwd");
 		}
 	}
 }
