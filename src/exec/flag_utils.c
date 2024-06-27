@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:02:59 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/26 13:34:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/27 18:32:07 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ bool	found_flags(char **args)
 	bool	found;
 
 	found = false;
-	if (args[1] && args[1][0] == '-' && args[1][1] != '-')
+	if (args[1] && args[1][0] == '-' && args[1][1] && args[1][1] != '-')
 		found = true;
 	return (found);
 }
