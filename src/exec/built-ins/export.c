@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 22:43:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:06:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	**extract_key_value(char *arg)
 	char	**key_value;
 
 	key_value = ft_split(arg, '=');
-	if (!valid_key_value(key_value) || count_words(key_value) != 2)
+	if (!valid_key_value(key_value))
 		free_array_null(&key_value);
 	return (key_value);
 }

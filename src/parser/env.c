@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 18:12:12 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 18:12:37 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:54:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ t_env	*set_env_list(char **env)
 		}
 		else
 		{
-			env_last_node(l_env)->next = new_env;
 			new_env->prev = env_last_node(l_env);
+			env_last_node(l_env)->next = new_env;
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 23:40:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/28 01:33:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,7 @@ bool	update_env(t_shell *shell, char *key, char *value);
 int		count_words(char **ptr);
 void	free_array_null(char ***array);
 bool	equal_str(char *s1, char *s2);
+t_env	*find_last_env(t_env *lst);
 
 // ------------------- ERROR_UTILS FUNCTIONS ------------------- //
 void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,

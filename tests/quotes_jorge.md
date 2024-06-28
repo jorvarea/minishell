@@ -610,3 +610,91 @@ exit
 **Minishell Output:** ✅ OK
 ```bash
 ```
+
+---
+
+## unset
+
+### Test Case 1
+**Command:**
+```bash
+unset
+```
+
+**Expected Output:**
+```bash
+```
+
+**Minishell Output:** ✅ OK
+```bash
+```
+
+### Test Case 2
+**Command:**
+```bash
+unset ghj
+```
+
+**Expected Output:**
+```bash
+```
+
+**Minishell Output:** ✅ OK
+```bash
+```
+
+### Test Case 3
+**Command:**
+```bash
+unset -j
+```
+
+**Expected Output:**
+```bash
+-bash: unset: -j: invalid option
+unset: usage: unset [-f] [-v] [-n] [name ...]
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: unset: -j: invalid option
+unset: usage: unset [name ...]
+```
+
+### Test Case 4
+**Command:**
+```bash
+unset -j
+```
+
+**Expected Output:**
+```bash
+-bash: unset: -j: invalid option
+unset: usage: unset [-f] [-v] [-n] [name ...]
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: unset: -j: invalid option
+unset: usage: unset [name ...]
+```
+
+### Test Case 5
+**Command:**
+```bash
+export hola=adios
+unset hola
+env
+```
+
+**Expected Output:**
+```bash
+...
+```
+(hola doesn't appear in the env output)
+
+**Minishell Output:** ✅ OK
+```bash
+...
+```
+(hola doesn't appear in the env output)
