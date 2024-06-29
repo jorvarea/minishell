@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/29 22:09:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:02:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	export(t_shell *shell, char **args)
 {
 	shell->exit_status = 0;
 	if (found_flags(args))
-		set_and_print_invalid_flag_error(shell, "export", args[1][1],
+		ft_invalid_flag_error(shell, "export", args[1][1],
 			"export [name[=value] ...]");
 	else
 	{

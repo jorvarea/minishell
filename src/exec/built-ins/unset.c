@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:52:17 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 00:19:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:02:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	unset(t_shell *shell, char **args)
 
 	shell->exit_status = 0;
 	if (found_flags(args))
-		set_and_print_invalid_flag_error(shell, "unset", args[1][1],
+		ft_invalid_flag_error(shell, "unset", args[1][1],
 			"unset [name ...]");
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/29 23:52:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:01:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static void	find_executable_in_path(t_shell *shell, char **args)
 			i++;
 		}
 		if (errno == ENOENT)
-			set_and_print_command_not_found_error(shell, args[0]);
+			ft_command_not_found_error(shell, args[0]);
 	}
 	else
-		set_and_print_minishell_error(shell, "-minishell: PATH not set");
+		ft_minishell_error(shell, "-minishell: PATH not set");
 }
 
 void	executable(t_shell *shell, char **args)
@@ -49,5 +49,5 @@ void	executable(t_shell *shell, char **args)
 	if (errno == ENOENT)
 		find_executable_in_path(shell, args);
 	else
-		set_and_print_perror(shell, "execve", args[0]);
+		ft_perror(shell, "execve", args[0]);
 }

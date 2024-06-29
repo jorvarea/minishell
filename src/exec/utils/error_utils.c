@@ -6,19 +6,19 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:22:55 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/29 23:34:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:00:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	set_and_print_minishell_error(t_shell *shell, char *msg)
+void	ft_minishell_error(t_shell *shell, char *msg)
 {
 	shell->exit_status = 1;
 	ft_putendl_fd(msg, STDERR_FILENO);
 }
 
-void	set_and_print_perror(t_shell *shell, char *function, char *arg)
+void	ft_perror(t_shell *shell, char *function, char *arg)
 {
 	shell->exit_status = 1;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
@@ -29,7 +29,7 @@ void	set_and_print_perror(t_shell *shell, char *function, char *arg)
 	perror("");
 }
 
-void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
+void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 		char invalid_flag, char *usage)
 {
 	shell->exit_status = 1;
@@ -43,7 +43,7 @@ void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
 	ft_putendl_fd(usage, STDERR_FILENO);
 }
 
-void	set_and_print_command_not_found_error(t_shell *shell, char *cmd)
+void	ft_command_not_found_error(t_shell *shell, char *cmd)
 {
 	shell->exit_status = 127;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
