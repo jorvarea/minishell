@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:13:24 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/29 22:00:53 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:09:28 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	update_envp(t_shell *shell)
 	char	*key_equal;
 	int		i;
 
-	free_array_null(&shell->env);
+	free_array(&shell->env);
 	shell->env = (char **)malloc(count_envp(shell) * sizeof(char *) + 1);
 	env = shell->l_env;
 	i = 0;

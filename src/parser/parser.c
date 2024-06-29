@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/26 23:48:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:11:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**split_input(char *input)
 	if (!input_split)
 		return (NULL);
 	//print_array(input_split);
-	free_array(input_split);
+	free_array(&input_split);
 	return (NULL);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 19:33:24 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:08:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ void	sh_free_str(char *str)
 	}
 }
 
-void	free_array(char **array)
+void	free_array(char ***array)
 {
 	int	i;
 
 	i = -1;
-	if (array)
+	if (*array)
 	{
-		while (array[++i])
-			free(array[i]);
-		free(array);
-		array = NULL;
+		while ((*array)[++i])
+			free((*array)[i]);
+		free(*array);
+		*array = NULL;
 	}
 }
 

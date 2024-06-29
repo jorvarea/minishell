@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 22:02:41 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:08:45 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ t_env	*set_env_list(char **env);
 
 // ------------------- FREE FUNCTIONS ------------------- //
 void	sh_free_str(char *str);
-void	free_array(char **array);
+void	free_array(char ***array);
 void	free_arg_lst(t_args *l_args);
 void	free_redir(t_redir	*redir);
 void	free_env_list(t_env	*l_env);
@@ -240,7 +240,6 @@ void	update_envp(t_shell *shell);
 
 // ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
-void	free_array_null(char ***array);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 
