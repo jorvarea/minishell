@@ -66,7 +66,7 @@ bool	remove_key(t_shell *shell, char *key)
 void	add_new_env(t_shell *shell, char *key, char *value)
 {
 	t_env	*env;
-	t_env 	*last_env;
+	t_env	*last_env;
 
 	env = (t_env *)malloc(sizeof(t_env));
 	env->key = ft_strdup(key);
@@ -95,7 +95,7 @@ bool	valid_key_value(char **key_value)
 			if (!ft_isalnum(key_value[0][i]) && key_value[0][i] != '_')
 				valid = false;
 			i++;
-		}	
+		}
 	}
 	return (valid);
 }

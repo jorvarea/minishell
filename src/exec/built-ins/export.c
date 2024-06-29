@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 01:06:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:09:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	**extract_key_value(char *arg)
 
 	key_value = ft_split(arg, '=');
 	if (!valid_key_value(key_value))
-		free_array_null(&key_value);
+		free_array(&key_value);
 	return (key_value);
 }
 
@@ -43,7 +43,7 @@ static void	process_export_args(t_shell *shell, char **args)
 			ft_putstr_fd(args[i], STDERR_FILENO);
 			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		}
-		free_array_null(&key_value);
+		free_array(&key_value);
 		i++;
 	}
 }

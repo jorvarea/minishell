@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/28 01:33:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:08:45 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ t_env	*set_env_list(char **env);
 
 // ------------------- FREE FUNCTIONS ------------------- //
 void	sh_free_str(char *str);
-void	free_array(char **array);
+void	free_array(char ***array);
 void	free_arg_lst(t_args *l_args);
 void	free_redir(t_redir	*redir);
 void	free_env_list(t_env	*l_env);
@@ -220,6 +220,7 @@ void	print_array(char **array);
 
 // ------------------- EXEC FUNCTIONS ------------------- //
 bool	exec(t_shell *shell, char **args);
+void	executable(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
@@ -234,9 +235,11 @@ void	add_new_env(t_shell *shell, char *key, char *value);
 bool	valid_key_value(char **key_value);
 bool	update_env(t_shell *shell, char *key, char *value);
 
+// ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
+void	update_envp(t_shell *shell);
+
 // ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
-void	free_array_null(char ***array);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 
@@ -246,28 +249,16 @@ void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
 void	set_and_print_perror(t_shell *shell, char *function, char *arg);
 void	set_and_print_minishell_error(t_shell *shell, char *msg);
 
-// ------------------- ECHO FUNCTIONS ------------------- //
-void	echo(t_shell *shell, char **args);
-
-// ------------------- PWD FUNCTIONS ------------------- //
-void	pwd(t_shell *shell, char **args);
-
-// ------------------- ENV FUNCTIONS ------------------- //
-void	env(t_shell *shell, char **args);
-
-// ------------------- CD FUNCTIONS ------------------- //
-void	cd(t_shell *shell, char **args);
-
 // ------------------- CD_UTILS FUNCTIONS ------------------- //
 void	change_directory(t_shell *shell, char *path);
 
-// ------------------- EXPORT FUNCTIONS ------------------- //
+// ------------------- BUILT-IN FUNCTIONS ------------------- //
+void	echo(t_shell *shell, char **args);
+void	pwd(t_shell *shell, char **args);
+void	env(t_shell *shell, char **args);
+void	cd(t_shell *shell, char **args);
 void	export(t_shell *shell, char **args);
-
-// ------------------- UNSET FUNCTIONS ------------------- //
 void	unset(t_shell *shell, char **args);
-
-// ------------------- EXIT FUNCTIONS ------------------- //
 void	exit_cmd(t_shell *shell, char **args);
 
 #endif /* MINISHELL_H */
