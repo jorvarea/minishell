@@ -46,9 +46,9 @@ bool	equal_str(char *s1, char *s2)
 	return ((len1 == len2) && (ft_strncmp(s1, s2, len1) == 0));
 }
 
-t_env *find_last_env(t_env *lst)
+t_env	*find_last_env(t_env *lst)
 {
-	t_env *current;
+	t_env	*current;
 
 	current = lst;
 	while (current && current->next)

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 23:40:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 21:07:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ bool	exec(t_shell *shell, char **args)
 		exit = true;
 		exit_cmd(shell, args);
 	}
+	else
+		executable(shell, args);
 	return (exit);
 }
