@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/06/27 23:38:18 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/06/29 22:05:59 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,10 @@ SRC = src/main.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c \
 	src/exec/exec.c \
+	src/exec/executable.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/env_utils.c \
+	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
 	src/exec/utils/cd_utils.c \
 	src/exec/utils/utils.c \
