@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:22:55 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 22:41:28 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:34:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,13 @@ void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": usage: ", STDERR_FILENO);
 	ft_putendl_fd(usage, STDERR_FILENO);
+}
+
+void	set_and_print_command_not_found_error(t_shell *shell, char *cmd)
+{
+	shell->exit_status = 127;
+	ft_putstr_fd("-minishell: ", STDERR_FILENO);
+	ft_putstr_fd(cmd, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd("command not found", STDERR_FILENO);
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 22:08:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:35:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <term.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <errno.h>
 
 // ------------------ COLOR MACROS ------------------ //
 
@@ -248,6 +249,7 @@ void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
 			char invalid_flag, char *usage);
 void	set_and_print_perror(t_shell *shell, char *function, char *arg);
 void	set_and_print_minishell_error(t_shell *shell, char *msg);
+void	set_and_print_command_not_found_error(t_shell *shell, char *cmd);
 
 // ------------------- CD_UTILS FUNCTIONS ------------------- //
 void	change_directory(t_shell *shell, char *path);
