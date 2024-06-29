@@ -698,3 +698,57 @@ env
 ...
 ```
 (hola doesn't appear in the env output)
+
+---
+
+## executable
+
+### Test Case 1
+**Command:**
+```bash
+hola
+```
+
+**Expected Output:**
+```bash
+-bash: hola: command not found
+```
+(hola doesn't appear in the env output)
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: hola: command not found
+```
+
+### Test Case 2
+**Command:**
+```bash
+ls
+```
+
+**Expected Output:**
+```bash
+LICENSE   Makefile  README.md docs      include   leaks.sh  lib       minishell src       tests
+```
+(hola doesn't appear in the env output)
+
+**Minishell Output:** ✅ OK
+```bash
+LICENSE         Makefile        README.md       docs            include         leaks.sh        lib             minishell       src             tests
+```
+
+### Test Case 3
+**Command:**
+```bash
+./hello_world.sh
+```
+
+**Expected Output:**
+```bash
+hello_world
+```
+
+**Minishell Output:** ✅ OK
+```bash
+hello_world
+```

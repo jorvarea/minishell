@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 23:35:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:01:23 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,11 +245,11 @@ bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 
 // ------------------- ERROR_UTILS FUNCTIONS ------------------- //
-void	set_and_print_invalid_flag_error(t_shell *shell, char *cmd,
+void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 			char invalid_flag, char *usage);
-void	set_and_print_perror(t_shell *shell, char *function, char *arg);
-void	set_and_print_minishell_error(t_shell *shell, char *msg);
-void	set_and_print_command_not_found_error(t_shell *shell, char *cmd);
+void	ft_perror(t_shell *shell, char *function, char *arg);
+void	ft_minishell_error(t_shell *shell, char *msg);
+void	ft_command_not_found_error(t_shell *shell, char *cmd);
 
 // ------------------- CD_UTILS FUNCTIONS ------------------- //
 void	change_directory(t_shell *shell, char *path);

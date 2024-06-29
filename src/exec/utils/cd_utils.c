@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:14:15 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 21:35:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:02:47 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	change_directory(t_shell *shell, char *path)
 					add_new_env(shell, "PWD", pwd);
 			}
 			else
-				set_and_print_perror(shell, "getcwd", "");
+				ft_perror(shell, "getcwd", "");
 		}
 		else
-			set_and_print_perror(shell, "chdir", path);
+			ft_perror(shell, "chdir", path);
 	}
 	else
-		set_and_print_perror(shell, "getcwd", "");
+		ft_perror(shell, "getcwd", "");
 }

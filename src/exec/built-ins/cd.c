@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/27 22:43:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:01:53 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	take_me_home(t_shell *shell)
 	if (get_value(shell, "HOME", home, MAX_ENV_SIZE))
 		change_directory(shell, home);
 	else
-		set_and_print_minishell_error(shell, "-minishell: cd: HOME not set");
+		ft_minishell_error(shell, "-minishell: cd: HOME not set");
 }
 
 static void	take_me_back(t_shell *shell)
@@ -33,10 +33,10 @@ static void	take_me_back(t_shell *shell)
 		if (getcwd(pwd, MAX_ENV_SIZE))
 			ft_putendl_fd(pwd, STDOUT_FILENO);
 		else
-			set_and_print_perror(shell, "getcwd", "");
+			ft_perror(shell, "getcwd", "");
 	}
 	else
-		set_and_print_minishell_error(shell, "-minishell: cd: OLDPWD not set");
+		ft_minishell_error(shell, "-minishell: cd: OLDPWD not set");
 }
 
 static char	*expand_home(t_shell *shell, char *path)
@@ -48,7 +48,7 @@ static char	*expand_home(t_shell *shell, char *path)
 	if (get_value(shell, "HOME", home, sizeof(home)))
 		new_path = ft_strjoin(home, path);
 	else
-		set_and_print_minishell_error(shell, "-minishell: cd: HOME not set");
+		ft_minishell_error(shell, "-minishell: cd: HOME not set");
 	return (new_path);
 }
 
@@ -77,9 +77,9 @@ void	cd(t_shell *shell, char **args)
 {
 	shell->exit_status = 0;
 	if (found_flags(args))
-		set_and_print_invalid_flag_error(shell, "cd", args[1][1], "cd [dir]");
+		ft_invalid_flag_error(shell, "cd", args[1][1], "cd [dir]");
 	else if (count_words(args) > 2)
-		set_and_print_minishell_error(shell,
+		ft_minishell_error(shell,
 			"-minishell: cd: too many arguments");
 	else
 		process_cd_args(shell, args);
