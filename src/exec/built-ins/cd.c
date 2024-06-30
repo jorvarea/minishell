@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 00:01:53 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 12:54:42 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static void	process_cd_args(t_shell *shell, char **args)
 
 void	cd(t_shell *shell, char **args)
 {
-	shell->exit_status = 0;
 	if (found_flags(args))
 		ft_invalid_flag_error(shell, "cd", args[1][1], "cd [dir]");
 	else if (count_words(args) > 2)

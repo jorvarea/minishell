@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:12:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 01:21:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 12:54:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	env(t_shell *shell, char **args)
 {
 	t_env	*env;
 
-	shell->exit_status = 0;
 	if (args[1])
 	{
 		shell->exit_status = 1;

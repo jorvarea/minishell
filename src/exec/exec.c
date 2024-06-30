@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/29 21:07:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 12:54:23 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ bool	exec(t_shell *shell, char **args)
 	bool	exit;
 
 	exit = false;
+	shell->exit_status = 0;
 	if (args && equal_str(args[0], "echo"))
 		echo(shell, args);
 	else if (equal_str(args[0], "pwd"))
