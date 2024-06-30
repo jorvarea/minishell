@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:22:55 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 00:00:57 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/06/30 12:40:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_perror(t_shell *shell, char *function, char *arg)
 void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 		char invalid_flag, char *usage)
 {
-	shell->exit_status = 1;
+	shell->exit_status = 2;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": -", STDERR_FILENO);
