@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 17:08:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:58:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,19 +80,19 @@ void	add_new_env(t_shell *shell, char *key, char *value)
 	env->next = NULL;
 }
 
-bool	valid_key_value(char **key_value)
+bool	valid_key(char *key)
 {
 	bool	valid;
 	int		i;
 
 	valid = false;
-	if (key_value && key_value[0])
+	if (key)
 	{
-		valid = ft_isalpha(key_value[0][0]) || key_value[0][0] == '_';
+		valid = ft_isalpha(key[0]) || key[0] == '_';
 		i = 1;
-		while (valid && key_value[0][i])
+		while (valid && key[i])
 		{
-			if (!ft_isalnum(key_value[0][i]) && key_value[0][i] != '_')
+			if (!ft_isalnum(key[i]) && key[i] != '_')
 				valid = false;
 			i++;
 		}

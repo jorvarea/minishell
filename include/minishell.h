@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 23:49:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:59:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,7 +237,7 @@ bool	found_flags(char **args);
 bool	get_value(t_shell *shell, char *key, char *value, int value_size);
 bool	remove_key(t_shell *shell, char *key);
 void	add_new_env(t_shell *shell, char *key, char *value);
-bool	valid_key_value(char **key_value);
+bool	valid_key(char *key);
 bool	update_env(t_shell *shell, char *key, char *value);
 
 // ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
