@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 21:09:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:41:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,12 +215,15 @@ void	print_shell_env(char **env);
 void	print_shell_l_env(t_env *l_env);
 void	print_array(char **array);
 
+// ------------------- OTHER UTILS FUNCTIONS ------------------- //
+void	exit_program_nl(void);
+
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                      //
 // ------------------------------------------------------ //
 
 // ------------------- EXEC FUNCTIONS ------------------- //
-bool	exec(t_shell *shell, char **args);
+void	exec(t_shell *shell, char **args);
 void	executable(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/27 23:35:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:49:45 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,63 @@
 
 pid_t	g_signal;
 
-/*
-	FUNCTIONALITY:
-	 - Updates g_signal (global variable) with signal received (SIGINT)
-	 - Redisplays the prompt when receiving SIGINT (printf should only be '\n')
-	TO-DO:
-	quitar printf y sustituir por "\n" (Ahora recuerda que Ctrl + C no quitea)
-*/
 void	signal_handler(int signal)
 {
 	g_signal = signal;
-	printf("Type 'exit' for quitting minishell\n");
+	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-}
-
-void	exit_program_nl(void)
-{
-	printf("\n");
-	exit(EXIT_SUCCESS);
 }
 
 char	*read_input(void)
 {
 	char	*input;
 
-	input = readline("\033[0;31mminishell >\033[0m");
-	if (!input)
-		exit_program_nl();
+	input = readline("\033[1;35mminishell ➜\033[0m ");
 	return (input);
 }
 
-/*
-	TO-DO:
-	quitar if (!ft_strncmp(input, "exit", 10)) cuando implementemos 'exit'
-*/
+bool	manage_input(t_shell *shell, t_cmd	*parsed_input, char **tmp_splitted)
+{
+	bool stop;
+
+	stop = false;	
+	if (equal_str(tmp_splitted[0], "exit"))
+	{
+		exit_cmd(shell, tmp_splitted);
+		stop = true;
+	}
+	else
+		exec(shell, tmp_splitted);
+	free_array(&tmp_splitted);
+	free(parsed_input);
+	return (stop);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
-	char	*input;
 	t_shell	*shell;
 	t_cmd	*parsed_input;
+	char	*input;
+	bool	stop;
 
 	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
 	signal(SIGQUIT, SIG_IGN);
-	while (1)
+	signal(SIGINT, signal_handler);
+	stop = false;
+	while (!stop)
 	{
-		signal(SIGINT, signal_handler);
 		input = read_input();
-		if (!input)
-			return (1);
-		parsed_input = parser(input, shell);
-		if (exec(shell, ft_split(input, ' ')))
+		if (input && input[0] != '\0')
 		{
-			free(input);
-			break ;
+			parsed_input = parser(input, shell);
+			stop = manage_input(shell, parsed_input, ft_split(input, ' '));
 		}
-		free(parsed_input);
 	}
+	free(input);
 	free_shell(shell);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 16:37:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:09:38 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	take_me_back(t_shell *shell)
 
 static void	process_cd_args(t_shell *shell, char **args)
 {
-	char	*path;
-
 	if (!args[1])
 		take_me_home(shell);
 	else if (args[1] && args[1][0] == '-' && args[1][1] == '\0')
