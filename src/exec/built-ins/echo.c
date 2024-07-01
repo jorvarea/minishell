@@ -6,13 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:07:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/30 12:54:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:09:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	echo(t_shell *shell, char **args)
+void	echo(char **args)
 {
 	bool	no_newline_flag;
 	int		i;

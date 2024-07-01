@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/30 00:01:23 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:09:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,9 @@ int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 
+// ------------------- FT_STRREP FUNCTIONS ------------------- //
+char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
+
 // ------------------- ERROR_UTILS FUNCTIONS ------------------- //
 void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 			char invalid_flag, char *usage);
@@ -255,12 +258,19 @@ void	ft_command_not_found_error(t_shell *shell, char *cmd);
 void	change_directory(t_shell *shell, char *path);
 
 // ------------------- BUILT-IN FUNCTIONS ------------------- //
-void	echo(t_shell *shell, char **args);
+void	echo(char **args);
 void	pwd(t_shell *shell, char **args);
 void	env(t_shell *shell, char **args);
 void	cd(t_shell *shell, char **args);
 void	export(t_shell *shell, char **args);
 void	unset(t_shell *shell, char **args);
 void	exit_cmd(t_shell *shell, char **args);
+
+// ------------------- EXPANSIONS FUNCTIONS ------------------- //
+void	perform_expansions(t_shell *shell, t_cmd *cmd_lst);
+void	expand_cmd(t_shell *shell, char **args);
+void	replace_home(t_shell *shell, char **arg, int start_index);
+void	replace_env(t_shell *shell, char **arg, int start_index);
+void	replace_wildcard(t_shell *shell, char **arg, int start_index);
 
 #endif /* MINISHELL_H */

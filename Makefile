@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/06/29 22:05:59 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/01 21:46:15 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRC = src/main.c \
 	src/exec/utils/env_utils.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
-	src/exec/utils/cd_utils.c \
+	src/exec/utils/ft_strrep.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \
 	src/exec/built-ins/pwd.c \
@@ -61,7 +61,9 @@ SRC = src/main.c \
 	src/exec/built-ins/cd.c \
 	src/exec/built-ins/export.c \
 	src/exec/built-ins/unset.c \
-	src/exec/built-ins/exit.c 
+	src/exec/built-ins/exit.c \
+	src/exec/expansions/perform_expansions.c \
+	src/exec/expansions/replace.c
 
 OBJECTS = $(SRC:.c=.o)
 

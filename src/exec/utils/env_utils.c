@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/28 01:59:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:08:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool	get_value(t_shell *shell, char *key, char *value, int value_size)
 			if (ptr->value)
 				ft_strlcpy(value, ptr->value, value_size);
 			else
-				value = NULL;
+				value[0] = '\0';
 		}
 		ptr = ptr->next;
 	}
