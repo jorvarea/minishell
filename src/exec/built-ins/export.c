@@ -6,44 +6,58 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 12:54:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:41:47 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**extract_key_value(char *arg)
+static void	extract_key_value(char *arg, char **key, char **value)
 {
-	char	**key_value;
+	int	i;
 
-	key_value = ft_split(arg, '=');
-	if (!valid_key_value(key_value))
-		free_array(&key_value);
-	return (key_value);
+	i = 0;
+	while (arg[i] && arg[i] != '=')
+		i++;
+	*key = (char *)malloc(i + 1);
+	*value = (char *)malloc(ft_strlen(&arg[i + 1]) + 1);
+	ft_strlcpy(*key, arg, i + 1);
+	ft_strlcpy(*value, &arg[i + 1], ft_strlen(&arg[i + 1]) + 1);
+	if (!valid_key(*key) || i == ft_strlen(arg))
+	{
+		ft_printf("eoooo\n");
+		free(*key);
+		*key = NULL;
+		free(*value);
+		*value = NULL;
+	}
 }
 
 static void	process_export_args(t_shell *shell, char **args)
 {
-	char	**key_value;
+	char	*key;
+	char	*value;
 	int		i;
 
 	i = 1;
 	while (args[i])
 	{
-		key_value = extract_key_value(args[i]);
-		if (key_value)
+		extract_key_value(args[i], &key, &value);
+		if (key && value)
 		{
-			if (!update_env(shell, key_value[0], key_value[1]))
-				add_new_env(shell, key_value[0], key_value[1]);
+			if (!update_env(shell, key, value))
+				add_new_env(shell, key, value);
+			free(key);
+			free(value);
 		}
 		else
 		{
+			ft_printf("key: %s, value: %s\n", key, value);
 			shell->exit_status = 1;
 			ft_putstr_fd("-minishell: export: `", STDERR_FILENO);
 			ft_putstr_fd(args[i], STDERR_FILENO);
 			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
 		}
-		free_array(&key_value);
 		i++;
 	}
 }
@@ -64,7 +78,7 @@ void	export(t_shell *shell, char **args)
 {
 	if (found_flags(args))
 		ft_invalid_flag_error(shell, "export", args[1][1],
-			"export [name[=value] ...]");
+			"export [name=value ...]");
 	else
 	{
 		if (count_words(args) == 1)
