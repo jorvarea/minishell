@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 16:35:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:09:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void	ft_command_not_found_error(t_shell *shell, char *cmd);
 void	change_directory(t_shell *shell, char *path);
 
 // ------------------- BUILT-IN FUNCTIONS ------------------- //
-void	echo(t_shell *shell, char **args);
+void	echo(char **args);
 void	pwd(t_shell *shell, char **args);
 void	env(t_shell *shell, char **args);
 void	cd(t_shell *shell, char **args);

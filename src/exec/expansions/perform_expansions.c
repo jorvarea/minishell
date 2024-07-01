@@ -6,31 +6,33 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 21:04:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 21:22:23 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	expand_arg(t_shell *shell, char *arg, bool *single_quotes,
+static void	expand_arg(t_shell *shell, char **ptr_arg, bool *single_quotes,
 		bool *double_quotes)
 {
-	int	i;
+	char	*arg;
+	int		i;
 
+	arg = *ptr_arg;
 	i = 0;
 	while (arg[i])
 	{
 		if (arg[i] == '\'')
-			single_quotes = !single_quotes;
+			*single_quotes = !*single_quotes;
 		else if (arg[i] == '\"')
-			double_quotes = !double_quotes;
-		else if (arg[i] == '~' && !single_quotes && !double_quotes && i == 0
+			*double_quotes = !*double_quotes;
+		else if (arg[i] == '~' && !*single_quotes && !*double_quotes && i == 0
 			&& (arg[i + 1] == '/' || arg[i + 1] == '\0'))
-			replace_home(shell, &arg, i);
+			replace_home(shell, ptr_arg, i);
 		else if (arg[i] == '$' && !single_quotes)
-			replace_env(shell, &arg, i);
+			replace_env(shell, ptr_arg, i);
 		else if (arg[i] == '*' && !single_quotes && !double_quotes)
-			replace_wildcard(shell, &arg, i);
+			replace_wildcard(shell, ptr_arg, i);
 		i++;
 	}
 }
@@ -40,14 +42,13 @@ void	expand_cmd(t_shell *shell, char **args)
 	bool	single_quotes;
 	bool	double_quotes;
 	int		i;
-	int		j;
 
 	single_quotes = false;
 	double_quotes = false;
 	i = 0;
 	while (args[i])
 	{
-		expand_arg(shell, args[i], &single_quotes, &double_quotes);
+		expand_arg(shell, &args[i], &single_quotes, &double_quotes);
 		i++;
 	}
 }

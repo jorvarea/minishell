@@ -752,3 +752,87 @@ hello_world
 ```bash
 hello_world
 ```
+
+---
+
+## expanding ~
+
+### Test Case 1
+**Command:**
+```bash
+echo ~
+```
+
+**Expected Output:**
+```bash
+/home/jorvarea
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea
+```
+
+### Test Case 2
+**Command:**
+```bash
+echo ~/directory
+```
+
+**Expected Output:**
+```bash
+/home/jorvarea/directory
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea/directory
+```
+
+### Test Case 3
+**Command:**
+```bash
+echo "~"
+```
+
+**Expected Output:**
+```bash
+~
+```
+
+**Minishell Output:**  ❌ FAIL
+```bash
+"~"
+```
+
+### Test Case 4
+**Command:**
+```bash
+echo ~e
+```
+
+**Expected Output:**
+```bash
+~e
+```
+
+**Minishell Output:**  ✅ OK
+```bash
+~e
+```
+
+### Test Case 5
+**Command:**
+```bash
+echo /hola/~/adios
+```
+
+**Expected Output:**
+```bash
+/hola/~/adios
+```
+
+**Minishell Output:**  ✅ OK
+```bash
+/hola/~/adios
+```

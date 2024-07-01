@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/01 21:05:22 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/01 21:46:15 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ SRC = src/main.c \
 	src/exec/built-ins/unset.c \
 	src/exec/built-ins/exit.c \
 	src/exec/expansions/perform_expansions.c \
-	src/exec/expansions/replace.c \ 
+	src/exec/expansions/replace.c
 
 OBJECTS = $(SRC:.c=.o)
 
