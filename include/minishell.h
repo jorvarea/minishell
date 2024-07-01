@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 22:41:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:49:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,8 @@ void	exit_program_nl(void);
 
 // ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, char **args);
-void	executable(t_shell *shell, char **args);
+void	trim_quotes(char **args);
+void	execute_bin(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);

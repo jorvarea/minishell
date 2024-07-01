@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 00:01:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 23:48:21 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	find_executable_in_path(t_shell *shell, char **args)
 		ft_minishell_error(shell, "-minishell: PATH not set");
 }
 
-void	executable(t_shell *shell, char **args)
+void	execute_bin(t_shell *shell, char **args)
 {
 	update_envp(shell);
 	errno = 0;
