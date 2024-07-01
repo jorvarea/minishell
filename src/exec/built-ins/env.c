@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:12:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 12:54:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:56:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ void	env(t_shell *shell, char **args)
 		while (env)
 		{
 			ft_printf("%s=", env->key);
-			if (env->value)
-				ft_printf("%s\n", env->value);
-			else
-				ft_printf("\n");
+			ft_printf("%s\n", env->value);
 			env = env->next;
 		}
 	}
