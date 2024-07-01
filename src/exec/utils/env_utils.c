@@ -6,32 +6,26 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 17:08:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:03:03 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	get_value(t_shell *shell, char *key, char *value, int value_size)
+char	*get_value(t_shell *shell, char *key)
 {
+	char	*value;
 	t_env	*ptr;
-	bool	found;
 
-	found = false;
+	value = NULL;
 	ptr = shell->l_env;
-	while (!found && ptr)
+	while (!value && ptr)
 	{
 		if (equal_str(ptr->key, key))
-		{
-			found = true;
-			if (ptr->value)
-				ft_strlcpy(value, ptr->value, value_size);
-			else
-				value[0] = '\0';
-		}
+			value = ft_strdup(ptr->value);
 		ptr = ptr->next;
 	}
-	return (found);
+	return (value);
 }
 
 bool	remove_key(t_shell *shell, char *key)
@@ -53,8 +47,7 @@ bool	remove_key(t_shell *shell, char *key)
 			if (ptr->next)
 				ptr->next->prev = ptr->prev;
 			free(ptr->key);
-			if (ptr->value)
-				free(ptr->value);
+			free(ptr->value);
 			free(ptr);
 		}
 		else
@@ -70,29 +63,26 @@ void	add_new_env(t_shell *shell, char *key, char *value)
 
 	env = (t_env *)malloc(sizeof(t_env));
 	env->key = ft_strdup(key);
-	if (value)
-		env->value = ft_strdup(value);
-	else
-		env->value = NULL;
+	env->value = ft_strdup(value);
 	last_env = find_last_env(shell->l_env);
 	env->prev = last_env;
 	last_env->next = env;
 	env->next = NULL;
 }
 
-bool	valid_key_value(char **key_value)
+bool	valid_key(char *key)
 {
 	bool	valid;
 	int		i;
 
 	valid = false;
-	if (key_value && key_value[0])
+	if (key)
 	{
-		valid = ft_isalpha(key_value[0][0]) || key_value[0][0] == '_';
+		valid = ft_isalpha(key[0]) || key[0] == '_';
 		i = 1;
-		while (valid && key_value[0][i])
+		while (valid && key[i])
 		{
-			if (!ft_isalnum(key_value[0][i]) && key_value[0][i] != '_')
+			if (!ft_isalnum(key[i]) && key[i] != '_')
 				valid = false;
 			i++;
 		}
@@ -112,8 +102,7 @@ bool	update_env(t_shell *shell, char *key, char *value)
 		if (equal_str(ptr->key, key))
 		{
 			found = true;
-			if (ptr->value)
-				free(ptr->value);
+			free(ptr->value);
 			ptr->value = ft_strdup(value);
 		}
 		ptr = ptr->next;

@@ -1,39 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executable.c                                       :+:      :+:    :+:   */
+/*   execute_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 00:01:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:31:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	free_paths(char *path1, char *path2)
+{
+	free(path1);
+	free(path2);
+}
+
 static void	find_executable_in_path(t_shell *shell, char **args)
 {
-	char	path_env[MAX_ENV_SIZE];
+	char	*path_env;
 	char	**paths;
 	char	*full_path;
 	char	*path_slash;
 	int		i;
 
-	if (get_value(shell, "PATH", path_env, MAX_ENV_SIZE))
+	path_env = get_value(shell, "PATH");
+	if (path_env)
 	{
 		paths = ft_split(path_env, ':');
 		i = 0;
 		while (paths && paths[i] && errno == ENOENT)
 		{
-			path_slash = ft_strjoin(paths[i], "/");
+			path_slash = ft_strjoin(paths[i++], "/");
 			full_path = ft_strjoin(path_slash, args[0]);
 			errno = 0;
 			execve(full_path, args, shell->env);
-			free(path_slash);
-			free(full_path);
-			i++;
+			free_paths(path_slash, full_path);
 		}
+		free(path_env);
 		if (errno == ENOENT)
 			ft_command_not_found_error(shell, args[0]);
 	}
@@ -41,7 +47,7 @@ static void	find_executable_in_path(t_shell *shell, char **args)
 		ft_minishell_error(shell, "-minishell: PATH not set");
 }
 
-void	executable(t_shell *shell, char **args)
+void	execute_bin(t_shell *shell, char **args)
 {
 	update_envp(shell);
 	errno = 0;

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 22:41:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:03:16 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,8 @@ void	exit_program_nl(void);
 
 // ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, char **args);
-void	executable(t_shell *shell, char **args);
+void	trim_quotes(char **args);
+void	execute_bin(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
@@ -233,10 +234,10 @@ int		count_valid_flag_arg(char **args, char *valid_flags);
 bool	found_flags(char **args);
 
 // ------------------- ENV_UTILS FUNCTIONS ------------------- //
-bool	get_value(t_shell *shell, char *key, char *value, int value_size);
+char	*get_value(t_shell *shell, char *key);
 bool	remove_key(t_shell *shell, char *key);
 void	add_new_env(t_shell *shell, char *key, char *value);
-bool	valid_key_value(char **key_value);
+bool	valid_key(char *key);
 bool	update_env(t_shell *shell, char *key, char *value);
 
 // ------------------- UPDATE_ENVP FUNCTIONS ------------------- //

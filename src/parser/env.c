@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 18:12:12 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 22:11:32 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 00:45:25 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_env	*assign_env_values(char *env, t_env *new_env)
 	if (env_split[1])
 		new_env->value = ft_strdup(env_split[1]);
 	else
-		new_env->value = NULL;
+		new_env->value = ft_strdup("\0");
 	free_array(&env_split);
 	return (new_env);
 }
