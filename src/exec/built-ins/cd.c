@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 22:09:38 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:17:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,32 @@
 
 static void	take_me_home(t_shell *shell)
 {
-	char	home[MAX_ENV_SIZE];
+	char	*home;
 
-	if (get_value(shell, "HOME", home, MAX_ENV_SIZE))
+	home = get_value(shell, "HOME");
+	if (home)
+	{
 		change_directory(shell, home);
+		free(home);
+	}
 	else
 		ft_minishell_error(shell, "-minishell: cd: HOME not set");
 }
 
 static void	take_me_back(t_shell *shell)
 {
-	char	oldpwd[MAX_ENV_SIZE];
 	char	pwd[MAX_ENV_SIZE];
+	char	*oldpwd;
 
-	if (get_value(shell, "OLDPWD", oldpwd, MAX_ENV_SIZE))
+	oldpwd = get_value(shell, "OLDPWD");
+	if (oldpwd)
 	{
 		change_directory(shell, oldpwd);
 		if (getcwd(pwd, MAX_ENV_SIZE))
 			ft_putendl_fd(pwd, STDOUT_FILENO);
 		else
 			ft_perror(shell, "getcwd", "");
+		free(oldpwd);
 	}
 	else
 		ft_minishell_error(shell, "-minishell: cd: OLDPWD not set");
