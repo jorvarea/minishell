@@ -31,11 +31,11 @@ char	*read_input(void)
 	return (input);
 }
 
-bool	manage_input(t_shell *shell, t_cmd	*parsed_input, char **tmp_splitted)
+bool	manage_input(t_shell *shell, t_cmd *parsed_input, char **tmp_splitted)
 {
-	bool stop;
+	bool	stop;
 
-	stop = false;	
+	stop = false;
 	if (equal_str(tmp_splitted[0], "exit"))
 	{
 		exit_cmd(shell, tmp_splitted);
