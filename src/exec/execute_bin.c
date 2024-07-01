@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 01:26:54 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 01:31:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	find_executable_in_path(t_shell *shell, char **args)
 			full_path = ft_strjoin(path_slash, args[0]);
 			errno = 0;
 			execve(full_path, args, shell->env);
-			free_tmp_paths(path_slash, full_path);
+			free_paths(path_slash, full_path);
 		}
 		free(path_env);
 		if (errno == ENOENT)
