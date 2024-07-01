@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 12:54:42 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:37:18 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,6 @@ static void	take_me_back(t_shell *shell)
 		ft_minishell_error(shell, "-minishell: cd: OLDPWD not set");
 }
 
-static char	*expand_home(t_shell *shell, char *path)
-{
-	char	home[MAX_ENV_SIZE];
-	char	*new_path;
-
-	new_path = NULL;
-	if (get_value(shell, "HOME", home, sizeof(home)))
-		new_path = ft_strjoin(home, path);
-	else
-		ft_minishell_error(shell, "-minishell: cd: HOME not set");
-	return (new_path);
-}
-
 static void	process_cd_args(t_shell *shell, char **args)
 {
 	char	*path;
@@ -60,17 +47,34 @@ static void	process_cd_args(t_shell *shell, char **args)
 		take_me_home(shell);
 	else if (args[1] && args[1][0] == '-' && args[1][1] == '\0')
 		take_me_back(shell);
-	else if (args[1] && args[1][0] == '~')
-	{
-		path = expand_home(shell, &args[1][1]);
-		if (path)
-		{
-			change_directory(shell, path);
-			free(path);
-		}
-	}
 	else
 		change_directory(shell, args[1]);
+}
+
+void	change_directory(t_shell *shell, char *path)
+{
+	char	pwd[MAX_ENV_SIZE];
+	char	oldpwd[MAX_ENV_SIZE];
+
+	if (getcwd(oldpwd, MAX_ENV_SIZE))
+	{
+		if (chdir(path) == 0)
+		{
+			if (getcwd(pwd, MAX_ENV_SIZE))
+			{
+				if (!update_env(shell, "OLDPWD", oldpwd))
+					add_new_env(shell, "OLDPWD", oldpwd);
+				if (!update_env(shell, "PWD", pwd))
+					add_new_env(shell, "PWD", pwd);
+			}
+			else
+				ft_perror(shell, "getcwd", "");
+		}
+		else
+			ft_perror(shell, "chdir", path);
+	}
+	else
+		ft_perror(shell, "getcwd", "");
 }
 
 void	cd(t_shell *shell, char **args)
