@@ -402,6 +402,21 @@ ana=varea
 ana=varea
 ```
 
+### Test Case 10
+**Command:**
+```bash
+export hola=adios=buenos_dias
+```
+**Expected Output:**
+```bash
+```
+(variable added to env as key: hola, value: adios=buenos_dias)
+
+**Minishell Output:** ✅ OK
+```bash
+```
+(variable added to env as key: hola, value: adios=buenos_dias)
+
 ---
 
 ## cd
