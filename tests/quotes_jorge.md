@@ -910,3 +910,35 @@ hola0adios
 ```bash
 hola0adios
 ```
+
+### Test Case 4
+**Command:**
+```bash
+echo $?$?
+```
+
+**Expected Output:**
+```bash
+00
+```
+
+**Minishell Output:** ✅ OK
+```bash
+00
+```
+
+### Test Case 5
+**Command:**
+```bash
+echo $? + $?
+```
+
+**Expected Output:**
+```bash
+0 + 0
+```
+
+**Minishell Output:** ✅ OK
+```bash
+0 + 0
+```
