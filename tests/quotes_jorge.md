@@ -878,3 +878,19 @@ adios
 /Users/jorvarea/Desktop/cursus/minishell
 adios
 ```
+
+### Test Case 2
+**Command:**
+```bash
+echo '$HOME'
+```
+
+**Expected Output:**
+```bash
+$HOME
+```
+
+**Minishell Output:** ✅ OK
+```bash
+$HOME
+```
