@@ -59,7 +59,9 @@ typedef enum e_token
 	CMD = 0,
 	AND = 1,
 	OR = 2,
-	PIPE = 4
+	PIPE = 4,
+	OPEN_PAR = 5,
+	CLOSE_PAR = 6
 }	t_token;
 
 typedef enum e_type_redir
