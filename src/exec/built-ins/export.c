@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 14:24:13 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:29:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static void	extract_key_value(char *arg, char **key, char **value)
 	ft_strlcpy(*value, &arg[i + 1], ft_strlen(&arg[i + 1]) + 1);
 	if (!valid_key(*key) || i == ft_strlen(arg))
 	{
-		ft_printf("eoooo\n");
 		free(*key);
 		*key = NULL;
 		free(*value);
@@ -52,7 +51,6 @@ static void	process_export_args(t_shell *shell, char **args)
 		}
 		else
 		{
-			ft_printf("key: %s, value: %s\n", key, value);
 			shell->exit_status = 1;
 			ft_putstr_fd("-minishell: export: `", STDERR_FILENO);
 			ft_putstr_fd(args[i], STDERR_FILENO);
