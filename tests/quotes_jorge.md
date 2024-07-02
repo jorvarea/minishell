@@ -942,3 +942,19 @@ echo $? + $?
 ```bash
 0 + 0
 ```
+
+### Test Case 6
+**Command:**
+```bash
+$?$?
+```
+
+**Expected Output:**
+```bash
+-bash: 00: command not found
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: 00: command not found
+```
