@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   perform_expansions.c                               :+:      :+:    :+:   */
+/*   expand_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 15:12:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:44:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	expand_arg(t_shell *shell, char **ptr_arg, bool *single_quotes,
 		else if (arg[i] == '~' && !*single_quotes && !*double_quotes && i == 0
 			&& (arg[i + 1] == '/' || arg[i + 1] == '\0'))
 			replace_home(shell, ptr_arg, i);
+		else if (arg[i] == '$' && arg[i + 1] == '?' && !*single_quotes)
+			replace_exit_status(shell, ptr_arg, i);
 		else if (arg[i] == '$' && !*single_quotes)
 			replace_env(shell, ptr_arg, i);
 		else if (arg[i] == '*' && !*single_quotes && !*double_quotes)

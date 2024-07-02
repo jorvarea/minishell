@@ -894,3 +894,19 @@ $HOME
 ```bash
 $HOME
 ```
+
+### Test Case 3
+**Command:**
+```bash
+echo hola$?adios
+```
+
+**Expected Output:**
+```bash
+hola0adios
+```
+
+**Minishell Output:** ✅ OK
+```bash
+hola0adios
+```
