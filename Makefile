@@ -41,14 +41,17 @@ DEPS = -I include -I $(LIBFT)/include
 ##                              SOURCES AND OBJECTS                           ##
 ################################################################################
 
-SRC = src/main.c \
+SRC = src/main.c
+
+SRC_PARSER =  src/main_parser.c \
 	src/parser/parser.c \
 	src/parser/init.c \
 	src/parser/env.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c \
 	src/parser/utils/exit_program_nl.c \
-	src/exec/exec.c \
+
+SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_bin.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/env_utils.c \
@@ -67,6 +70,8 @@ SRC = src/main.c \
 	src/exec/expansions/replace.c
 
 OBJECTS = $(SRC:.c=.o)
+OBJ_PAR = $(SRC_PARSER:.c=.o)
+OBJ_EXEC = $(SRC_EXEC:.c=.o)
 
 #BONUS_SR = \
 	
@@ -91,6 +96,10 @@ TURQUOISE=\033[36m
 
 all : head libft $(NAME)
 
+parser : head libft line $(OBJ_PAR)
+	@echo "✦ ---------------------- ✦$(END)"
+	@$(CC) $(FLAGS) $(OBJ_PAR) $(INCLUDE) -o $(NAME)
+
 head :
 	@echo "$(MAGENTA)"
 	@echo "\t███    ███ ██ ███    ██ ██ ███████ ██   ██ ███████ ██      ██      "
@@ -107,7 +116,7 @@ head :
 libft :
 	@make -s -C $(LIBFT)
 
-$(NAME) : line $(OBJECTS)
+$(NAME) : line $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "✦ ---------------------- ✦$(END)"
 	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME)
 
@@ -141,4 +150,4 @@ re :
 	@clear
 	@$(MAKE) -s all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all parser executer bonus clean fclean re
