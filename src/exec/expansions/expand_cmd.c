@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 13:36:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:12:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,5 @@ void	expand_cmd(t_shell *shell, char **args)
 	{
 		expand_arg(shell, &args[i], &single_quotes, &double_quotes);
 		i++;
-	}
-}
-
-void	perform_expansions(t_shell *shell, t_cmd *cmd_lst)
-{
-	t_cmd	*cmd;
-
-	cmd = cmd_lst;
-	while (cmd)
-	{
-		expand_cmd(shell, cmd->args);
-		cmd = cmd->next;
 	}
 }

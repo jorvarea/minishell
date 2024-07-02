@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/02 01:03:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:13:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ void	update_envp(t_shell *shell);
 int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
+void	*safe_malloc(size_t size);
 
 // ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
@@ -273,7 +274,6 @@ void	unset(t_shell *shell, char **args);
 void	exit_cmd(t_shell *shell, char **args);
 
 // ------------------- EXPANSIONS FUNCTIONS ------------------- //
-void	perform_expansions(t_shell *shell, t_cmd *cmd_lst);
 void	expand_cmd(t_shell *shell, char **args);
 void	replace_home(t_shell *shell, char **arg, int start_index);
 void	replace_env(t_shell *shell, char **arg, int start_index);
