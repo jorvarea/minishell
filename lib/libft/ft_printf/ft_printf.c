@@ -12,16 +12,6 @@
 
 #include "ft_printf.h"
 
-int	ft_strlen(const char *str)
-{
-	int	count;
-
-	count = 0;
-	while (str[++count])
-		;
-	return (count);
-}
-
 static void	select_format(va_list arg, int value, int *result)
 {
 	if (value == 'c')

@@ -16,17 +16,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <libft.h>
 
 # define HEXA_LOW "0123456789abcdef"
 # define HEXA_CAP "0123456789ABCDEF"
 # define DECIMAL "0123456789"
 
 int		ft_printf(char const *str, ...);
-/**
- * @param str string
- * @return Int: Returns the length of string str
-*/
-int		ft_strlen(const char *str);
 
 /**
  * @brief Prints out the char c and increments the int result.
