@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 14:24:55 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:52:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@ void	replace_wildcard(t_shell *shell, char **arg, int start_index)
 	shell = (void *)shell;
 	arg = (void *)arg;
 	start_index = start_index + 1;
+}
+
+void	replace_exit_status(t_shell *shell, char **arg, int start_index)
+{
+	char	*str_replaced;
+	char	*exit_status;
+
+	exit_status = ft_itoa(shell->exit_status);
+	str_replaced = ft_strrep(*arg, exit_status, start_index,
+			start_index + 2);
+	free(exit_status);
+	if (str_replaced)
+	{
+		free(*arg);
+		*arg = str_replaced;
+	}
 }
 
 char	*extract_key(char *arg, int start_index, int *end_index)
@@ -63,7 +79,7 @@ void	replace_home(t_shell *shell, char **arg, int start_index)
 	home = get_value(shell, "HOME");
 	if (home)
 	{
-		str_replaced = ft_strrep(*arg, home, start_index, 1);
+		str_replaced = ft_strrep(*arg, home, start_index, start_index + 1);
 		if (str_replaced)
 		{
 			free(*arg);

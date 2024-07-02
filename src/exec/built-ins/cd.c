@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:51:50 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 01:17:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:04:42 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	change_directory(t_shell *shell, char *path)
 
 void	cd(t_shell *shell, char **args)
 {
+	shell->exit_status = 0;
 	if (found_flags(args))
 		ft_invalid_flag_error(shell, "cd", args[1][1], "cd [dir]");
 	else if (count_words(args) > 2)

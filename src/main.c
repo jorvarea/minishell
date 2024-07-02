@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 22:49:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:32:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ int	main(int argc, char **argv, char **envp)
 	while (!stop)
 	{
 		input = read_input();
-		if (input && input[0] != '\0')
+		if (!input)
+			stop = true;
+		else if (input[0] != '\0')
 		{
 			parsed_input = parser(input, shell);
 			stop = manage_input(shell, parsed_input, ft_split(input, ' '));

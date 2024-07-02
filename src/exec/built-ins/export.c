@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:55:01 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 15:29:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:06:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ static void	show_exported_variables(t_shell *shell)
 
 void	export(t_shell *shell, char **args)
 {
+	shell->exit_status = 0;
 	if (found_flags(args))
 		ft_invalid_flag_error(shell, "export", args[1][1],
 			"export [name=value ...]");

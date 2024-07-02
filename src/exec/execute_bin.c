@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 01:31:13 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:02:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	find_executable_in_path(t_shell *shell, char **args)
 
 void	execute_bin(t_shell *shell, char **args)
 {
+	shell->exit_status = 0;
 	update_envp(shell);
 	errno = 0;
 	execve(args[0], args, shell->env);
