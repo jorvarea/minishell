@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 12:54:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:05:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	exit_cmd(t_shell *shell, char **args)
 {
+	shell->exit_status = 0;
 	if (args[1])
 	{
 		shell->exit_status = 1;

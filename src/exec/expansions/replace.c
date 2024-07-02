@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 18:46:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:52:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	replace_wildcard(t_shell *shell, char **arg, int start_index)
 void	replace_exit_status(t_shell *shell, char **arg, int start_index)
 {
 	char	*str_replaced;
+	char	*exit_status;
 
-	str_replaced = ft_strrep(*arg, ft_itoa(shell->exit_status), start_index,
+	exit_status = ft_itoa(shell->exit_status);
+	str_replaced = ft_strrep(*arg, exit_status, start_index,
 			start_index + 2);
+	free(exit_status);
 	if (str_replaced)
 	{
 		free(*arg);

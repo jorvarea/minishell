@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/01 23:51:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:55:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void	trim_quotes(char **args)
 
 void	exec(t_shell *shell, char **args)
 {
-	shell->exit_status = 0;
 	expand_cmd(shell, args);
 	trim_quotes(args);
 	if (args && equal_str(args[0], "echo"))
-		echo(args);
+		echo(shell, args);
 	else if (equal_str(args[0], "pwd"))
 		pwd(shell, args);
 	else if (equal_str(args[0], "env"))
