@@ -958,3 +958,25 @@ $?$?
 ```bash
 -minishell: 00: command not found
 ```
+
+### Test Case 7
+**Command:**
+```bash
+echo '$PWD'
+echo "'$PWD'"
+echo '"$PWD"'
+```
+
+**Expected Output:**
+```bash
+$PWD
+'/home/jorvarea'
+"$PWD"
+```
+
+**Minishell Output:** ✅ OK
+```bash
+$PWD
+'/Users/jorvarea/Desktop/cursus/minishell'
+"$PWD"
+```
