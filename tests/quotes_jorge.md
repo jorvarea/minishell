@@ -910,3 +910,51 @@ hola0adios
 ```bash
 hola0adios
 ```
+
+### Test Case 4
+**Command:**
+```bash
+echo $?$?
+```
+
+**Expected Output:**
+```bash
+00
+```
+
+**Minishell Output:** ✅ OK
+```bash
+00
+```
+
+### Test Case 5
+**Command:**
+```bash
+echo $? + $?
+```
+
+**Expected Output:**
+```bash
+0 + 0
+```
+
+**Minishell Output:** ✅ OK
+```bash
+0 + 0
+```
+
+### Test Case 6
+**Command:**
+```bash
+$?$?
+```
+
+**Expected Output:**
+```bash
+-bash: 00: command not found
+```
+
+**Minishell Output:** ✅ OK
+```bash
+-minishell: 00: command not found
+```

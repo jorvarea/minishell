@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 18:44:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:49:25 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	expand_arg(t_shell *shell, char **ptr_arg, bool *single_quotes,
 			replace_env(shell, ptr_arg, i);
 		else if (arg[i] == '*' && !*single_quotes && !*double_quotes)
 			replace_wildcard(shell, ptr_arg, i);
+		arg = *ptr_arg;
 		i++;
 	}
 }
