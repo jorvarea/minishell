@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 18:55:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 20:57:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,24 @@
 void	trim_quotes(char **args)
 {
 	char	*arg_trimmed;
+	char	*first_char;
 	int		i;
 
+	first_char = (char *)safe_malloc(2);
 	i = 0;
 	while (args[i])
 	{
-		arg_trimmed = ft_strtrim(args[i], "\"\'");
-		free(args[i]);
-		args[i] = arg_trimmed;
+		first_char[0] = args[i][0];
+		first_char[1] = '\0';
+		if (first_char[0] == '\'' || first_char[0] == '\"')
+		{
+			arg_trimmed = ft_strtrim(args[i], first_char);
+			free(args[i]);
+			args[i] = arg_trimmed;
+		}
 		i++;
 	}
+	free(first_char);
 }
 
 void	exec(t_shell *shell, char **args)
