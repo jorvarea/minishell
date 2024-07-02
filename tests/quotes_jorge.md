@@ -851,3 +851,46 @@ echo /hola/~/adios
 ```bash
 /hola/~/adios
 ```
+
+---
+
+## Expand enviroment variables
+
+### Test Case 1
+**Command:**
+```bash
+echo $HOME
+echo $PWD
+export hola=adios
+echo $hola
+```
+
+**Expected Output:**
+```bash
+/Users/jorvarea
+/Users/jorvarea/Desktop/cursus/minishell
+adios
+```
+
+**Minishell Output:** ✅ OK
+```bash
+/Users/jorvarea
+/Users/jorvarea/Desktop/cursus/minishell
+adios
+```
+
+### Test Case 2
+**Command:**
+```bash
+echo '$HOME'
+```
+
+**Expected Output:**
+```bash
+$HOME
+```
+
+**Minishell Output:** ✅ OK
+```bash
+$HOME
+```
