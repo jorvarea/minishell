@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/02 01:30:08 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/02 15:04:44 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC = src/main.c \
 	src/exec/utils/env_utils.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
+	src/exec/utils/safe_malloc.c \
 	src/exec/utils/ft_strrep.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \
