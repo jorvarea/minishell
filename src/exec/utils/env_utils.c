@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 22:39:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 01:03:03 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:25:10 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	add_new_env(t_shell *shell, char *key, char *value)
 	t_env	*env;
 	t_env	*last_env;
 
-	env = (t_env *)malloc(sizeof(t_env));
+	env = (t_env *)safe_malloc(sizeof(t_env));
 	env->key = ft_strdup(key);
 	env->value = ft_strdup(value);
 	last_env = find_last_env(shell->l_env);

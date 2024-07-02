@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 13:51:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:24:55 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*extract_key(char *arg, int start_index, int *end_index)
 	while (ft_isalnum(arg[i]) || arg[i] == '_')
 		i++;
 	*end_index = i;
-	key = (char *)malloc(*end_index - start_index);
+	key = (char *)safe_malloc(*end_index - start_index);
 	ft_strlcpy(key, &arg[start_index + 1], *end_index - start_index);
 	return (key);
 }
