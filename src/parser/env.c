@@ -46,10 +46,8 @@ t_env	*env_last_node(t_env *l_env)
 
 t_env	*assign_env_values(char *env, t_env *new_env)
 {
-	int		i;
 	char	**env_split;
 
-	i = 0;
 	env_split = ft_split(env, '=');
 	new_env->key = ft_strdup(env_split[0]);
 	if (env_split[1])
