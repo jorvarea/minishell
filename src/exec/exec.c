@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 20:57:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/08 23:50:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ void	trim_quotes(char **args)
 	free(first_char);
 }
 
-void	exec(t_shell *shell, char **args)
+void	exec(t_shell *shell, t_cmd *cmd)
 {
+	char	**args;
+
+	expand_wildcards(cmd);
+	args = cmd->args;
 	expand_cmd(shell, args);
 	trim_quotes(args);
 	if (args && equal_str(args[0], "echo"))
