@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/02 18:32:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:00:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,20 @@ char	*read_input(void)
 	return (input);
 }
 
-bool	manage_input(t_shell *shell, t_cmd *parsed_input, char **tmp_splitted)
+bool	manage_input(t_shell *shell, t_cmd *parsed_input, char *input)
 {
 	bool	stop;
 
+	parsed_input->args = ft_split(input, ' ');
 	stop = false;
-	if (equal_str(tmp_splitted[0], "exit"))
+	if (equal_str(parsed_input->args[0], "exit"))
 	{
-		exit_cmd(shell, tmp_splitted);
+		exit_cmd(shell, parsed_input->args);
 		stop = true;
 	}
 	else
-		exec(shell, tmp_splitted);
-	free_array(&tmp_splitted);
+		exec(shell, parsed_input);
+	free_array(&parsed_input->args);
 	free(parsed_input);
 	return (stop);
 }
@@ -69,7 +70,7 @@ int	main(int argc, char **argv, char **envp)
 		else if (input[0] != '\0')
 		{
 			parsed_input = parser(input, shell);
-			stop = manage_input(shell, parsed_input, ft_split(input, ' '));
+			stop = manage_input(shell, parsed_input, input);
 		}
 	}
 	free(input);
