@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/09 00:00:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:13:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	matching_pattern(char *wildcard, char *str)
 	return (true);
 }
 
-void	add_arg(t_args_array *new_args, char *new_arg)
+static void	add_arg(t_args_array *new_args, char *new_arg)
 {
 	if (new_args->size == new_args->maximum_size)
 	{
@@ -37,7 +37,7 @@ void	add_arg(t_args_array *new_args, char *new_arg)
 	new_args->args[new_args->size++] = ft_strdup(new_arg);
 }
 
-void	replace_wildcard(char *arg, t_args_array *new_args)
+static void	replace_wildcard(char *arg, t_args_array *new_args)
 {
 	struct dirent	*dir_entry;
 	DIR				*dirp;
@@ -57,7 +57,7 @@ void	replace_wildcard(char *arg, t_args_array *new_args)
 	}
 }
 
-bool	contains_wildcard(char *arg)
+static bool	contains_wildcard(char *arg)
 {
 	bool	single_quotes;
 	bool	double_quotes;
