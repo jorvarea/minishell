@@ -6,18 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 18:52:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:11:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	replace_wildcard(t_shell *shell, char **arg, int start_index)
-{
-	shell = (void *)shell;
-	arg = (void *)arg;
-	start_index = start_index + 1;
-}
 
 void	replace_exit_status(t_shell *shell, char **arg, int start_index)
 {
