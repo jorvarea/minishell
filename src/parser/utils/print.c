@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 19:20:52 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:26:00 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ void	print_array(char **array)
 	printf("PRINTING ARRAY:\n");
 	while (array[++i])
 	{
-		printf("\t%i:|%s|\n", i, array[i]);
+		printf("\t%i:|%s|\n", i + 1, array[i]);
 	}
 }
+
+// void	print_command_lst(t_cmd *command_lst)
+// {
+// 	//t_cmd	*next;
+// 	int		i;
+
+// 	i = 0;
+// 	//printf("hola\n\n\n");
+// 	if (command_lst == NULL)
+// 		printf("COMMAND LIST DOESNT EXIST");
+// 	// while (command_lst)
+// 	// {
+// 	// 	next = command_lst->next;
+// 	// 	printf("LST INDEX: %i", i++);
+// 	// 	command_lst = next;
+// 	// }
+// }
