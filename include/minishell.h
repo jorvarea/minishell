@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/02 18:55:43 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:03:16 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void	exit_program_nl(void);
 // ------------------------------------------------------ //
 
 // ------------------- EXEC FUNCTIONS ------------------- //
-void	exec(t_shell *shell, char **args);
+void	exec(t_shell *shell, t_cmd *cmd);
 void	trim_quotes(char **args);
 void	execute_bin(t_shell *shell, char **args);
 
@@ -278,6 +278,6 @@ void	expand_cmd(t_shell *shell, char **args);
 void	replace_home(t_shell *shell, char **arg, int start_index);
 void	replace_env(t_shell *shell, char **arg, int start_index);
 void	replace_exit_status(t_shell *shell, char **arg, int start_index);
-void	replace_wildcard(t_shell *shell, char **arg, int start_index);
+void	expand_wildcards(t_cmd *cmd);
 
 #endif /* MINISHELL_H */
