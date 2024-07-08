@@ -28,17 +28,14 @@
 t_cmd	*parser(char *input, t_shell *shell)
 {
 	t_cmd	*command_lst;
-	size_t	num_cmd;
 	char	**input_array;
 
 	(void)shell;
 	if (!input)
 		return (NULL);
-	num_cmd = command_counter(input);
-	input_array = split_input(input, ' ');
+	input_array = split_input(input);
 	print_array(input_array);
 	free_array(&input_array);
-	//printf("NUM COMMANDS: %zu\n", num_cmd);
 	//printf("Input: %s\nNodes in command_lst: %zu\n", input, num_cmd);
 	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
 	//print_command_lst(command_lst);
@@ -84,7 +81,7 @@ FUNCION BORRADOR, NO TENER EN CUENTA
 
 /*
 FUNCION BORRADOR, NO TENER EN CUENTA
-*/
+
 size_t	command_counter(char *input)
 {
 	int		i;
@@ -98,3 +95,4 @@ size_t	command_counter(char *input)
 	}
 	return (i);
 }
+*/
