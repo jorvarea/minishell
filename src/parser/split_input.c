@@ -19,62 +19,54 @@ static void	memory_leak(char **result, int j)
 	free(result);
 }
 
-// static int is_quote(char *s, char quote)
-// {
-	
-// }
-
 static int	how_many(char const *s)
 {
 	int	i;
 	int	counter;
 	int	b_check;
 
+	i = -1;
 	counter = 0;
-	i = 0;
-	b_check = 0;
-	while (s[i])
+	b_check = 0; 
+	while (s[++i])
 	{
-		if (s[i] == '\'' || s[i] == '\"')
+		if (ft_strchr("|><&;\'\"", s[i]) && ++counter)
 		{
-			i += ft_strchr(s + i + 1, s[i]) - (s + i) + 1;
-			counter++;
-			continue ;
-		}
-		if (!ft_strchr("|><&; ", s[i]) && b_check == 0)
-		{
-			b_check = 1;
-			counter++;
-		}
-		else if (ft_strchr("|><&; ", s[i]))
 			b_check = 0;
-		i++;
+			if (s[i] == '\'' || s[i] == '\"') 
+				i += ft_strchr(s + i + 1, s[i]) - (s + i);
+			else if (s[i] != ';' && s[i] == s[i + 1])
+				i++;
+		}
+		else if (s[i] != ' ' && s[i] != '\t' && (!b_check && ++counter))
+				b_check = 1;
+		else if (ft_strchr(" \t", s[i]))
+			b_check = 0;
 	}
-	printf("SPLIT HOW MANY: %i\n", counter);
 	return (counter);
 }
 
 static void	position_start_end(char const *s, int *start, int *end)
 {
-	//char	end_char;
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
 	if (s[*start] == '\'' || s[*start] == '\"')
-	{
 		*end += ft_strchr(s + *start + 1, s[*start]) - (s + *start) + 1;
-		return ;
-	}
-	while (s[*end])
+	else if (ft_strchr("|><&; ", s[*start]))
 	{
 		*end += 1;
-		if (ft_strchr("| \'\"><&;", s[*end]))
-			return ;
-		*end += 1;
+		if ((ft_strchr("|><&", s[*start])) && s[*start] == s[*end])
+			*end += 1;
+	}
+	else 
+	{
+		while (s[*end] && !ft_strchr("| \'\"><&;", s[*end]))
+			*end += 1;
 	}
 }
 
-char	**split_input(char *input, char c)
+char	**split_input(char *input)
 {
 	char	**result;
 	int		start;
@@ -89,7 +81,7 @@ char	**split_input(char *input, char c)
 	while (input[start])
 	{
 		position_start_end(input, &start, &end);
-		if (input[end] == c || end > start)
+		if (end > start) 
 		{
 			result[j] = ft_substr(input, start, end - start);
 			if (!result[j])
