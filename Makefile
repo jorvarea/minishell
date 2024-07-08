@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/09 13:17:43 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/09 18:17:15 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
