@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
+#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
 #    Updated: 2024/07/09 00:00:55 by jorvarea         ###   ########.fr        #
@@ -43,13 +43,14 @@ DEPS = -I include -I $(LIBFT)/include
 
 SRC = src/main.c
 
-SRC_PARSER =  src/main_parser.c \
-	src/parser/parser.c \
+SRC_PARSER = src/parser/parser.c \
+	src/parser/split_input.c \
 	src/parser/init.c \
 	src/parser/env.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c \
-	src/parser/utils/exit_program_nl.c \
+	src/parser/utils/exit_program_nl.c
+#src/main_parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_bin.c \
@@ -120,7 +121,7 @@ libft :
 
 $(NAME) : line $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "✦ ---------------------- ✦$(END)"
-	@$(CC) $(FLAGS) $(OBJECTS) $(INCLUDE) -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC) $(INCLUDE) -o $(NAME)
 
 bonus : all line $(BONUS_OB)
 	@echo "✦ ---------------------- ✦$(END)"
@@ -137,7 +138,7 @@ line :
 
 clean :
 	@printf "\n$(YELLOW) 🗑   Removing objects$(END)"
-	@$(RM) $(OBJECTS) $(BONUS_OB)
+	@$(RM) $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC) $(BONUS_OB) 
 	@echo "$(GREEN)\r  ✓  $(RED)Removed  objects from $(NAME) $(END)"
 	@make clean -s -C $(LIBFT)
 
