@@ -980,3 +980,23 @@ $PWD
 '/Users/jorvarea/Desktop/cursus/minishell'
 "$PWD"
 ```
+
+---
+
+## Expand wildcard *
+
+### Test Case 1
+**Command:**
+```bash
+echo *
+```
+
+**Expected Output:**
+```bash
+LICENSE Makefile include tests docs README.md minishell lib leaks.sh src
+```
+
+**Minishell Output:** ✅ OK
+```bash
+LICENSE Makefile include tests docs README.md minishell lib leaks.sh src
+```
