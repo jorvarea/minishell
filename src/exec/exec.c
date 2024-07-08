@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/09 00:38:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/09 00:39:42 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	exec(t_shell *shell, t_cmd *cmd)
 	expand_wildcards(cmd);
 	args = cmd->args;
 	expand_cmd(shell, args);
-	expand_wildcards(cmd);
 	trim_quotes(args);
 	if (args && equal_str(args[0], "echo"))
 		echo(shell, args);
