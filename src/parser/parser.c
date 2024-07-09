@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/08 17:27:06 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:33:20 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ t_cmd	*parser(char *input, t_shell *shell)
 	input_array = split_input(input);
 	print_array(input_array);
 	free_array(&input_array);
-	//printf("Input: %s\nNodes in command_lst: %zu\n", input, num_cmd);
 	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
-	//print_command_lst(command_lst);
 	if (!command_lst)
 		return (NULL);
 	return (command_lst);
