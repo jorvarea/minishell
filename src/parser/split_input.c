@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 14:00:33 by ana-cast         ###   ########.fr       */
+/*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
+/*   Updated: 2024/07/09 20:36:35 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@ static void	memory_leak(char **result, int j)
 	free(result);
 }
 
-static int	check_quotes(char const *s, int *start, int *end)
+static int	check_quotes(char const *s, int *i)
 {
-	int	i;
+	int	check;
 
-	if (s[*start] == '\'' || s[*start] == '\"')
+	if (s[*i] == '\'' || s[*i] == '\"')
 	{
-		i = ft_strchr(s + *start + 1, s[*start]) - (s + *start) + 1;
-		if (i < 0 || !s[i])
+		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
+		if (check < 0 || !s[check])
 		{
-			*start += 1;
-			*end = *start;
+			*i += 1;
 			return (0);
 		}
-		*end += i;
+		*i += check;
 	}
 	else
 		return (-1);
@@ -50,19 +49,20 @@ static int	how_many(char const *s)
 	b_check = 0;
 	while (s[++i])
 	{
-		if (ft_strchr("|><&;\'\"", s[i]) && ++counter)
+		while (ft_strchr(" \t", s[i]))
+			i++;
+		if (check_quotes(s, &i) >= 0)
+			b_check = 0;
+		else if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
 			b_check = 0;
-			if (!check_quotes(s, &i, &i))
-				counter--;
-			else if (s[i] != ';' && s[i] == s[i + 1])
+			if (ft_strchr("|&", s[i]) && s[i] == s[i + 1])
 				i++;
 		}
-		else if (s[i] != ' ' && s[i] != '\t' && (!b_check && ++counter))
+		else if (!b_check && ++counter)
 			b_check = 1;
-		else if (ft_strchr(" \t", s[i]))
-			b_check = 0;
 	}
+	printf("\nWORD COUNT:%i\n", counter);
 	return (counter);
 }
 
@@ -71,19 +71,34 @@ static void	position_start_end(char const *s, int *start, int *end)
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
-	if (check_quotes(s, start, end) > 0)
-		;
-	else if (ft_strchr("|><&; ", s[*start]))
+	if (ft_strchr("()|&;", s[*start]))
 	{
 		*end += 1;
-		if ((ft_strchr("|><&", s[*start])) && s[*start] == s[*end])
+		if ((ft_strchr("|&", s[*start])) && s[*start] == s[*end])
 			*end += 1;
 	}
 	else
 	{
-		while (s[*end] && !ft_strchr("| \'\"><&;", s[*end]))
-			*end += 1;
+		while (s[*end] && !ft_strchr("()|&;", s[*end]))
+		{
+			if (check_quotes(s, end) == -1)
+				*end += 1;
+		}
 	}
+}
+
+char	**trim_split(char **split, int len)
+{
+	char	**trim;
+	int		i;
+
+	trim = (char **)malloc(sizeof(char *) * len);
+	i = -1;
+	while (split[++i])
+		trim[i] = ft_strtrim(split[i], " \t");
+	trim[i] = NULL;
+	free_array(&split);
+	return (trim);
 }
 
 char	**split_input(char *input)
@@ -92,24 +107,25 @@ char	**split_input(char *input)
 	int		start;
 	int		end;
 	int		j;
+	int		len;
 
-	result = (char **)malloc(sizeof(char *) * (how_many(input) + 1));
+	len = how_many(input) + 1;
+	result = (char **)malloc(sizeof(char *) * len);
 	if (!result || !input)
 		return (NULL);
 	start = 0;
-	j = 0;
+	j = -1;
 	while (input[start])
 	{
 		position_start_end(input, &start, &end);
 		if (end > start)
 		{
-			result[j] = ft_substr(input, start, end - start);
+			result[++j] = ft_substr(input, start, end - start);
 			if (!result[j])
 				return (memory_leak(result, j), NULL);
 			start = end;
-			j++;
 		}
 	}
-	result[j] = NULL;
-	return (result);
+	result[++j] = NULL;
+	return (trim_split(result, len));
 }
