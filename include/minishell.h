@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/08 20:03:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:02:13 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void	signal_handler(int signal);
 // ------------------ PARSER FUNCTIONS ------------------ //
 t_cmd	*parser(char *input, t_shell *shell); // ?
 char	**split_input(char *input);
+char	**split_cmd(char *input);
 size_t	command_counter(char *input);
 
 // ------------------- INIT FUNCTIONS ------------------- //
