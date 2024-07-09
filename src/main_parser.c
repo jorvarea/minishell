@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/01 22:49:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:29:32 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*read_input(void)
 	return (input);
 }
 
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	*shell;
@@ -39,13 +38,12 @@ int	main(int argc, char **argv, char **envp)
 	char	*input;
 	bool	stop;
 
-	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
 	stop = false;
-	while (!stop)
+	while (!stop && argc)
 	{
 		input = read_input();
 		if (input && input[0] != '\0')
@@ -53,10 +51,7 @@ int	main(int argc, char **argv, char **envp)
 			parsed_input = parser(input, shell);
 			free(parsed_input);
 			if (!ft_strncmp(input, "exit", 10))
-			{
-				free(input);
 				stop = true;
-			}
 		}
 	}
 	free(input);
