@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 13:57:34 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:00:33 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static int	how_many(char const *s)
 		else if (ft_strchr(" \t", s[i]))
 			b_check = 0;
 	}
-	printf("SPLIT NUMBER OF WORDS: %i\n", counter);
 	return (counter);
 }
 
