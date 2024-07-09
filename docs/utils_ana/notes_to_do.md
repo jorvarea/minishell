@@ -1,6 +1,15 @@
 
 ## ANA NOTES:
 
+### Regarding parenthesis:
+
+EXAMPLE OF COMMAND THAT CHANGES OUTPUT DUE TO THE PARENTHESIS USAGE:
+echo A || echo B && (echo C && echo D) >>> ACD
+echo A || (echo B && echo C) && echo D >>> AD
+echo A || (echo B && echo C && echo D) >>> A
+
+
+
 ### Regarding signals:
 See: https://man7.org/linux/man-pages/man7/signal.7.html
 
