@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/08 19:26:00 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/09 19:27:53 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_array(char **array)
 	printf("PRINTING ARRAY:\n");
 	while (array[++i])
 	{
-		printf("\t%i:|%s|\n", i + 1, array[i]);
+		printf("\t%i:%s%s%s$\n", i + 1, GREEN, array[i], WHITE);
 	}
 }
 
