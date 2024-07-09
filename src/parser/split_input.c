@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/08 19:24:53 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:32:10 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,23 @@ static int	how_many(char const *s)
 
 	i = -1;
 	counter = 0;
-	b_check = 0; 
+	b_check = 0;
 	while (s[++i])
 	{
 		if (ft_strchr("|><&;\'\"", s[i]) && ++counter)
 		{
 			b_check = 0;
-			if (s[i] == '\'' || s[i] == '\"') 
+			if (s[i] == '\'' || s[i] == '\"')
 				i += ft_strchr(s + i + 1, s[i]) - (s + i);
 			else if (s[i] != ';' && s[i] == s[i + 1])
 				i++;
 		}
 		else if (s[i] != ' ' && s[i] != '\t' && (!b_check && ++counter))
-				b_check = 1;
+			b_check = 1;
 		else if (ft_strchr(" \t", s[i]))
 			b_check = 0;
 	}
+	printf("SPLIT NUMBER OF WORDS: %i\n", counter);
 	return (counter);
 }
 
@@ -59,7 +60,7 @@ static void	position_start_end(char const *s, int *start, int *end)
 		if ((ft_strchr("|><&", s[*start])) && s[*start] == s[*end])
 			*end += 1;
 	}
-	else 
+	else
 	{
 		while (s[*end] && !ft_strchr("| \'\"><&;", s[*end]))
 			*end += 1;
@@ -81,7 +82,7 @@ char	**split_input(char *input)
 	while (input[start])
 	{
 		position_start_end(input, &start, &end);
-		if (end > start) 
+		if (end > start)
 		{
 			result[j] = ft_substr(input, start, end - start);
 			if (!result[j])
