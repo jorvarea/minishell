@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 15:47:39 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 19:40:53 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,19 @@ static void	memory_leak(char **result, int j)
 	free(result);
 }
 
-static int	check_quotes(char const *s, int *start, int *end)
+static int	check_quotes(char const *s, int *i)
 {
-	int	i;
+	int	check;
 
-	if (s[*start] == '\'' || s[*start] == '\"')
+	if (s[*i] == '\'' || s[*i] == '\"')
 	{
-		i = ft_strchr(s + *start + 1, s[*start]) - (s + *start) + 1;
-		if (i < 0 || !s[i])
+		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
+		if (check <= 1 || !s[check])
 		{
-			*start += 1;
-			*end = *start;
+			*i += 1;
 			return (0);
 		}
-		*end += i;
+		*i += check;
 	}
 	else
 		return (-1);
@@ -53,7 +52,7 @@ static int	how_many(char const *s)
 		if (ft_strchr("()|><&;\'\"", s[i]) && ++counter)
 		{
 			b_check = 0;
-			if (!check_quotes(s, &i, &i))
+			if (!check_quotes(s, &i) && i--)
 				counter--;
 			else if (!ft_strchr("();", s[i]) && s[i] == s[i + 1])
 				i++;
@@ -63,17 +62,24 @@ static int	how_many(char const *s)
 		else if (ft_strchr(" \t", s[i]))
 			b_check = 0;
 	}
-	printf("TOTAL WORDS SPLIT: %i\n", counter);
+	printf("\nWORD COUNT:%i\n", counter);
 	return (counter);
 }
 
 static void	cmd_extract_string(char const *s, int *start, int *end)
 {
+	int	quote_status;
+
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
-	if (check_quotes(s, start, end) >= 0)
+	if (!*start)
 		;
+	quote_status = check_quotes(s, end);
+	if (!quote_status)
+		*start = *end;
+	else if (quote_status > 0)
+		*end += 1;
 	else if (ft_strchr("()|><&; ", s[*start]))
 	{
 		*end += 1;
