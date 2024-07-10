@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 17:21:05 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:36:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,5 +271,8 @@ void	replace_env(t_shell *shell, char **arg, int start_index);
 void	replace_exit_status(t_shell *shell, char **arg, int start_index);
 bool	matching_pattern(char *pattern, char *str);
 void	expand_wildcards(t_cmd *cmd);
+
+// ------------------- CHATGPT-MADE FUNCTIONS ------------------- //
+t_cmd	*chatgpt_parse_input(char *input);
 
 #endif /* MINISHELL_H */
