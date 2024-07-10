@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/11 21:07:25 by ana-cast         ###   ########.fr       */
-=======
-/*   Updated: 2024/07/10 16:39:08 by jorvarea         ###   ########.fr       */
->>>>>>> 13586f9 (removed static function prototype, added the executor)
+/*   Updated: 2024/07/11 22:52:36 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +136,7 @@ COMANDO: echo hola > que * > tal && echo Malaga
  - redir -> NULL
  - next: NULL
  - prev: anterior comando (2.)
-*/
+ */
 typedef struct s_cmd
 {
 	enum e_token	type;
