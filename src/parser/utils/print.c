@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 19:27:53 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:51:12 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,3 @@ void	print_array(char **array)
 		printf("\t%i:%s%s%s$\n", i + 1, GREEN, array[i], WHITE);
 	}
 }
-
-// void	print_command_lst(t_cmd *command_lst)
-// {
-// 	//t_cmd	*next;
-// 	int		i;
-
-// 	i = 0;
-// 	//printf("hola\n\n\n");
-// 	if (command_lst == NULL)
-// 		printf("COMMAND LIST DOESNT EXIST");
-// 	// while (command_lst)
-// 	// {
-// 	// 	next = command_lst->next;
-// 	// 	printf("LST INDEX: %i", i++);
-// 	// 	command_lst = next;
-// 	// }
-// }

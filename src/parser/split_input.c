@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 20:36:35 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:38:08 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ static int	how_many(char const *s)
 	{
 		while (ft_strchr(" \t", s[i]))
 			i++;
-		if (check_quotes(s, &i) >= 0)
-			b_check = 0;
-		else if (ft_strchr("()|&;", s[i]) && ++counter)
+		if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
 			b_check = 0;
 			if (ft_strchr("|&", s[i]) && s[i] == s[i + 1])
 				i++;
 		}
+		else if (check_quotes(s, &i) >= 0 && b_check)
+			;
 		else if (!b_check && ++counter)
 			b_check = 1;
 	}
@@ -66,7 +66,7 @@ static int	how_many(char const *s)
 	return (counter);
 }
 
-static void	position_start_end(char const *s, int *start, int *end)
+static void	input_extract_string(char const *s, int *start, int *end)
 {
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
@@ -117,7 +117,7 @@ char	**split_input(char *input)
 	j = -1;
 	while (input[start])
 	{
-		position_start_end(input, &start, &end);
+		input_extract_string(input, &start, &end);
 		if (end > start)
 		{
 			result[++j] = ft_substr(input, start, end - start);
