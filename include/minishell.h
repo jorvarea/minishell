@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 20:02:13 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:14:21 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,6 +279,7 @@ void	expand_cmd(t_shell *shell, char **args);
 void	replace_home(t_shell *shell, char **arg, int start_index);
 void	replace_env(t_shell *shell, char **arg, int start_index);
 void	replace_exit_status(t_shell *shell, char **arg, int start_index);
+bool	matching_pattern(char *pattern, char *str);
 void	expand_wildcards(t_cmd *cmd);
 
 #endif /* MINISHELL_H */

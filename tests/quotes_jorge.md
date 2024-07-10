@@ -1000,3 +1000,137 @@ LICENSE Makefile include tests docs README.md minishell lib leaks.sh src
 ```bash
 LICENSE Makefile include tests docs README.md minishell lib leaks.sh src
 ```
+
+### Test Case 2
+**Command:**
+```bash
+echo M*
+```
+
+**Expected Output:**
+```bash
+Makefile
+```
+
+**Minishell Output:** ✅ OK
+```bash
+Makefile
+```
+
+### Test Case 3
+**Command:**
+```bash
+echo M*file
+```
+
+**Expected Output:**
+```bash
+Makefile
+```
+
+**Minishell Output:** ✅ OK
+```bash
+Makefile
+```
+
+
+### Test Case 4
+**Command:**
+```bash
+echo *file
+```
+
+**Expected Output:**
+```bash
+Makefile
+```
+
+**Minishell Output:** ✅ OK
+```bash
+Makefile
+```
+
+### Test Case 5
+**Command:**
+```bash
+echo M*ke*file
+```
+
+**Expected Output:**
+```bash
+Makefile
+```
+
+**Minishell Output:** ✅ OK
+```bash
+Makefile
+```
+
+### Test Case 6
+**Command:**
+```bash
+echo **ke
+```
+
+**Expected Output:**
+```bash
+
+```
+
+**Minishell Output:** ✅ OK
+```bash
+
+```
+
+### Test Case 7
+**Command:**
+```bash
+touch baaabab
+echo ba*****ab
+echo ba*ab
+echo a*ab
+echo a*****ab
+echo *a*****ab
+echo ba*ab****
+echo ba*ab****l
+echo ba*ab****l*
+echo ****
+echo *
+echo b*b
+echo a*a
+echo baaabab
+```
+
+**Expected Output:**
+```bash
+baaabab
+baaabab
+
+
+baaabab
+baaabab
+
+
+LICENSE Makefile include tests docs README.md minishell lib baaabab leaks.sh src
+LICENSE Makefile include tests docs README.md minishell lib baaabab leaks.sh src
+baaabab
+
+baaabab
+```
+
+**Minishell Output:** ✅ OK
+```bash
+baaabab
+baaabab
+
+
+baaabab
+baaabab
+
+
+LICENSE Makefile include tests docs README.md minishell lib baaabab leaks.sh src
+LICENSE Makefile include tests docs README.md minishell lib baaabab leaks.sh src
+baaabab
+
+baaabab
+```
