@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/09 18:21:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:04:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,6 @@ typedef struct s_args_array
 	int		size;
 	int		maximum_size;
 }			t_args_array;
-
-static bool	matching_pattern(char *wildcard, char *str)
-{
-	(void)wildcard;
-	(void)str;
-	return (true);
-}
 
 static void	add_arg(t_args_array *new_args, char *new_arg)
 {

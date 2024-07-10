@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/09 18:17:15 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/10 15:10:53 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/built-ins/exit.c \
 	src/exec/expansions/expand_cmd.c \
 	src/exec/expansions/expand_wildcards.c \
+	src/exec/expansions/matching_pattern.c \
 	src/exec/expansions/replace.c
 
 OBJECTS = $(SRC:.c=.o)
