@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 16:39:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:21:05 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,14 +131,7 @@ COMANDO: echo hola > que * > tal && echo Malaga
  - redir -> NULL
  - next: NULL
  - prev: anterior comando (2.)
-
-POR DECIDIR!!!
-BORRADOR: Al expandir las wildcards en l_args, se actualiza args (?)
- - EJEMPLO CON EL PRIMER COMANDO:
- 	- args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
-	- l_args -> 1: arg="echo" next->arg="hola" next->(...) next -> arg="fileN"
-	- args -> args[0] = "echo", args[1] = "hola", (...), args[N + 2] = "fileN"
-*/
+ */
 typedef struct s_cmd
 {
 	enum e_token	type;
