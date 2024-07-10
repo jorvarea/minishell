@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 14:23:54 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:30:04 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cmd	*parser(char *input, t_shell *shell)
 	print_array(input_array);
 	while (input_array[++i])
 	{
-		commands = split_input(input_array[i]);
+		commands = split_cmd(input_array[i]);
 		print_array(commands);
 		free_array(&commands);
 	}
