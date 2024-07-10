@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 15:14:21 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:39:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ void	exit_program_nl(void);
 
 // ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, t_cmd *cmd);
-void	trim_quotes(char **args);
+void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 
 // ------------------- FLAG_UTILS FUNCTIONS ------------------- //
@@ -261,9 +261,6 @@ void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
-
-// ------------------- CD_UTILS FUNCTIONS ------------------- //
-void	change_directory(t_shell *shell, char *path);
 
 // ------------------- BUILT-IN FUNCTIONS ------------------- //
 void	echo(t_shell *shell, char **args);
