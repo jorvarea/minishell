@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 20:02:22 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:47:39 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ static int	how_many(char const *s)
 	return (counter);
 }
 
-static void	position_start_end(char const *s, int *start, int *end)
+static void	cmd_extract_string(char const *s, int *start, int *end)
 {
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
-	if (check_quotes(s, start, end) > 0)
+	if (check_quotes(s, start, end) >= 0)
 		;
 	else if (ft_strchr("()|><&; ", s[*start]))
 	{
@@ -93,24 +93,25 @@ char	**split_cmd(char *input)
 	int		start;
 	int		end;
 	int		j;
+	int		len;
 
-	result = (char **)malloc(sizeof(char *) * (how_many(input) + 1));
+	len = how_many(input) + 1;
+	result = (char **)malloc(sizeof(char *) * len);
 	if (!result || !input)
 		return (NULL);
 	start = 0;
-	j = 0;
+	j = -1;
 	while (input[start])
 	{
-		position_start_end(input, &start, &end);
+		cmd_extract_string(input, &start, &end);
 		if (end > start)
 		{
-			result[j] = ft_substr(input, start, end - start);
+			result[++j] = ft_substr(input, start, end - start);
 			if (!result[j])
 				return (memory_leak(result, j), NULL);
 			start = end;
-			j++;
 		}
 	}
-	result[j] = NULL;
-	return (result);
+	result[++j] = NULL;
+	return (trim_split(result, len));
 }
