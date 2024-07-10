@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 15:38:08 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 20:28:33 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_quotes(char const *s, int *i)
 	if (s[*i] == '\'' || s[*i] == '\"')
 	{
 		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
-		if (check < 0 || !s[check])
+		if (check <= 1 || !s[check])
 		{
 			*i += 1;
 			return (0);
@@ -43,6 +43,7 @@ static int	how_many(char const *s)
 	int	i;
 	int	counter;
 	int	b_check;
+	int	quote_status;
 
 	i = -1;
 	counter = 0;
@@ -51,14 +52,17 @@ static int	how_many(char const *s)
 	{
 		while (ft_strchr(" \t", s[i]))
 			i++;
-		if (ft_strchr("()|&;", s[i]) && ++counter)
+		quote_status = check_quotes(s, &i);
+		if (!quote_status && i--)
+			b_check = 1;
+		else if (quote_status > 0 && b_check)
+			;
+		else if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
 			b_check = 0;
 			if (ft_strchr("|&", s[i]) && s[i] == s[i + 1])
 				i++;
 		}
-		else if (check_quotes(s, &i) >= 0 && b_check)
-			;
 		else if (!b_check && ++counter)
 			b_check = 1;
 	}
@@ -68,6 +72,8 @@ static int	how_many(char const *s)
 
 static void	input_extract_string(char const *s, int *start, int *end)
 {
+	int	quote_status;
+
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
@@ -81,10 +87,13 @@ static void	input_extract_string(char const *s, int *start, int *end)
 	{
 		while (s[*end] && !ft_strchr("()|&;", s[*end]))
 		{
-			if (check_quotes(s, end) == -1)
+			quote_status = check_quotes(s, end);
+			if (quote_status == -1 || !ft_strchr("()|&;", s[*end]))
 				*end += 1;
 		}
 	}
+	if (!ft_strncmp((char *)(s + *start), "\"", 2))
+		*start = *end;
 }
 
 char	**trim_split(char **split, int len)
@@ -123,8 +132,8 @@ char	**split_input(char *input)
 			result[++j] = ft_substr(input, start, end - start);
 			if (!result[j])
 				return (memory_leak(result, j), NULL);
-			start = end;
 		}
+		start = end;
 	}
 	result[++j] = NULL;
 	return (trim_split(result, len));
