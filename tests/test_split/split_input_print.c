@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/09 20:35:57 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/10 15:28:55 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-# define WHITE "\033[0m"
-# define BOLD "\033[1m"
-# define GREEN "\033[0;32m"
-# define RED "\033[0;31m"
-# define BLUE "\033[0;34m"
-# define YELLOW "\033[33m"
-# define MAGENTA "\033[35m"
-# define TURQUOISE "\033[36m"
+#define WHITE "\033[0m"
+#define BOLD "\033[1m"
+#define GREEN "\033[0;32m"
+#define RED "\033[0;31m"
+#define BLUE "\033[0;34m"
+#define YELLOW "\033[33m"
+#define MAGENTA "\033[35m"
+#define TURQUOISE "\033[36m"
 
 void	free_array(char ***array);
 void	print_array(char **array);
@@ -82,14 +82,14 @@ static int	how_many(char const *s)
 			printf("%c", s[check_i++]);
 		while (ft_strchr(" \t", s[i]))
 			i++;
-		if (check_quotes(s, &i) >= 0)
-			b_check = 0;
-		else if (ft_strchr("()|&;", s[i]) && ++counter)
+		if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
 			b_check = 0;
 			if (ft_strchr("|&", s[i]) && s[i] == s[i + 1])
 				i++;
 		}
+		else if (check_quotes(s, &i) >= 0 && b_check)
+			;
 		else if (!b_check && ++counter)
 			b_check = 1;
 	}
