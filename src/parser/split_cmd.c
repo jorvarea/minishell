@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 19:40:53 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:05:57 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	check_quotes(char const *s, int *i)
 		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
 		if (check <= 1 || !s[check])
 		{
+			if (check == 1)
+				*i += 1;
 			*i += 1;
 			return (0);
 		}
@@ -49,14 +51,14 @@ static int	how_many(char const *s)
 	b_check = 0;
 	while (s[++i])
 	{
-		if (ft_strchr("()|><&;\'\"", s[i]) && ++counter)
+		if (ft_strchr("()|><&;", s[i]) && ++counter)
 		{
 			b_check = 0;
-			if (!check_quotes(s, &i) && i--)
-				counter--;
-			else if (!ft_strchr("();", s[i]) && s[i] == s[i + 1])
+			if (!ft_strchr("();", s[i]) && s[i] == s[i + 1])
 				i++;
 		}
+		else if (!check_quotes(s, &i) && i-- && !b_check)
+			;
 		else if (s[i] != ' ' && s[i] != '\t' && (!b_check && ++counter))
 			b_check = 1;
 		else if (ft_strchr(" \t", s[i]))
@@ -70,27 +72,29 @@ static void	cmd_extract_string(char const *s, int *start, int *end)
 {
 	int	quote_status;
 
+	quote_status = 0;
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
 	if (!*start)
 		;
-	quote_status = check_quotes(s, end);
-	if (!quote_status)
-		*start = *end;
-	else if (quote_status > 0)
-		*end += 1;
-	else if (ft_strchr("()|><&; ", s[*start]))
+	if (ft_strchr(">< ", s[*start]))
 	{
 		*end += 1;
-		if ((ft_strchr("()|><&", s[*start])) && s[*start] == s[*end])
+		if ((ft_strchr("><", s[*start])) && s[*start] == s[*end])
 			*end += 1;
 	}
 	else
 	{
-		while (s[*end] && !ft_strchr("()| \'\"><&;", s[*end]))
-			*end += 1;
+		while (s[*end] && !ft_strchr(">< ", s[*end]))
+		{
+			quote_status = check_quotes(s, end);
+			if (!ft_strchr(">< ", s[*end]))
+				*end += 1;
+		}
 	}
+	if (ft_strchr("\"\'", s[*start]) && *start + 1 == *end)
+		*start = *end;
 }
 
 char	**split_cmd(char *input)
