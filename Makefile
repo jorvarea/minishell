@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/10 17:41:08 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/11 23:08:38 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ SRC_PARSER = src/parser/parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_cmd.c \
-	src/exec/chatgpt_parser.c \
 	src/exec/execute_bin.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/env_utils.c \
