@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 15:57:37 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/11 21:07:25 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@
 extern pid_t	g_signal;
 
 // ------------------- STRUCTURES ------------------- //
+
+typedef enum e_quote_status
+{
+	NOT_QUOTE = -1,
+	UNCLOSED = 0,
+	EMPTY = 0,
+	CLOSED = 1
+}	t_quote_status;
 
 // NOT FINISHED
 typedef enum e_token
@@ -102,7 +110,6 @@ typedef struct s_args
  * t_token	type: Contains the type of command (AND OR CMD PIPE...);
  * char	*cmd: Contains a string with the complete command;
  * char	**args: Contains an array with command + command arguments;
- * t_args *l_args: Contains the args array as a list (with wildcards + env);
  * t_redir *redir: Contains a redir list with the file, type and next/prev;
  * struct s_cmd	*next: Pointer to the next command;
  * struct s_cmd	*prev: Pointer to the previous command;
@@ -114,7 +121,6 @@ COMANDO: echo hola > que * > tal && echo Malaga
  - type = commando
  - cmd = echo hola *
  - args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
- - l_args -> 1: arg="echo" next->arg="hola" next->(...) next -> arg="fileN"
  - redir -> 1: infile file="que" next -> infile file="tal"
  - next: siguiente comando (2.)
  - prev: NULL
@@ -127,24 +133,15 @@ COMANDO: echo hola > que * > tal && echo Malaga
  - type = COMMAND
  - cmd = "echo Malaga"
  - args -> args[0] = "echo", args[1] = "Malaga"
- - l_args -> 1: arg="echo" next-> arg="Malaga"
  - redir -> NULL
  - next: NULL
  - prev: anterior comando (2.)
-
-POR DECIDIR!!!
-BORRADOR: Al expandir las wildcards en l_args, se actualiza args (?)
- - EJEMPLO CON EL PRIMER COMANDO:
- 	- args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
-	- l_args -> 1: arg="echo" next->arg="hola" next->(...) next -> arg="fileN"
-	- args -> args[0] = "echo", args[1] = "hola", (...), args[N + 2] = "fileN"
 */
 typedef struct s_cmd
 {
 	enum e_token	type;
 	char			*cmd;
 	char			**args;
-	struct s_args	*l_args;
 	struct s_redir	*redir;
 	struct s_cmd	*next;
 	struct s_cmd	*prev;
@@ -208,7 +205,7 @@ t_env	*set_env_list(char **env);
 // ------------------- FREE FUNCTIONS ------------------- //
 void	sh_free_str(char *str);
 void	free_array(char ***array);
-void	free_arg_lst(t_args *l_args);
+void	free_arg_lst(t_args *l_args); // ELIMINAR
 void	free_redir(t_redir	*redir);
 void	free_env_list(t_env	*l_env);
 void	free_commands(t_cmd *command_lst);

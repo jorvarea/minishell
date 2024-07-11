@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 16:37:37 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/11 18:54:25 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,12 @@ t_cmd	*parser(char *input, t_shell *shell)
 		return (NULL);
 	print_array(input_array);
 	printf("\n%sCOMMANDS>%s ", RED, WHITE);
-	commands = split_cmd(input);
-	if (!commands)
-		return (free_array(&input_array), NULL);
-	print_array(commands);
-	// while (input_array[++i])
-	// {
-	// 	commands = split_cmd(input_array[i]);
-	// 	print_array(commands);
-	// 	free_array(&commands);
-	// }
+	while (input_array[++i])
+	{
+		commands = split_cmd(input_array[i]);
+		print_array(commands);
+		free_array(&commands);
+	}
 	free_array(&input_array);
 	free_array(&commands);
 	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
