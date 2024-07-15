@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_malloc.c                                      :+:      :+:    :+:   */
+/*   safe_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:12:14 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/15 20:04:19 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:04:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*safe_malloc(size_t size)
+pid_t	safe_fork(void)
 {
-	void	*ptr;
+	pid_t	pid;
 
-	ptr = malloc(size);
-	if (!ptr)
+	pid = fork();
+	if (pid == -1)
 	{
-		perror("malloc");
+		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	return (ptr);
+	return (pid);
 }

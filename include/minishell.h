@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/11 22:54:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:02:10 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
+pid_t	safe_fork(void);
 
 // ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
