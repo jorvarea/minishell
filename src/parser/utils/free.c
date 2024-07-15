@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 22:11:10 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 15:18:08 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	free_commands(t_cmd *command_lst)
 		next = command_lst->next;
 		free(command_lst->cmd);
 		free_array(&command_lst->args);
-		free_arg_lst(command_lst->l_args);
 		free_redir(command_lst->redir);
 		free(command_lst);
 		command_lst = NULL;

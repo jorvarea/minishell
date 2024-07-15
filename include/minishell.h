@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/11 22:54:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:08:00 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ extern pid_t	g_signal;
 typedef enum e_quote_status
 {
 	NOT_QUOTE = -1,
-	UNCLOSED = 0,
 	EMPTY = 0,
-	CLOSED = 1
+	CLOSED = 1,
+	UNCLOSED = 2
 }	t_quote_status;
 
 // NOT FINISHED
@@ -191,6 +191,7 @@ char	**trim_split(char **split, int len);
 char	**split_input(char *input);
 char	**split_cmd(char *input);
 size_t	command_counter(char *input);
+void	ft_quotes_error(const char *cmd, t_shell *shell);
 
 // ------------------- INIT FUNCTIONS ------------------- //
 t_cmd	*init_command(void); // NOT STARTED
