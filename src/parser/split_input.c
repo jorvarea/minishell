@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 20:28:33 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:27:40 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,11 @@ static void	memory_leak(char **result, int j)
 
 static int	check_quotes(char const *s, int *i)
 {
-	int	check;
-
 	if (s[*i] == '\'' || s[*i] == '\"')
-	{
-		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
-		if (check <= 1 || !s[check])
-		{
-			*i += 1;
-			return (0);
-		}
-		*i += check;
-	}
+		*i += ft_strchr(s + *i + 1, s[*i]) - (s + *i);
 	else
-		return (-1);
-	return (1);
+		return (NOT_QUOTE);
+	return (CLOSED);
 }
 
 static int	how_many(char const *s)
@@ -43,19 +33,15 @@ static int	how_many(char const *s)
 	int	i;
 	int	counter;
 	int	b_check;
-	int	quote_status;
 
 	i = -1;
 	counter = 0;
 	b_check = 0;
-	while (s[++i])
+	while (++i < ft_strlen(s))
 	{
 		while (ft_strchr(" \t", s[i]))
 			i++;
-		quote_status = check_quotes(s, &i);
-		if (!quote_status && i--)
-			b_check = 1;
-		else if (quote_status > 0 && b_check)
+		if (check_quotes(s, &i) > 0 && b_check)
 			;
 		else if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
@@ -72,8 +58,6 @@ static int	how_many(char const *s)
 
 static void	input_extract_string(char const *s, int *start, int *end)
 {
-	int	quote_status;
-
 	while (s[*start] == ' ' || s[*start] == '\t')
 		*start += 1;
 	*end = *start;
@@ -87,8 +71,7 @@ static void	input_extract_string(char const *s, int *start, int *end)
 	{
 		while (s[*end] && !ft_strchr("()|&;", s[*end]))
 		{
-			quote_status = check_quotes(s, end);
-			if (quote_status == -1 || !ft_strchr("()|&;", s[*end]))
+			if (check_quotes(s, end) == -1 || !ft_strchr("()|&;", s[*end]))
 				*end += 1;
 		}
 	}
