@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 12:39:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:01:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	close_files(t_redir *redir)
 {
 	while (redir)
 	{
-		redir->fd = close(redir->file);
+		if (redir->file >= 0)
+			close(redir->file);
 		redir = redir->next;
 	}
 }
