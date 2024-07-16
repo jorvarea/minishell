@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/15 21:00:35 by ana-cast          #+#    #+#              #
-#    Updated: 2024/05/29 12:20:31 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/16 15:27:55 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,56 +40,50 @@ DEPS = -I include
 ##                              SOURCES AND OBJECTS                           ##
 ################################################################################
 
-CC_SRCS = functions/originals/character_classification/ft_isascii.c \
-	functions/originals/character_classification/ft_isdigit.c \
-	functions/originals/character_classification/ft_isprint.c \
-	functions/originals/character_classification/ft_isalnum.c \
-	functions/originals/character_classification/ft_isalpha.c \
-	functions/originals/character_classification/ft_str_is_alpha.c \
-	functions/originals/character_classification/ft_str_is_numeric.c \
-	functions/originals/character_classification/ft_str_is_printable.c
+CC_SRCS = src/originals/character_classification/ft_isascii.c \
+	src/originals/character_classification/ft_isdigit.c \
+	src/originals/character_classification/ft_isprint.c \
+	src/originals/character_classification/ft_isalnum.c \
+	src/originals/character_classification/ft_isalpha.c \
+	src/originals/character_classification/ft_str_is_alpha.c \
+	src/originals/character_classification/ft_str_is_numeric.c \
+	src/originals/character_classification/ft_str_is_printable.c
 
-CC2_SRCS = functions/originals/case_conversion/ft_tolower.c \
-	functions/originals/case_conversion/ft_toupper.c
+CC2_SRCS = src/originals/case_conversion/ft_tolower.c \
+	src/originals/case_conversion/ft_toupper.c
 
-MM_SRCS = functions/originals/memory_manipulation/ft_bzero.c \
-	functions/originals/memory_manipulation/ft_calloc.c \
-	functions/originals/memory_manipulation/ft_strdup.c \
-	functions/originals/memory_manipulation/ft_memcmp.c \
-	functions/originals/memory_manipulation/ft_memcpy.c \
-	functions/originals/memory_manipulation/ft_memmove.c \
-	functions/originals/memory_manipulation/ft_memset.c \
-	functions/originals/memory_manipulation/ft_memchr.c
+MM_SRCS = src/originals/memory_manipulation/ft_bzero.c \
+	src/originals/memory_manipulation/ft_calloc.c \
+	src/originals/memory_manipulation/ft_strdup.c \
+	src/originals/memory_manipulation/ft_memcmp.c \
+	src/originals/memory_manipulation/ft_memcpy.c \
+	src/originals/memory_manipulation/ft_memmove.c \
+	src/originals/memory_manipulation/ft_memset.c \
+	src/originals/memory_manipulation/ft_memchr.c
 
-SM_SRCS = functions/originals/string_manipulation/ft_atoi.c \
-	functions/originals/string_manipulation/ft_atol.c \
-	functions/originals/string_manipulation/ft_strlcat.c \
-	functions/originals/string_manipulation/ft_strlcpy.c \
-	functions/originals/string_manipulation/ft_strlen.c
+SM_SRCS = src/originals/string_manipulation/ft_atoi.c \
+	src/originals/string_manipulation/ft_atol.c \
+	src/originals/string_manipulation/ft_strlcat.c \
+	src/originals/string_manipulation/ft_strlcpy.c \
+	src/originals/string_manipulation/ft_strlen.c
 
-SS_SRCS = functions/originals/string_search/ft_strchr.c \
-	functions/originals/string_search/ft_strncmp.c \
-	functions/originals/string_search/ft_strnstr.c \
-	functions/originals/string_search/ft_strrchr.c
+SS_SRCS = src/originals/string_search/ft_strchr.c \
+	src/originals/string_search/ft_strncmp.c \
+	src/originals/string_search/ft_strnstr.c \
+	src/originals/string_search/ft_strrchr.c
 
-A_SRCS = functions/additionals/ft_itoa.c \
-	functions/additionals/ft_split.c \
-	functions/additionals/ft_striteri.c \
-	functions/additionals/ft_strjoin.c \
-	functions/additionals/ft_strmapi.c \
-	functions/additionals/ft_strtrim.c \
-	functions/additionals/ft_substr.c
+A_SRCS = src/additionals/ft_itoa.c \
+	src/additionals/ft_split.c \
+	src/additionals/ft_striteri.c \
+	src/additionals/ft_strjoin.c \
+	src/additionals/ft_strmapi.c \
+	src/additionals/ft_strtrim.c \
+	src/additionals/ft_substr.c
 
-AO_SRCS = functions/additionals/output_functions/ft_putchar_fd.c \
-	functions/additionals/output_functions/ft_putendl_fd.c \
-	functions/additionals/output_functions/ft_putnbr_fd.c \
-	functions/additionals/output_functions/ft_putstr_fd.c
-	
-PF_SRCS = ft_printf/ft_printf_utils.c \
-	ft_printf/ft_printf.c
-
-GNL_SRCS = get_next_line/get_next_line.c \
-	get_next_line/get_next_line_utils.c
+AO_SRCS = src/additionals/output_functions/ft_putchar_fd.c \
+	src/additionals/output_functions/ft_putendl_fd.c \
+	src/additionals/output_functions/ft_putnbr_fd.c \
+	src/additionals/output_functions/ft_putstr_fd.c
 
 CC_OBJECTS = $(CC_SRCS:.c=.o)
 CC2_OBJECTS = $(CC2_SRCS:.c=.o)
@@ -98,21 +92,18 @@ SM_OBJECTS = $(SM_SRCS:.c=.o)
 SS_OBJECTS = $(SS_SRCS:.c=.o)
 A_OBJECTS = $(A_SRCS:.c=.o)
 AO_OBJECTS = $(AO_SRCS:.c=.o)
-PF_OBJECTS = $(PF_SRCS:.c=.o)
-GNL_OBJECTS = $(GNL_SRCS:.c=.o)
 
-OBJECTS = $(CC_OBJECTS) $(CC2_OBJECTS) $(MM_OBJECTS) $(SM_OBJECTS) $(SS_OBJECTS) $(A_OBJECTS) $(AO_OBJECTS) $(PF_OBJECTS) $(GNL_OBJECTS)
+OBJECTS = $(CC_OBJECTS) $(CC2_OBJECTS) $(MM_OBJECTS) $(SM_OBJECTS) $(SS_OBJECTS) $(A_OBJECTS) $(AO_OBJECTS)
 
-BONUS_SR = functions/bonus/ft_lstadd_back_bonus.c \
-	functions/bonus/ft_lstadd_front_bonus.c \
-	functions/bonus/ft_lstclear_bonus.c \
-	functions/bonus/ft_lstdelone_bonus.c \
-	functions/bonus/ft_lstiter_bonus.c \
-	functions/bonus/ft_lstlast_bonus.c \
-	functions/bonus/ft_lstnew_bonus.c \
-	functions/bonus/ft_lstsize_bonus.c \
-	functions/bonus/ft_lstmap_bonus.c \
-	get_next_line/get_next_line_bonus.c
+BONUS_SR = src/bonus/ft_lstadd_back_bonus.c \
+	src/bonus/ft_lstadd_front_bonus.c \
+	src/bonus/ft_lstclear_bonus.c \
+	src/bonus/ft_lstdelone_bonus.c \
+	src/bonus/ft_lstiter_bonus.c \
+	src/bonus/ft_lstlast_bonus.c \
+	src/bonus/ft_lstnew_bonus.c \
+	src/bonus/ft_lstsize_bonus.c \
+	src/bonus/ft_lstmap_bonus.c
 	
 BONUS_OB = $(BONUS_SR:.c=.o)
 
@@ -138,15 +129,16 @@ all : $(NAME)
 $(NAME) : $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "$(TURQUOISE)✦ ---------------------- ✦$(BOLD)"
+	@echo "\n$(TURQUOISE)✦ ---------------------- ✦$(BOLD)"
 	@echo "      COMPILED LIBFT$(END)$(TURQUOISE)"
-	@echo "✦ ---------------------- ✦$(END)\n"
+	@echo "✦ ---------------------- ✦$(END)"
 
-bonus : bon_head $(OBJECTS) $(BONUS_OB)
-	@printf "\n  🤑  Creating BONUS $(NAME)"
+bonus : $(OBJECTS) $(BONUS_OB)
 	@ar rc $(NAME) $(OBJECTS) $(BONUS_OB)
 	@ranlib $(NAME)
-	@echo "$(GREEN)\r  ✓  Created  BONUS $(NAME) $(END)\n"
+	@echo "\n$(TURQUOISE)✦ ---------------------- ✦$(BOLD)"
+	@echo "  COMPILED BONUS LIBFT$(END)$(TURQUOISE)"
+	@echo "✦ ---------------------- ✦$(END)"
 
 %.o : %.c $(LIBFT)
 	@$(CC) $(FLAGS) -c $< -o $@ $(DEPS)
