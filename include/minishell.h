@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 16:32:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:34:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,7 @@ void	exit_program_nl(void);
 void	exec(t_shell *shell, t_cmd *cmd);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
+void	execute_redir(t_shell *shell, t_cmd *cmd);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
