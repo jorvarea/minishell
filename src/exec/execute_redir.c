@@ -41,7 +41,7 @@ static void	close_files(t_redir *redir)
 	}
 }
 
-static void change_std_io(t_redir *redir)
+static void	change_std_io(t_redir *redir)
 {
 	if (redir->type == INFILE || redir->type == HEREDOC)
 		dup2(redir->fd, STDIN_FILENO);
@@ -52,9 +52,9 @@ static void change_std_io(t_redir *redir)
 void	execute_redir(t_shell *shell, t_cmd *cmd)
 {
 	t_redir	*redir;
-	int original_stdin;
-    int original_stdout;
-	bool error;
+	int		original_stdin;
+	int		original_stdout;
+	bool	error;
 
 	original_stdin = dup(STDIN_FILENO);
 	original_stdout = dup(STDOUT_FILENO);
@@ -72,7 +72,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 	if (!error)
 		execute_cmd(shell, cmd);
 	dup2(original_stdin, STDIN_FILENO);
-    dup2(original_stdout, STDOUT_FILENO);
+	dup2(original_stdout, STDOUT_FILENO);
 	close_files(cmd->redir);
 	remove_tmp_heredoc_files(redir);
 }
