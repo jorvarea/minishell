@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 12:14:19 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:39:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 		execute_cmd(shell, cmd);
 		close_files(redir);
 	}
+	remove_tmp_heredoc_files(redir);
 }
 
 void	exec(t_shell *shell, t_cmd *cmd)
