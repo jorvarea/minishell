@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 16:29:46 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/16 16:31:04 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/env.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
 	src/parser/utils/print.c \
-	src/parser/utils/error_quotes.c \
+	src/parser/utils/quotes.c \
 	src/parser/utils/exit_program_nl.c
 #src/main_parser.c \
 
