@@ -6,23 +6,18 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/15 22:01:41 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:14:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void manage_heredocs(void)
+bool	open_files(t_shell *shell, t_redir *redir)
 {
-	;
-}
-
-bool open_files(t_shell *shell, t_redir *redir)
-{
-	bool no_error;
+	bool	no_error;
 
 	no_error = true;
-	while(redir && no_error)
+	while (redir && no_error)
 	{
 		if (redir->type == INFILE)
 			redir->fd = open(redir->file, O_RDONLY);
@@ -37,29 +32,29 @@ bool open_files(t_shell *shell, t_redir *redir)
 		}
 		redir = redir->next;
 	}
-	return(no_error);
+	return (no_error);
 }
 
-void close_files(t_redir *redir)
+void	close_files(t_redir *redir)
 {
-	while(redir)
+	while (redir)
 	{
 		redir->fd = close(redir->file);
 		redir = redir->next;
 	}
 }
 
-void execute_with_redir(t_shell *shell, t_cmd *cmd)
+void	execute_redir(t_shell *shell, t_cmd *cmd)
 {
-	t_redir *redir;
-	
+	t_redir	*redir;
+
 	redir = cmd->redir;
-	manage_heredocs();
+	save_heredocs(shell, redir);
 	if (open_files(shell, redir))
 	{
-		while(redir)
+		while (redir)
 		{
-			if (redir->type == INFILE)
+			if (redir->type == INFILE || redir->type == HEREDOC)
 				dup2(redir->fd, STDIN_FILENO);
 			else if (redir->type == OUTFILE || redir->type == IN_APPEND)
 				dup2(redir->fd, STDOUT_FILENO);
@@ -75,7 +70,7 @@ void	exec(t_shell *shell, t_cmd *cmd)
 	while (cmd)
 	{
 		if (cmd->type == CMD)
-			execute_with_redir(shell, cmd);
+			execute_redir(shell, cmd);
 		cmd = cmd->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/15 20:26:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:35:25 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,48 +221,58 @@ void	print_array(char **array);
 void	exit_program_nl(void);
 
 // ------------------------------------------------------ //
-//                     EXEC FOLDER                      //
+//                     EXEC FOLDER                        //
 // ------------------------------------------------------ //
 
-// ------------------- EXEC FUNCTIONS ------------------- //
+	// ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, t_cmd *cmd);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 
-// ------------------- FLAG_UTILS FUNCTIONS ------------------- //
+	// ------------------- HEREDOC FUNCTIONS ------------------- //
+void	save_heredocs(t_shell *shell, t_redir *redir);
+void	remove_tmp_heredoc_files(t_redir *redir);
+
+	// ------------------------------------------------------ //
+	//                     UTILS FOLDER                       //
+	// ------------------------------------------------------ //
+
+		// ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
 bool	valid_flag(char *flag, char *valid_flags);
 int		count_valid_flag_arg(char **args, char *valid_flags);
 bool	found_flags(char **args);
 
-// ------------------- ENV_UTILS FUNCTIONS ------------------- //
+		// ------------------- ENV_UTILS FUNCTIONS ------------------- //
 char	*get_value(t_shell *shell, char *key);
 bool	remove_key(t_shell *shell, char *key);
 void	add_new_env(t_shell *shell, char *key, char *value);
 bool	valid_key(char *key);
 bool	update_env(t_shell *shell, char *key, char *value);
 
-// ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
+		// ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
 void	update_envp(t_shell *shell);
 
-// ------------------- UTILS FUNCTIONS ------------------- //
+		// ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
 pid_t	safe_fork(void);
 
-// ------------------- FT_STRREP FUNCTIONS ------------------- //
+		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
 
-// ------------------- ERROR_UTILS FUNCTIONS ------------------- //
+		// ------------------- ERROR_UTILS FUNCTIONS ------------------- //
 void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 			char invalid_flag, char *usage);
 void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
 
-// ------------------- BUILT-IN FUNCTIONS ------------------- //
+	// ------------------------------------------------------ //
+	//                     BUILT_INS FOLDER                   //
+	// ------------------------------------------------------ //
 void	echo(t_shell *shell, char **args);
 void	pwd(t_shell *shell, char **args);
 void	env(t_shell *shell, char **args);
@@ -271,7 +281,9 @@ void	export(t_shell *shell, char **args);
 void	unset(t_shell *shell, char **args);
 void	exit_cmd(t_shell *shell, char **args);
 
-// ------------------- EXPANSIONS FUNCTIONS ------------------- //
+	// ------------------------------------------------------ //
+	//                     EXPANSIONS FOLDER                  //
+	// ------------------------------------------------------ //
 void	expand_cmd(t_shell *shell, char **args);
 void	replace_home(t_shell *shell, char **arg, int start_index);
 void	replace_env(t_shell *shell, char **arg, int start_index);
