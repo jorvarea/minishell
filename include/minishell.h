@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:26:18 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:27:20 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ typedef enum e_token
 
 typedef enum e_type_redir
 {
-	INFILE = 0,
-	APPEND = 1,
-	OUTFILE = 2,
-	HEREDOC = 3
+	NONE = 0,
+	INFILE = 1,
+	APPEND = 2,
+	OUTFILE = 3,
+	HEREDOC = 4
 }	t_type_redir;
 
 /*
