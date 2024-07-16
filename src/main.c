@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/11 22:46:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:47:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*read_input(void)
 	char	*input;
 
 	input = readline("\033[1;35mminishell ➜\033[0m ");
+	if (input && input[0] != '\0')
+		add_history(input);
 	return (input);
 }
 
