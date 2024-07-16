@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/15 20:08:00 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:35:20 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void	free_shell(t_shell *shell);
 // ------------------- PRINT FUNCTIONS ------------------- //
 void	print_shell_env(char **env);
 void	print_shell_l_env(t_env *l_env);
-void	print_array(char **array);
+void	print_array(char **array, char *type);
 
 // ------------------- OTHER UTILS FUNCTIONS ------------------- //
 void	exit_program_nl(void);
