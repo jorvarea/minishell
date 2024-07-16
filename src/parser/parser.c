@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/15 20:51:17 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:31:17 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,16 @@ static int	only_space(char *s, int *start, int *end)
 	char	c;
 
 	c = s[*start];
-	if (!ft_strchr("\'\"", c))
-		return (0);
 	i = *start - 1;
+	if (!ft_strchr("\'\"", c) || !(s[i] && ft_strchr(" \t", s[i])))
+		return (0);
 	while (++i <= *end)
 	{
 		if (s[i] != c && !ft_strchr(" \t", s[i]))
 			return (0);
 	}
+	if (s[i] && !(s[i] && ft_strchr(" \t", s[i])))
+		return (0);
 	return (1);
 }
 
@@ -65,7 +67,7 @@ char	*remove_empty_quotes(char *str, t_shell *shell)
 		quote_status = check_quotes(str, &i);
 		if (quote_status == 2)
 			return (ft_quotes_error(str, shell), NULL);
-		else if (!quote_status || only_space(str, &j, &i)) // solve "e"cho" " jej$USER ""
+		else if (!quote_status || only_space(str, &j, &i))
 		{
 			before = ft_substr(str, 0, j);
 			after = ft_substr(str, i + 1, ft_strlen(str));
