@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:27:20 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:27:38 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef enum e_token
 
 typedef enum e_type_redir
 {
-	NONE = 0,
+	NOT_REDIR = 0,
 	INFILE = 1,
 	APPEND = 2,
 	OUTFILE = 3,
@@ -213,7 +213,8 @@ void	signal_handler(int signal);
 // ------------------------------------------------------ //
 
 // ------------------ PARSER FUNCTIONS ------------------ //
-t_cmd	*parser(char *input, t_shell *shell); // ?
+t_cmd	*parser(char *input, t_shell *shell);
+void	create_command_list(char **input_array, t_shell *shell);
 char	**trim_split(char **split, int len);
 char	**split_input(char *input);
 char	**split_cmd(char *input);
