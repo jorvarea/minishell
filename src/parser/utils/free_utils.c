@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/29 22:08:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:46:20 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void	free_redir(t_redir	*redir)
 		next = redir->next;
 		free(redir->file);
 		free(redir);
+		if (redir->fd > 0)
+			close(redir->fd);
+		redir->fd = 0;
 		redir = NULL;
 		redir = next;
 		redir->prev = NULL;
