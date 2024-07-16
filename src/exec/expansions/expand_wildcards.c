@@ -6,18 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/10 15:04:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:00:03 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-typedef struct s_args_array
-{
-	char	**args;
-	int		size;
-	int		maximum_size;
-}			t_args_array;
 
 static void	add_arg(t_args_array *new_args, char *new_arg)
 {

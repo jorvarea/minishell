@@ -6,25 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/08 17:50:32 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:54:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-typedef enum e_inner_quotes
-{
-	NONE = 0,
-	SINGLE = 1,
-	DOUBLE = 2,
-}					t_inner_quotes;
-
-typedef struct s_quotes
-{
-	bool			single_quotes;
-	bool			double_quotes;
-	t_inner_quotes	inner_q;
-}					t_quotes;
 
 void	manage_quotes(char char_quotes, t_quotes *quotes)
 {

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 16:45:36 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:02:46 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,29 @@ typedef struct s_shell
 	struct s_cmd	*tokens;
 	struct s_args	*files;
 }	t_shell;
+
+// ------------------- EXPANSION STRUCTURES ------------------- //
+
+typedef enum e_inner_quotes
+{
+	NONE = 0,
+	SINGLE = 1,
+	DOUBLE = 2,
+}					t_inner_quotes;
+
+typedef struct s_quotes
+{
+	bool			single_quotes;
+	bool			double_quotes;
+	t_inner_quotes	inner_q;
+}					t_quotes;
+
+typedef struct s_args_array
+{
+	char	**args;
+	int		size;
+	int		maximum_size;
+}			t_args_array;
 
 // ------------------------------------------------------ //
 //                     MAIN FUNCTIONS                     //
