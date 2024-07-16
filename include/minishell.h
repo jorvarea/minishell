@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 17:51:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:25:21 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ ESTA ESTRUCTURA CONTIENE LAS REDIRECCIONES DE CADA COMANDO
 typedef struct s_redir
 {
 	char				*file;
+	int					fd;
 	enum e_type_redir	type;
 	int					fd;
 	struct s_redir		*next;	
