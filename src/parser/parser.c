@@ -3,83 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 12:31:17 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:44:39 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static int	check_quotes(char const *s, int *i)
-{
-	int	check;
-
-	if (s[*i] == '\'' || s[*i] == '\"')
-	{
-		check = ft_strchr(s + *i + 1, s[*i]) - (s + *i);
-		if (check <= 1 || !s[check])
-		{
-			if (check <= 0)
-				return (UNCLOSED);
-			*i += 1;
-			return (EMPTY);
-		}
-		*i += check;
-	}
-	else
-		return (NOT_QUOTE);
-	return (CLOSED);
-}
-
-static int	only_space(char *s, int *start, int *end)
-{
-	int		i;
-	char	c;
-
-	c = s[*start];
-	i = *start - 1;
-	if (!ft_strchr("\'\"", c) || !(s[i] && ft_strchr(" \t", s[i])))
-		return (0);
-	while (++i <= *end)
-	{
-		if (s[i] != c && !ft_strchr(" \t", s[i]))
-			return (0);
-	}
-	if (s[i] && !(s[i] && ft_strchr(" \t", s[i])))
-		return (0);
-	return (1);
-}
-
-char	*remove_empty_quotes(char *str, t_shell *shell)
-{
-	int		i;
-	int		j;
-	char	*before;
-	char	*after;
-	int		quote_status;
-
-	i = 0;
-	while (str[i])
-	{
-		j = i;
-		quote_status = check_quotes(str, &i);
-		if (quote_status == 2)
-			return (ft_quotes_error(str, shell), NULL);
-		else if (!quote_status || only_space(str, &j, &i))
-		{
-			before = ft_substr(str, 0, j);
-			after = ft_substr(str, i + 1, ft_strlen(str));
-			str = NULL;
-			free(str);
-			str = ft_strjoin(before, after);
-			i = -1;
-		}
-		i++;
-	}
-	return (str);
-}
 
 t_cmd	*parser(char *input, t_shell *shell)
 {
@@ -97,12 +28,12 @@ t_cmd	*parser(char *input, t_shell *shell)
 	input_array = split_input(input);
 	if (!input_array)
 		return (NULL);
-	print_array(input_array);
+	print_array(input_array, "INPUT ARRAY");
 	printf("\n%sCOMMANDS>%s ", RED, WHITE);
 	while (input_array[++i])
 	{
 		commands = split_cmd(input_array[i]);
-		print_array(commands);
+		print_array(commands, "COMMANDS");
 		free_array(&commands);
 	}
 	free_array(&input_array);
