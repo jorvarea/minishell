@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 18:12:12 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 17:15:57 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:48:55 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ char	**init_shell_env(char **envp)
 	else
 		env = NULL;
 	return (env);
-}
-
-t_env	*env_last_node(t_env *l_env)
-{
-	if (!l_env)
-		return (NULL);
-	while (l_env->next)
-		l_env = l_env->next;
-	return (l_env);
 }
 
 t_env	*assign_env_values(char *env, t_env *new_env)
