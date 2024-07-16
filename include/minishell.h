@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 16:30:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:30:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,12 @@ char	**trim_split(char **split, int len);
 char	**split_input(char *input);
 char	**split_cmd(char *input);
 size_t	command_counter(char *input);
+
+// ------------------ QUOTES FUNCTIONS ------------------ //
+int		skip_quotes(char const *s, int *i);
+int		check_quotes(char const *s, int *i);
+int		only_space(char *s, int *start, int *end);
+char	*remove_empty_quotes(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
 // ------------------- INIT FUNCTIONS ------------------- //
@@ -214,7 +220,6 @@ void	free_commands(t_cmd *command_lst);
 void	free_shell(t_shell *shell);
 
 // ------------------- PRINT FUNCTIONS ------------------- //
-void	print_shell_env(char **env);
 void	print_shell_l_env(t_env *l_env);
 void	print_array(char **array, char *type);
 
