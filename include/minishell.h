@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 16:30:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:31:10 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,10 @@ typedef struct s_env
 */
 typedef struct s_shell
 {
-	char			**env;
 	int				exit_status;
-	struct s_cmd	*tokens;
+	char			**env;
 	struct s_env	*l_env;
+	struct s_cmd	*tokens;
 	struct s_args	*files;
 }	t_shell;
 
@@ -220,8 +220,10 @@ void	free_commands(t_cmd *command_lst);
 void	free_shell(t_shell *shell);
 
 // ------------------- PRINT FUNCTIONS ------------------- //
+void	print_command_list(t_cmd *tokens);
 void	print_shell_l_env(t_env *l_env);
 void	print_array(char **array, char *type);
+void	print_shell(t_shell *shell, bool env, bool tokens);
 
 // ------------------- OTHER UTILS FUNCTIONS ------------------- //
 void	exit_program_nl(void);
