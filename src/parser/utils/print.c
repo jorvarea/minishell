@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 18:01:43 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:03:55 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,31 @@
 
 static void	print_type(int type, int isToken)
 {
-	printf("%i->", type);
+	printf("%i ", type);
 	if (type == 0 && isToken)
-		printf("CMD");
+		printf("- CMD");
 	else if (type == 1 && isToken)
-		printf ("AND");
+		printf ("- AND");
 	else if (type == 2 && isToken)
-		printf ("OR");
+		printf ("- OR");
 	else if (type == 4 && isToken)
-		printf ("PIPE");
+		printf ("- PIPE");
 	else if (type == 5 && isToken)
-		printf ("OPEN PARENTHESIS");
+		printf ("- OPEN PARENTHESIS");
 	else if (type == 6 && isToken)
-		printf ("CLOSE PARENTHESIS");
+		printf ("- CLOSE PARENTHESIS");
 	else if (isToken)
-		printf ("UNKNOWN");
+		printf ("- UNKNOWN");
 	else if (type == 0)
-		printf("INFILE");
+		printf("- NOT REDIR");
 	else if (type == 1)
-		printf("APPEND");
+		printf("(<)=INFILE");
 	else if (type == 2)
-		printf("OUTFILE");
+		printf("(>>)=APPEND");
 	else if (type == 3)
-		printf("HEREDOC");
+		printf("(>)=OUTFILE");
+	else if (type == 4)
+		printf("(<<)=HEREDOC");
 }
 
 void	print_command_list(t_cmd *tokens)
@@ -52,16 +54,16 @@ void	print_command_list(t_cmd *tokens)
 	while (tokens)
 	{
 		tok_next = tokens->next;
-		printf("\n%sINDEX:%s%i", BOLD, WHITE, i++);
+		printf("\n----------------\n%sINDEX:%s%i", BOLD, WHITE, i++);
 		printf("\t%sTYPE:%s", BOLD, WHITE);
 		print_type(tokens->type, 1);
 		print_array(tokens->args, tokens->cmd);
 		while (tokens->redir)
 		{
 			red_next = tokens->redir->next;
-			printf("%sREDIR:%s\n\tTYPE:", BOLD, WHITE);
+			printf("\n%sREDIR:\n\tTYPE:%s", BOLD, WHITE);
 			print_type(tokens->redir->type, 0);
-			printf(" IN:%s\n", tokens->redir->file);
+			printf("\n\t%sFILE:%s%s\n", BOLD, WHITE, tokens->redir->file);
 			tokens->redir = red_next;
 		}
 		tokens = tok_next;
@@ -107,5 +109,9 @@ void	print_shell(t_shell *shell, bool env, bool tokens)
 		print_shell_l_env(shell->l_env);
 	}
 	if (tokens)
+	{
 		print_command_list(shell->tokens);
+		printf("\n----------------\n");
+	}
+	printf("\n%s%s<FINISHED PRINTING SHELL%s\n\n", MAGENTA, BOLD, WHITE);
 }
