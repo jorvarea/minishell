@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 16:34:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:30:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 
 	filename = ft_strjoin("/tmp/minishell_heredoc", heredoc_num);
 	free(heredoc_num);
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
 	{
 		ft_perror(shell, "open", "");
