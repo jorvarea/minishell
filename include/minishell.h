@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:42:00 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 21:46:02 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,6 @@ char	**split_cmd(char *input);
 // ------------------- COMMAND_LIST.C ------------------- //
 void	create_command_list(char **input_array, t_shell *shell);
 
-
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
 // ------------------------------------------------------ //
@@ -264,7 +263,6 @@ void	ft_quotes_error(const char *cmd, t_shell *shell);
 
 // ---------------- EXIT_PROGRAM_NL.C ------------------ //
 void	exit_program_nl(void);
-
 
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                        //
