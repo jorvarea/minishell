@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:30:40 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:05:28 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,47 +211,59 @@ void	signal_handler(int signal);
 //                     PARSER FOLDER                      //
 // ------------------------------------------------------ //
 
-// ------------------ PARSER FUNCTIONS ------------------ //
+// ---------------------- PARSER.C ---------------------- //
 t_cmd	*parser(char *input, t_shell *shell);
-void	create_command_list(char **input_array, t_shell *shell);
+
+// ----------------------- INIT.C ----------------------- //
+t_shell	*init_shell(char **envp);
+
+// ------------------------ ENV.C ----------------------- //
+char	**init_shell_env(char **envp);
+t_env	*assign_env_values(char *env, t_env *new_env);
+t_env	*set_env_list(char **env);
+
+// ----------------- SPLIT_INPUT/CMD.C ------------------ //
 char	**trim_split(char **split, int len);
 char	**split_input(char *input);
 char	**split_cmd(char *input);
-size_t	command_counter(char *input);
 
-// ------------------ QUOTES FUNCTIONS ------------------ //
+// ------------------- COMMAND_LIST.C ------------------- //
+void	create_command_list(char **input_array, t_shell *shell);
+
+
+// ------------------------------------------------------ //
+//                  PARSER UTILS FOLDER                   //
+// ------------------------------------------------------ //
+
+// --------------- FREE.C && FREE_UTILS.C --------------- //
+void	free_shell(t_shell *shell);
+void	free_commands(t_cmd *command_lst);
+void	free_array(char ***array);
+void	free_env_list(t_env	*l_env);
+void	free_redir(t_redir	*redir);
+void	free_arg_lst(t_args *l_args); // ELIMINAR
+void	sh_free_str(char *str);
+
+// -------------------- LAST_NODE.C --------------------- //
+t_env	*env_last_node(t_env *l_env);
+t_cmd	*cmd_last_node(t_cmd *cmd_lst);
+
+// ---------------------- PRINT.C ----------------------- //
+void	print_command_list(t_cmd *tokens);
+void	print_shell_l_env(t_env *l_env);
+void	print_array(char **array, char *type);
+void	print_shell(t_shell *shell, bool env, bool tokens);
+
+// --------------------- QUOTES.C ---------------------- //
 int		skip_quotes(char const *s, int *i);
 int		check_quotes(char const *s, int *i);
 int		only_space(char *s, int *start, int *end);
 char	*remove_empty_quotes(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
-// ------------------- INIT FUNCTIONS ------------------- //
-t_shell	*init_shell(char **envp);
-
-// ------------------- ENV FUNCTIONS ------------------- //
-char	**init_shell_env(char **envp);
-t_env	*env_last_node(t_env *l_env);
-t_env	*assign_env_values(char *env, t_env *new_env);
-t_env	*set_env_list(char **env);
-
-// ------------------- FREE FUNCTIONS ------------------- //
-void	sh_free_str(char *str);
-void	free_array(char ***array);
-void	free_arg_lst(t_args *l_args); // ELIMINAR
-void	free_redir(t_redir	*redir);
-void	free_env_list(t_env	*l_env);
-void	free_commands(t_cmd *command_lst);
-void	free_shell(t_shell *shell);
-
-// ------------------- PRINT FUNCTIONS ------------------- //
-void	print_command_list(t_cmd *tokens);
-void	print_shell_l_env(t_env *l_env);
-void	print_array(char **array, char *type);
-void	print_shell(t_shell *shell, bool env, bool tokens);
-
-// ------------------- OTHER UTILS FUNCTIONS ------------------- //
+// ---------------- EXIT_PROGRAM_NL.C ------------------ //
 void	exit_program_nl(void);
+
 
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                        //
