@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:00:14 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:09:23 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	get_command_type(char **args)
 	return (CMD);
 }
 
-// IN PROGRESS
 t_redir	*get_command_redir(char **args)
 {
 	t_redir	*redir;
@@ -64,18 +63,10 @@ static t_cmd	*assign_cmd_values(t_cmd *new_cmd, char *command)
 	if (!new_cmd->cmd || !new_cmd->args)
 		return (NULL);
 	new_cmd->type = get_command_type(new_cmd->args);
-	//new_cmd->redir = get_command_redir(new_cmd->args); IN PROGRESS
 	new_cmd->redir = NULL;
+	// if (new_cmd->type == CMD)
+	// 	new_cmd->redir = get_command_redir(new_cmd->args);
 	return (new_cmd);
-}
-
-static t_cmd	*cmd_last_node(t_cmd *cmd_lst)
-{
-	if (!cmd_lst)
-		return (NULL);
-	while (cmd_lst->next)
-		cmd_lst = cmd_lst->next;
-	return (cmd_lst);
 }
 
 void	create_command_list(char **input_array, t_shell *shell)
