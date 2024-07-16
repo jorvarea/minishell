@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:55:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:29:07 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ bool	manage_input(t_shell *shell, t_cmd *parsed_input)
 
 	stop = false;
 	if (equal_str(parsed_input->args[0], "exit"))
-	{
-		exit_cmd(shell, parsed_input->args);
-		stop = true;
-	}
+		stop = exit_cmd(shell, parsed_input->args);
 	else
 		exec(shell, parsed_input);
 	free_array(&parsed_input->args);
@@ -56,6 +53,7 @@ int	main(int argc, char **argv, char **envp)
 	t_cmd	*parsed_input;
 	char	*input;
 	bool	stop;
+	int		status;
 
 	(void)argc;
 	(void)argv;
@@ -77,6 +75,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 	}
 	free(input);
+	status = shell->exit_status;
 	free_shell(shell);
-	return (0);
+	return (status);
 }

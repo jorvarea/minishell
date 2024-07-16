@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 21:46:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 22:23:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,7 +336,7 @@ void	env(t_shell *shell, char **args);
 void	cd(t_shell *shell, char **args);
 void	export(t_shell *shell, char **args);
 void	unset(t_shell *shell, char **args);
-void	exit_cmd(t_shell *shell, char **args);
+bool	exit_cmd(t_shell *shell, char **args);
 
 	// ------------------------------------------------------ //
 	//                     EXPANSIONS FOLDER                  //
