@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 16:34:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:36:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_redir
 {
 	char				*file;
 	enum e_type_redir	type;
-	int					fd;
 	int					fd;
 	struct s_redir		*next;	
 	struct s_redir		*prev;
