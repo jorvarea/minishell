@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/15 20:45:32 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:32:56 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ static void	memory_leak(char **result, int j)
 	while (--j >= 0)
 		free(result[j]);
 	free(result);
-}
-
-static int	check_quotes(char const *s, int *i)
-{
-	if (s[*i] == '\'' || s[*i] == '\"')
-		*i += ft_strchr(s + *i + 1, s[*i]) - (s + *i);
-	else
-		return (NOT_QUOTE);
-	return (CLOSED);
 }
 
 static int	how_many(char const *s)
@@ -39,7 +30,7 @@ static int	how_many(char const *s)
 	b_check = 0;
 	while (++i < ft_strlen(s))
 	{
-		check_quotes(s, &i);
+		skip_quotes(s, &i);
 		if (ft_strchr("()|><&;", s[i]) && ++counter)
 		{
 			b_check = 0;
@@ -51,7 +42,7 @@ static int	how_many(char const *s)
 		else if (ft_strchr(" \t", s[i]))
 			b_check = 0;
 	}
-	printf("\nWORD COUNT:%i\n", counter);
+	//printf("\nWORD COUNT:%i\n", counter);
 	return (counter);
 }
 
@@ -72,7 +63,7 @@ static void	cmd_extract_string(char const *s, int *start, int *end)
 	{
 		while (s[*end] && !ft_strchr(">< ", s[*end]))
 		{
-			check_quotes(s, end);
+			skip_quotes(s, end);
 			if (!ft_strchr(">< ", s[*end]))
 				*end += 1;
 		}

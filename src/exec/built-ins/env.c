@@ -27,8 +27,8 @@ void	env(t_shell *shell, char **args)
 		env = shell->l_env;
 		while (env)
 		{
-			ft_printf("%s=", env->key);
-			ft_printf("%s\n", env->value);
+			printf("%s=", env->key);
+			printf("%s\n", env->value);
 			env = env->next;
 		}
 	}

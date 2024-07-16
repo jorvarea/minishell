@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 12:31:17 by ana-cast         ###   ########.fr       */
+/*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
+/*   Updated: 2024/07/16 13:36:16 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	check_quotes(char const *s, int *i)
+int	skip_quotes(char const *s, int *i)
+{
+	if (s[*i] == '\'' || s[*i] == '\"')
+		*i += ft_strchr(s + *i + 1, s[*i]) - (s + *i);
+	else
+		return (NOT_QUOTE);
+	return (CLOSED);
+}
+
+int	check_quotes(char const *s, int *i)
 {
 	int	check;
 
@@ -33,7 +42,7 @@ static int	check_quotes(char const *s, int *i)
 	return (CLOSED);
 }
 
-static int	only_space(char *s, int *start, int *end)
+int	only_space(char *s, int *start, int *end)
 {
 	int		i;
 	char	c;
@@ -47,7 +56,7 @@ static int	only_space(char *s, int *start, int *end)
 		if (s[i] != c && !ft_strchr(" \t", s[i]))
 			return (0);
 	}
-	if (s[i] && !(s[i] && ft_strchr(" \t", s[i])))
+	if (s[i] && !(s[i] && ft_strchr(" \t()|&;", s[i])))
 		return (0);
 	return (1);
 }
@@ -81,33 +90,12 @@ char	*remove_empty_quotes(char *str, t_shell *shell)
 	return (str);
 }
 
-t_cmd	*parser(char *input, t_shell *shell)
+void	ft_quotes_error(const char *cmd, t_shell *shell)
 {
-	t_cmd	*command_lst;
-	char	**commands;
-	char	**input_array;
-	int		i;
-
-	(void)shell;
-	i = -1;
-	input = remove_empty_quotes(input, shell);
-	if (!input)
-		return (NULL);
-	printf("%sINPUT>%s ", RED, WHITE);
-	input_array = split_input(input);
-	if (!input_array)
-		return (NULL);
-	print_array(input_array);
-	printf("\n%sCOMMANDS>%s ", RED, WHITE);
-	while (input_array[++i])
-	{
-		commands = split_cmd(input_array[i]);
-		print_array(commands);
-		free_array(&commands);
-	}
-	free_array(&input_array);
-	command_lst = (t_cmd *)malloc(sizeof(t_cmd));
-	if (!command_lst)
-		return (NULL);
-	return (command_lst);
+	shell->exit_status = 127;
+	ft_putstr_fd("-minishell: ", STDERR_FILENO);
+	ft_putstr_fd((char *)cmd, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd("unclosed quotes", STDERR_FILENO);
 }
+

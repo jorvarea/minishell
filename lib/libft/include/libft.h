@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 12:46:09 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/01/23 19:20:05 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:28:31 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -494,37 +494,6 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
  */
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
-/* FT_PRINTF FUNCTIONS */
-
-int					ft_printf(char const *str, ...);
-
-/**
- * @brief Prints out the char c and increments the int result.
- * @param c Character to print
- * @param result pointer to the int that counts the total bytes printed
- * @return None
- */
-void				ft_pf_putchar(char c, int *result);
-
-/**
- * @brief Prints s and increments result depending of bytes printed.
- * @param s String to send
- * @param result pointer to the int that counts the total bytes printed
- * @return None
- */
-void				ft_pf_putstr(char *s, int *result);
-
-/**
- * @brief Prints nbr in *base and increments result depending of bytes printed.
- * @param nbr Number to print
- * @param base Base to which convert nbr before printing it
- * @param result pointer to the int that counts the total bytes printed
- * @return None
- */
-void				ft_pf_putnbr_base(long long nbr, char *base, int *result);
-
-void				ft_pf_pointer(unsigned long long pointer, int *result);
 
 /* GET_NEXT_LINE FUNCTIONS */
 int					ft_gn_strchr(const char *s, int c);

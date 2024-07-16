@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/10 15:28:55 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:35:59 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ int	main(void)
 	//str = "echo \"hola a\" \" || (echo todo bien && echo jij && echo jaj)";
 	commands = split_input(str);
 	printf("\n%s%s%s\n", MAGENTA, str, WHITE);
-	print_array(commands);
+	print_array(commands, "COMMANDS");
 	free_array(&commands);
 }
 
