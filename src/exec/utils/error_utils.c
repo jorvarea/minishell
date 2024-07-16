@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:22:55 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/06/30 12:40:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 22:14:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,16 @@ void	ft_perror(t_shell *shell, char *function, char *arg)
 {
 	shell->exit_status = 1;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
-	ft_putstr_fd(function, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
+	if (function && function[0] != '\0')
+	{
+		ft_putstr_fd(function, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
+	if (arg && arg[0] != '\0')
+	{
+		ft_putstr_fd(arg, STDERR_FILENO);
+		ft_putstr_fd(": ", STDERR_FILENO);
+	}
 	perror("");
 }
 

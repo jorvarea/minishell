@@ -36,7 +36,7 @@ char	*ft_strrep(char *str, char *insertion, int start_index, int end_index)
 	if (!str || !insertion || start_index > end_index || start_index >= len_str
 		|| end_index > len_str)
 		return (NULL);
-	new_str = (char *)safe_malloc(len_str - (end_index - start_index) 
+	new_str = (char *)safe_malloc(len_str - (end_index - start_index)
 			+ len_insertion + 1);
 	if (!new_str)
 		return (NULL);

@@ -18,12 +18,11 @@ void	unset(t_shell *shell, char **args)
 
 	shell->exit_status = 0;
 	if (found_flags(args))
-		ft_invalid_flag_error(shell, "unset", args[1][1],
-			"unset [name ...]");
+		ft_invalid_flag_error(shell, "unset", args[1][1], "unset [name ...]");
 	else
 	{
 		i = 1;
-		while (args[i]) 
+		while (args[i])
 			remove_key(shell, args[i++]);
 	}
 }

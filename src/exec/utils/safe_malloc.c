@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 14:12:14 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 14:21:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/15 20:04:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*safe_malloc(size_t size)
 	if (!ptr)
 	{
 		perror("malloc");
-		return (NULL);
+		exit(EXIT_FAILURE);
 	}
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 15:23:16 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/16 16:42:09 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,12 +56,15 @@ SRC_PARSER = src/parser/parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_cmd.c \
+	src/exec/execute_redir.c \
+	src/exec/heredoc.c \
 	src/exec/execute_bin.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/env_utils.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
 	src/exec/utils/safe_malloc.c \
+	src/exec/utils/safe_fork.c \
 	src/exec/utils/ft_strrep.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \
