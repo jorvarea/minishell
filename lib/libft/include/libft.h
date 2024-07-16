@@ -495,4 +495,13 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
+/* GET_NEXT_LINE FUNCTIONS */
+int					ft_gn_strchr(const char *s, int c);
+char				*ft_gn_strjoin(char const *s1, char const *s2);
+char				*free_str(char **str);
+char				*ft_add_buffer(char *buffer, int fd);
+char				*get_result_buffer(char **buffer);
+char				*get_next_line(int fd);
+char				*get_next_line_bon(int fd);
+
 #endif /* LIBFT_H */

@@ -104,8 +104,12 @@ BONUS_SR = src/bonus/ft_lstadd_back_bonus.c \
 	src/bonus/ft_lstnew_bonus.c \
 	src/bonus/ft_lstsize_bonus.c \
 	src/bonus/ft_lstmap_bonus.c
-	
-BONUS_OB = $(BONUS_SR:.c=.o)
+
+GNL_SRC = src/get_next_line/get_next_line.c \
+	src/get_next_line/get_next_line_utils.c \
+	src/get_next_line/get_next_line_bonus.c
+
+BONUS_OB = $(BONUS_SR:.c=.o) $(GNL_SRC:.c=.o)
 
 ################################################################################
 ##                                    COLOURS                                 ##
