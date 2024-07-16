@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 12:17:23 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/16 13:06:58 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC_PARSER = src/parser/parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_cmd.c \
+	src/exec/execute_redir.c \
 	src/exec/heredoc.c \
 	src/exec/execute_bin.c \
 	src/exec/utils/flag_utils.c \
