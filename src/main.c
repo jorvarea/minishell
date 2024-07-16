@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/15 17:47:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:38:54 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,9 @@ int	main(int argc, char **argv, char **envp)
 		else if (input[0] != '\0')
 		{
 			parsed_input = parser(input, shell);
-			stop = manage_input(shell, parsed_input);
+			if (parsed_input)
+				stop = manage_input(shell, parsed_input, input);
+			free_commands(shell->tokens);
 		}
 	}
 	free(input);
