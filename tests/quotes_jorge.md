@@ -815,9 +815,9 @@ echo "~"
 ~
 ```
 
-**Minishell Output:**  ❌ FAIL
+**Minishell Output:**  ✅ OK
 ```bash
-"~"
+~
 ```
 
 ### Test Case 4
