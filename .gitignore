@@ -56,3 +56,5 @@ dkms.conf
 *.icloud
 .vscode
 
+# Ana draft files
+tests/draft/
