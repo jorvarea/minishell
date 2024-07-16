@@ -6,19 +6,11 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/06/24 18:12:31 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 17:00:39 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-t_cmd	*init_command(void)
-{
-	t_cmd	*tokens;
-
-	tokens = (t_cmd *)malloc(sizeof(t_cmd));
-	return (tokens);
-}
 
 t_shell	*init_shell(char **envp)
 {

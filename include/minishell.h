@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 17:51:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:30:40 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,17 @@ typedef enum e_token
 	OR = 2,
 	PIPE = 4,
 	OPEN_PAR = 5,
-	CLOSE_PAR = 6
+	CLOSE_PAR = 6,
+	UNKNOWN = -1
 }	t_token;
 
 typedef enum e_type_redir
 {
-	INFILE = 0,
-	APPEND = 1,
-	OUTFILE = 2,
-	HEREDOC = 3
+	NOT_REDIR = 0,
+	INFILE = 1,
+	APPEND = 2,
+	OUTFILE = 3,
+	HEREDOC = 4
 }	t_type_redir;
 
 /*
@@ -86,8 +88,8 @@ ESTA ESTRUCTURA CONTIENE LAS REDIRECCIONES DE CADA COMANDO
 typedef struct s_redir
 {
 	char				*file;
-	enum e_type_redir	type;
 	int					fd;
+	enum e_type_redir	type;
 	struct s_redir		*next;	
 	struct s_redir		*prev;
 }	t_redir;
@@ -210,7 +212,8 @@ void	signal_handler(int signal);
 // ------------------------------------------------------ //
 
 // ------------------ PARSER FUNCTIONS ------------------ //
-t_cmd	*parser(char *input, t_shell *shell); // ?
+t_cmd	*parser(char *input, t_shell *shell);
+void	create_command_list(char **input_array, t_shell *shell);
 char	**trim_split(char **split, int len);
 char	**split_input(char *input);
 char	**split_cmd(char *input);
@@ -224,8 +227,7 @@ char	*remove_empty_quotes(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
 // ------------------- INIT FUNCTIONS ------------------- //
-t_cmd	*init_command(void); // NOT STARTED
-t_shell	*init_shell(char **envp); // ?
+t_shell	*init_shell(char **envp);
 
 // ------------------- ENV FUNCTIONS ------------------- //
 char	**init_shell_env(char **envp);
