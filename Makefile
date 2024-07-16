@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 13:34:40 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/16 15:23:16 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,7 @@ head :
 	@echo "\t🛠   Compiler: $(CC) $(END)\n"
 
 libft :
-	@make -s -C $(LIBFT)
+	@make bonus -s -C $(LIBFT)
 
 $(NAME) : line $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "✦ ---------------------- ✦$(END)"
