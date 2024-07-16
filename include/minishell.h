@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:25:59 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:26:18 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,7 @@ char	*remove_empty_quotes(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
 // ------------------- INIT FUNCTIONS ------------------- //
-t_cmd	*init_command(void); // NOT STARTED
-t_shell	*init_shell(char **envp); // ?
+t_shell	*init_shell(char **envp);
 
 // ------------------- ENV FUNCTIONS ------------------- //
 char	**init_shell_env(char **envp);
