@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:09:23 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:44:53 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,52 @@ static int	get_command_type(char **args)
 	return (CMD);
 }
 
+t_redir	*add_redir(t_redir *redir, int type, char *file)
+{
+	t_redir	*new_redir;
+
+	new_redir = (t_redir *)malloc(sizeof(t_redir));
+	if (!new_redir)
+		return (NULL);
+	new_redir->fd = -1;
+	new_redir->type = type;
+	new_redir->file = ft_strdup(file);
+	new_redir->fd = open(new_redir->file, O_RDWR);
+	new_redir->next = NULL;
+	if (!redir)
+	{
+		new_redir->prev = NULL;
+		redir = new_redir;
+	}
+	else
+	{
+		new_redir->prev = redir_last_node(redir);
+		redir_last_node(redir)->next = new_redir;
+	}
+	return (new_redir);
+}
+
 t_redir	*get_command_redir(char **args)
 {
-	t_redir	*redir;
 	int		i;
+	int		type;
+	t_redir	*redir;
 
-	redir = (t_redir *)malloc(sizeof(t_redir));
-	if (!redir)
-		return (NULL);
 	i = -1;
+	type = 0;
+	redir = NULL;
 	while (args[++i])
 	{
 		if (equal_str(args[i], "<"))
-			redir->type = INFILE;
+			type = INFILE;
 		else if (equal_str(args[i], "<<"))
-			redir->type = HEREDOC;
+			type = HEREDOC;
 		else if (equal_str(args[i], ">"))
-			redir->type = OUTFILE;
+			type = OUTFILE;
 		else if (equal_str(args[i], ">>"))
-			redir->type = APPEND;
-		if (redir->type && args[i + 1])
-			redir->file = args[i + 1];
+			type = APPEND;
+		if (type && args[i + 1])
+			redir = add_redir(redir, type, args[++i]);
 	}
 	return (redir);
 }
@@ -64,8 +89,8 @@ static t_cmd	*assign_cmd_values(t_cmd *new_cmd, char *command)
 		return (NULL);
 	new_cmd->type = get_command_type(new_cmd->args);
 	new_cmd->redir = NULL;
-	// if (new_cmd->type == CMD)
-	// 	new_cmd->redir = get_command_redir(new_cmd->args);
+	if (new_cmd->type == CMD)
+		new_cmd->redir = get_command_redir(new_cmd->args);
 	return (new_cmd);
 }
 
