@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:27:38 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:30:40 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ typedef struct s_redir
 	char				*file;
 	int					fd;
 	enum e_type_redir	type;
-	int					fd;
 	struct s_redir		*next;	
 	struct s_redir		*prev;
 }	t_redir;
