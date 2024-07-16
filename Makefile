@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 16:31:04 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/16 16:31:19 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ head :
 	@echo "\t🛠   Compiler: $(CC) $(END)\n"
 
 libft :
-	@make -s -C $(LIBFT)
+	@make bonus -s -C $(LIBFT)
 
 $(NAME) : line $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "✦ ---------------------- ✦$(END)"
