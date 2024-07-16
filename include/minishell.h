@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:05:28 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 20:42:00 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,7 @@ void	sh_free_str(char *str);
 // -------------------- LAST_NODE.C --------------------- //
 t_env	*env_last_node(t_env *l_env);
 t_cmd	*cmd_last_node(t_cmd *cmd_lst);
+t_redir	*redir_last_node(t_redir *redir);
 
 // ---------------------- PRINT.C ----------------------- //
 void	print_command_list(t_cmd *tokens);
