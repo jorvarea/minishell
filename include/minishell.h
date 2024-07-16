@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 19:25:21 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/16 19:25:59 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef enum e_token
 	OR = 2,
 	PIPE = 4,
 	OPEN_PAR = 5,
-	CLOSE_PAR = 6
+	CLOSE_PAR = 6,
+	UNKNOWN = -1
 }	t_token;
 
 typedef enum e_type_redir
