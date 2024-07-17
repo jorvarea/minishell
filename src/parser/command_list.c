@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:44:53 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:25:39 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_redir	*add_redir(t_redir *redir, int type, char *file)
 		new_redir->prev = redir_last_node(redir);
 		redir_last_node(redir)->next = new_redir;
 	}
-	return (new_redir);
+	return (redir);
 }
 
 t_redir	*get_command_redir(char **args)
@@ -61,10 +61,10 @@ t_redir	*get_command_redir(char **args)
 	t_redir	*redir;
 
 	i = -1;
-	type = 0;
 	redir = NULL;
 	while (args[++i])
 	{
+		type = 0;
 		if (equal_str(args[i], "<"))
 			type = INFILE;
 		else if (equal_str(args[i], "<<"))

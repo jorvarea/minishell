@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 15:39:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 13:32:52 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:35:33 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static int	how_many(char const *s)
 	b_check = 0;
 	while (++i < ft_strlen(s))
 	{
-		while (ft_strchr(" \t", s[i]))
+		while (ft_strchr(" \t\n\v\f\r", s[i]) && s[i])
 			i++;
-		if (skip_quotes(s, &i) > 0 && b_check)
+		if (!s[i] || (skip_quotes(s, &i) > 0 && b_check))
 			;
 		else if (ft_strchr("()|&;", s[i]) && ++counter)
 		{
@@ -43,13 +43,13 @@ static int	how_many(char const *s)
 		else if (!b_check && ++counter)
 			b_check = 1;
 	}
-	//printf("\nWORD COUNT:%i\n", counter);
+	printf("\nWORD COUNT:%i\n", counter);
 	return (counter);
 }
 
 static void	input_extract_string(char const *s, int *start, int *end)
 {
-	while (s[*start] == ' ' || s[*start] == '\t')
+	while (ft_strchr(" \t\n\v\f\r", s[*start]) && s[*start])
 		*start += 1;
 	*end = *start;
 	if (ft_strchr("()|&;", s[*start]))
@@ -78,7 +78,7 @@ char	**trim_split(char **split, int len)
 	trim = (char **)malloc(sizeof(char *) * len);
 	i = -1;
 	while (split[++i])
-		trim[i] = ft_strtrim(split[i], " \t");
+		trim[i] = ft_strtrim(split[i], " \t\n\v\f\r");
 	trim[i] = NULL;
 	free_array(&split);
 	return (trim);
@@ -92,16 +92,16 @@ char	**split_input(char *input)
 	int		j;
 	int		len;
 
-	len = how_many(input) + 1;
-	result = (char **)malloc(sizeof(char *) * len);
+	len = ft_strlen(input);
+	result = (char **)malloc(sizeof(char *) * how_many(input) + 1);
 	if (!result || !input)
 		return (NULL);
 	start = 0;
 	j = -1;
-	while (input[start])
+	while (len > start)
 	{
 		input_extract_string(input, &start, &end);
-		if (end > start)
+		if (end > start && len > start)
 		{
 			result[++j] = ft_substr(input, start, end - start);
 			if (!result[j])
@@ -110,5 +110,5 @@ char	**split_input(char *input)
 		start = end;
 	}
 	result[++j] = NULL;
-	return (trim_split(result, len));
+	return (trim_split(result, how_many(input) + 1));
 }

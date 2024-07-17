@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:46:20 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 20:24:30 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ void	free_redir(t_redir	*redir)
 	while (redir)
 	{
 		next = redir->next;
+		if (next)
+			next->prev = NULL;
 		free(redir->file);
-		free(redir);
 		if (redir->fd > 0)
 			close(redir->fd);
 		redir->fd = 0;
+		free(redir);
 		redir = NULL;
 		redir = next;
-		redir->prev = NULL;
 	}
 }
 
