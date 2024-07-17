@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 22:23:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/17 22:13:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define MAX_ENV_SIZE 4096
 
 // ---------- GLOBAL VAR: Signal Reception ---------- //
+
 extern pid_t	g_signal;
 
 // ------------------- STRUCTURES ------------------- //
@@ -207,6 +208,12 @@ char	*read_input(void);
 void	exit_program_nl(void);
 void	signal_handler(int signal);
 
+// -------------------SIGNAL HANDLING ------------------- //
+void	initialize_signal_handler_cli(void);
+void	signal_handler_cli(int signal);
+void	initialize_signal_handler_heredoc(void);
+void	signal_handler_heredoc(int signal);
+
 // ------------------------------------------------------ //
 //                     PARSER FOLDER                      //
 // ------------------------------------------------------ //
@@ -279,6 +286,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
 void	remove_tmp_heredoc_files(t_redir *redir);
+void	expand_arg_heredoc(t_shell *shell, char **ptr_arg);
 
 	// ------------------------------------------------------ //
 	//                     UTILS FOLDER                       //

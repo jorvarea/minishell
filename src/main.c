@@ -6,22 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/17 13:34:10 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/17 22:24:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 pid_t	g_signal;
-
-void	signal_handler(int signal)
-{
-	g_signal = signal;
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
 
 char	*read_input(void)
 {
@@ -47,19 +38,26 @@ bool	manage_input(t_shell *shell, t_cmd *parsed_input)
 	return (stop);
 }
 
+int	exit_shell(t_shell *shell)
+{
+	int	status;
+
+	status = shell->exit_status;
+	printf("exit\n");
+	free_shell(shell);
+	return (status);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	*shell;
 	t_cmd	*parsed_input;
 	char	*input;
 	bool	stop;
-	int		status;
 
 	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, signal_handler);
 	stop = false;
 	while (!stop)
 	{
@@ -69,14 +67,10 @@ int	main(int argc, char **argv, char **envp)
 		else if (input[0] != '\0')
 		{
 			parsed_input = parser(input, shell);
-			if (parsed_input)
-				stop = manage_input(shell, parsed_input);
+			stop = manage_input(shell, parsed_input);
 			free_commands(shell->tokens);
 		}
 	}
 	free(input);
-	status = shell->exit_status;
-	printf("exit\n");
-	free_shell(shell);
-	return (status);
+	return (exit_shell(shell));
 }

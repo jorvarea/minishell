@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 17:00:39 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 22:19:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ t_shell	*init_shell(char **envp)
 	shell->tokens = NULL;
 	shell->l_env = set_env_list(shell->env);
 	shell->files = NULL;
+	initialize_signal_handler_cli();
 	return (shell);
 }
