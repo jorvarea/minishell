@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 13:32:56 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:20:37 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	how_many(char const *s)
 
 static void	cmd_extract_string(char const *s, int *start, int *end)
 {
-	while (s[*start] == ' ' || s[*start] == '\t')
+	while (ft_strchr(" \t\n\v\f\r", s[*start]))
 		*start += 1;
 	*end = *start;
 	if (!*start)
