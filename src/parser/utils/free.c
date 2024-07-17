@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 17:02:15 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:35:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,4 @@ void	free_shell(t_shell *shell)
 	if (shell->files)
 		free_arg_lst(shell->files);
 	free(shell);
-	printf("\n%sSuccesfully freed shell%s\n", GREEN, WHITE);
 }
