@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 22:31:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:33:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ bool	exit_cmd(t_shell *shell, char **args)
 
 	exit = true;
 	shell->exit_status = 0;
-	printf("exit\n");
 	if (args[1] && ft_isnum(args[1]))
 		shell->exit_status = ft_atoi(args[1]) % 256;
 	else if (args[1])

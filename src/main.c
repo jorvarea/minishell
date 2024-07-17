@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 22:29:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:34:10 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	free(input);
 	status = shell->exit_status;
+	printf("exit\n");
 	free_shell(shell);
 	return (status);
 }
