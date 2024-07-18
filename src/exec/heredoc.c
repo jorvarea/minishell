@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/17 22:39:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:41:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	manage_open_error(t_shell *shell, char *filename)
 
 static void	manage_end_heredoc(char *line, char *limit_word)
 {
+	g_signal = 0;
 	if (line)
 		free(line);
 	else

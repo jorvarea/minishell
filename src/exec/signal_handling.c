@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:47:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/17 22:16:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:43:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	initialize_signal_handler_cli(void)
 
 void	signal_handler_cli(int signal)
 {
-	g_signal = signal;
+	(void)signal;
 	printf("\n");
 	rl_on_new_line();
 	rl_replace_line("", 0);
@@ -38,5 +38,4 @@ void	signal_handler_heredoc(int signal)
 	g_signal = signal;
 	printf("\n");
 	rl_on_new_line();
-	rl_replace_line("", 0);
 }
