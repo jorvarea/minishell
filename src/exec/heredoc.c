@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 15:36:23 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 16:27:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 	line = readline("heredoc> ");
 	while (line && !equal_str(line, redir->file) && g_signal != SIGINT)
 	{
+		if (line[0] == '\0')
+		{
+			free(line);
+			line = ft_strdup("\n");
+		}
 		expand_arg_heredoc(shell, &line);
 		write(fd, line, ft_strlen(line));
 		free(line);
