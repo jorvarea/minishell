@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 21:39:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:24:44 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,15 @@ typedef struct s_shell
 	struct s_args	*files;
 }	t_shell;
 
+// ---------------------- EXEC STRUCTURES -------------------- //
+
+typedef struct s_pids_array
+{
+	pid_t	*pids;
+	int		size;
+	int		capacity;
+}			t_pids_array;
+
 // ------------------- EXPANSION STRUCTURES ------------------- //
 
 typedef enum e_inner_quotes
@@ -318,6 +327,7 @@ int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
+void	*safe_realloc(void *ptr, size_t new_size, size_t old_size);
 pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_des);
 
