@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/17 22:13:12 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/18 22:24:32 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,9 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
 	src/exec/utils/safe_malloc.c \
+	src/exec/utils/safe_realloc.c \
 	src/exec/utils/safe_fork.c \
+	src/exec/utils/safe_pipe.c \
 	src/exec/utils/ft_strrep.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \

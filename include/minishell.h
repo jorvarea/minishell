@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 15:23:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 22:24:44 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,15 @@ typedef struct s_shell
 	struct s_args	*files;
 }	t_shell;
 
+// ---------------------- EXEC STRUCTURES -------------------- //
+
+typedef struct s_pids_array
+{
+	pid_t	*pids;
+	int		size;
+	int		capacity;
+}			t_pids_array;
+
 // ------------------- EXPANSION STRUCTURES ------------------- //
 
 typedef enum e_inner_quotes
@@ -287,6 +296,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 void	save_heredocs(t_shell *shell, t_redir *redir);
 void	remove_tmp_heredoc_files(t_redir *redir);
 void	expand_arg_heredoc(t_shell *shell, char **ptr_arg);
+char	*generate_filename(char *heredoc_num);
 
 	// ------------------------------------------------------ //
 	//                     UTILS FOLDER                       //
@@ -317,8 +327,9 @@ int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
+void	*safe_realloc(void *ptr, size_t new_size, size_t old_size);
 pid_t	safe_fork(void);
-pid_t	safe_fork(void);
+void	safe_pipe(int *pipe_des);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //

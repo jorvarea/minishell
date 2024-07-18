@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:47:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 17:20:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 19:44:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ void	initialize_signal_handler_heredoc(void)
 void	signal_handler_heredoc(int signal)
 {
 	g_signal = signal;
-	ft_putstr_fd("\n", STDOUT_FILENO);
+	rl_done = 1;
 }
