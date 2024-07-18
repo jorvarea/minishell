@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/16 19:50:34 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/17 22:13:12 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,9 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_cmd.c \
 	src/exec/execute_redir.c \
 	src/exec/heredoc.c \
+	src/exec/heredoc_utils.c \
 	src/exec/execute_bin.c \
+	src/exec/signal_handling.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/env_utils.c \
 	src/exec/utils/update_envp.c \

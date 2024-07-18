@@ -6,31 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 21:51:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 12:41:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	expand_arg_heredoc(t_shell *shell, char **ptr_arg)
-{
-	t_quotes	quotes;
-	char		*arg;
-	int			i;
-
-	arg = *ptr_arg;
-	ft_memset(&quotes, 0, sizeof(quotes));
-	i = 0;
-	while (arg[i])
-	{
-		if (arg[i] == '$' && arg[i + 1] == '?')
-			replace_exit_status(shell, ptr_arg, i);
-		else if (arg[i] == '$')
-			replace_env(shell, ptr_arg, i);
-		arg = *ptr_arg;
-		i++;
-	}
-}
 
 static char	*generate_filename(char *heredoc_num)
 {
@@ -39,6 +19,27 @@ static char	*generate_filename(char *heredoc_num)
 	filename = ft_strjoin("/tmp/minishell_heredoc", heredoc_num);
 	free(heredoc_num);
 	return (filename);
+}
+
+static void	manage_open_error(t_shell *shell, char *filename)
+{
+	ft_perror(shell, "open", filename);
+	free(filename);
+	exit(EXIT_FAILURE);
+}
+
+static void	manage_end_heredoc(char *line, char *limit_word)
+{
+	g_signal = 0;
+	if (line)
+		free(line);
+	else
+	{
+		ft_putstr_fd("minishell: warning: here-document ", STDERR_FILENO);
+		ft_putstr_fd("delimited by end-of-file (wanted `", STDERR_FILENO);
+		ft_putstr_fd(limit_word, STDERR_FILENO);
+		ft_putendl_fd("')", STDERR_FILENO);
+	}
 }
 
 static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
@@ -50,21 +51,16 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 	filename = generate_filename(heredoc_num);
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0600);
 	if (fd == -1)
-	{
-		ft_perror(shell, "open", "");
-		free(filename);
-		exit(EXIT_FAILURE);
-	}
+		manage_open_error(shell, filename);
 	line = readline("heredoc> ");
-	while (line && !equal_str(line, redir->file))
+	while (line && !equal_str(line, redir->file) && g_signal != SIGINT)
 	{
 		expand_arg_heredoc(shell, &line);
 		write(fd, line, ft_strlen(line));
 		free(line);
 		line = readline("heredoc> ");
 	}
-	if (line)
-		free(line);
+	manage_end_heredoc(line, redir->file);
 	close(fd);
 	free(redir->file);
 	redir->file = filename;
@@ -74,6 +70,7 @@ void	save_heredocs(t_shell *shell, t_redir *redir)
 {
 	int	heredoc_num;
 
+	initialize_signal_handler_heredoc();
 	heredoc_num = 0;
 	while (redir)
 	{
@@ -81,14 +78,5 @@ void	save_heredocs(t_shell *shell, t_redir *redir)
 			heredoc2file(shell, redir, ft_itoa(heredoc_num++));
 		redir = redir->next;
 	}
-}
-
-void	remove_tmp_heredoc_files(t_redir *redir)
-{
-	while (redir)
-	{
-		if (redir->type == HEREDOC)
-			unlink(redir->file);
-		redir = redir->next;
-	}
+	initialize_signal_handler_cli();
 }
