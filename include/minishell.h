@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 17:42:08 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 21:39:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,7 +319,7 @@ bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
 pid_t	safe_fork(void);
-pid_t	safe_fork(void);
+void	safe_pipe(int *pipe_des);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
