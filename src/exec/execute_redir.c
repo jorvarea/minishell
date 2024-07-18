@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/16 21:24:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:59:43 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 	save_heredocs(shell, redir);
 	while (redir && !error)
 	{
-		if (open_file(shell, redir))
+		if (redir->file && open_file(shell, redir))
 			change_std_io(redir);
-		else
+		else if (redir->file)
 			error = true;
 		redir = redir->next;
 	}
