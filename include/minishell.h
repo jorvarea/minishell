@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 15:23:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 17:42:08 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,6 +287,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 void	save_heredocs(t_shell *shell, t_redir *redir);
 void	remove_tmp_heredoc_files(t_redir *redir);
 void	expand_arg_heredoc(t_shell *shell, char **ptr_arg);
+char	*generate_filename(char *heredoc_num);
 
 	// ------------------------------------------------------ //
 	//                     UTILS FOLDER                       //
