@@ -6,20 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 16:27:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:51:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*generate_filename(char *heredoc_num)
-{
-	char	*filename;
-
-	filename = ft_strjoin("/tmp/minishell_heredoc", heredoc_num);
-	free(heredoc_num);
-	return (filename);
-}
 
 static void	manage_open_error(t_shell *shell, char *filename)
 {
