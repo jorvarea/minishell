@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/17 22:13:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/18 15:23:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 
 // ---------- GLOBAL VAR: Signal Reception ---------- //
 
-extern pid_t	g_signal;
+extern volatile sig_atomic_t	g_signal;
 
 // ------------------- STRUCTURES ------------------- //
 
