@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/19 22:09:20 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/19 22:10:09 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,13 @@ DEPS = -I include -I $(LIBFT)/include
 SRC = src/main.c
 
 SRC_PARSER = src/parser/parser.c \
-	src/parser/command_list.c \
-	src/parser/split_parser.c \
 	src/parser/init.c \
 	src/parser/env.c \
-	src/parser/utils/free.c src/parser/utils/free_utils.c \
+	src/parser/split_parser.c \
+	src/parser/token_list.c \
+	src/parser/redirs.c \
+	src/parser/utils/free.c \
+	src/parser/utils/free_utils.c \
 	src/parser/utils/print_utils.c \
 	src/parser/utils/print_shell.c \
 	src/parser/utils/quotes.c \
