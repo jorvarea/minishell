@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 20:03:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:57:03 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,15 +282,20 @@ void	exit_program_nl(void);
 
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                        //
-//                     EXEC FOLDER                        //
 // ------------------------------------------------------ //
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
-	// ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, t_cmd *cmd);
+void	exec_one(t_shell *shell, t_cmd *cmd);
+void	exec_pipe(t_shell *shell, t_cmd *cmd, t_pids_array *child_pids);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 void	execute_redir(t_shell *shell, t_cmd *cmd);
+
+	// ------------------- EXEC_UTILS FUNCTIONS ------------------- //
+void	add_child_pid(t_pids_array *child_pids, pid_t pid);
+void	init_pids_array(t_pids_array *child_pids);
+void	wait_children(t_pids_array *child_pids);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
@@ -303,13 +308,11 @@ char	*generate_filename(char *heredoc_num);
 	// ------------------------------------------------------ //
 
 		// ------------------- FLAG_UTILS FUNCTIONS ------------------- //
-		// ------------------- FLAG_UTILS FUNCTIONS ------------------- //
 bool	char_in_str(char c, char *str);
 bool	valid_flag(char *flag, char *valid_flags);
 int		count_valid_flag_arg(char **args, char *valid_flags);
 bool	found_flags(char **args);
 
-		// ------------------- ENV_UTILS FUNCTIONS ------------------- //
 		// ------------------- ENV_UTILS FUNCTIONS ------------------- //
 char	*get_value(t_shell *shell, char *key);
 bool	remove_key(t_shell *shell, char *key);
@@ -318,10 +321,8 @@ bool	valid_key(char *key);
 bool	update_env(t_shell *shell, char *key, char *value);
 
 		// ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
-		// ------------------- UPDATE_ENVP FUNCTIONS ------------------- //
 void	update_envp(t_shell *shell);
 
-		// ------------------- UTILS FUNCTIONS ------------------- //
 		// ------------------- UTILS FUNCTIONS ------------------- //
 int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
@@ -334,10 +335,8 @@ void	safe_dup2(int oldfd, int newfd);
 int		safe_dup(int fd);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
-		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
 
-		// ------------------- ERROR_UTILS FUNCTIONS ------------------- //
 		// ------------------- ERROR_UTILS FUNCTIONS ------------------- //
 void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 			char invalid_flag, char *usage);
@@ -345,9 +344,6 @@ void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
 
-	// ------------------------------------------------------ //
-	//                     BUILT_INS FOLDER                   //
-	// ------------------------------------------------------ //
 	// ------------------------------------------------------ //
 	//                     BUILT_INS FOLDER                   //
 	// ------------------------------------------------------ //
@@ -359,9 +355,6 @@ void	export(t_shell *shell, char **args);
 void	unset(t_shell *shell, char **args);
 bool	exit_cmd(t_shell *shell, char **args);
 
-	// ------------------------------------------------------ //
-	//                     EXPANSIONS FOLDER                  //
-	// ------------------------------------------------------ //
 	// ------------------------------------------------------ //
 	//                     EXPANSIONS FOLDER                  //
 	// ------------------------------------------------------ //
