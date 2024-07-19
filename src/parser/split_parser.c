@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 20:20:06 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:48:10 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,20 @@ static void	cmd_extract_string(char const *s, int *start, int *end)
 				*end += 1;
 		}
 	}
+}
+
+char	**trim_split(char **split, int len)
+{
+	char	**trim;
+	int		i;
+
+	trim = (char **)malloc(sizeof(char *) * len);
+	i = -1;
+	while (split[++i])
+		trim[i] = ft_strtrim(split[i], " \t\n\v\f\r");
+	trim[i] = NULL;
+	free_array(&split);
+	return (trim);
 }
 
 char	**split_parser(char *input)
