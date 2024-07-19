@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 19:45:56 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:25:54 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,3 @@ void	ft_quotes_error(const char *cmd, t_shell *shell)
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putendl_fd("unclosed quotes", STDERR_FILENO);
 }
-
