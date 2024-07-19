@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/18 19:44:47 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:18:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,20 @@ static void	disable_echoctl(t_shell *shell)
 	}
 }
 
+static void	update_shell_env(t_shell *shell)
+{
+	char	*minishell_path;
+	char	cwd[MAX_ENV_SIZE];
+
+	if (getcwd(cwd, MAX_ENV_SIZE))
+	{
+		minishell_path = ft_strjoin(cwd, "/minishell");
+		if (!update_env(shell, "SHELL", minishell_path))
+			add_new_env(shell, "SHELL", minishell_path);
+		free(minishell_path);
+	}
+}
+
 t_shell	*init_shell(char **envp)
 {
 	t_shell	*shell;
@@ -49,5 +63,6 @@ t_shell	*init_shell(char **envp)
 	initialize_signal_handler_cli();
 	disable_echoctl(shell);
 	rl_event_hook = event_hook_readline;
+	update_shell_env(shell);
 	return (shell);
 }

@@ -58,6 +58,9 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/utils/utils.c
 
 SRC_EXEC = src/exec/exec.c \
+	src/exec/exec_one.c \
+	src/exec/exec_pipe.c \
+	src/exec/exec_utils.c \
 	src/exec/execute_cmd.c \
 	src/exec/execute_redir.c \
 	src/exec/heredoc.c \
