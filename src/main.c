@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 00:34:59 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:35:15 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,18 @@ bool	manage_input(t_shell *shell, t_cmd *parsed_input)
 	bool	stop;
 
 	stop = false;
-	if (!parsed_input)
-		return (stop);
-	if (equal_str(parsed_input->args[0], "exit"))
-		stop = exit_cmd(shell, parsed_input->args);
-	else if (parsed_input->next == NULL)
-		exec_one(shell, parsed_input);
-	else
-		exec(shell, parsed_input);
-	free_array(&parsed_input->args);
-	free(parsed_input);
-	free_commands(shell->tokens);
+	if (parsed_input)
+	{
+		if (equal_str(parsed_input->args[0], "exit"))
+			stop = exit_cmd(shell, parsed_input->args);
+		else if (parsed_input->next == NULL)
+			exec_one(shell, parsed_input);
+		else
+			exec(shell, parsed_input);
+		free_array(&parsed_input->args);
+		free(parsed_input);
+		free_commands(shell->tokens);
+	}
 	return (stop);
 }
 
