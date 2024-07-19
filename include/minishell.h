@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 00:32:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:32:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,7 +273,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 	// ------------------- EXEC_UTILS FUNCTIONS ------------------- //
 void	add_child_pid(t_pids_array *child_pids, pid_t pid);
 void	init_pids_array(t_pids_array *child_pids);
-void	wait_children(t_pids_array *child_pids);
+void	wait_children(t_shell *shell, t_pids_array *child_pids);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
