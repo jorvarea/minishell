@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:28:15 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/19 22:00:57 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:26:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static bool	is_built_in(t_cmd *cmd)
 			|| equal_str(args[0], "export") || equal_str(args[0], "unset")));
 }
 
-void	exec_one(t_shell *shell, t_cmd *cmd)
+void	exec_single_cmd(t_shell *shell, t_cmd *cmd)
 {
 	pid_t	pid;
 	int		status;

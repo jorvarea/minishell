@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 22:12:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/20 00:52:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,17 +263,11 @@ int		array_len(char **array);
 // ------------------------------------------------------ //
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
-void	exec(t_shell *shell, t_cmd *cmd);
-void	exec_one(t_shell *shell, t_cmd *cmd);
-void	exec_pipe(t_shell *shell, t_cmd *cmd, t_pids_array *child_pids);
+void	exec(t_shell *shell, t_cmd *cmd, int original_stdout);
+void	exec_single_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 void	execute_redir(t_shell *shell, t_cmd *cmd);
-
-	// ------------------- EXEC_UTILS FUNCTIONS ------------------- //
-void	add_child_pid(t_pids_array *child_pids, pid_t pid);
-void	init_pids_array(t_pids_array *child_pids);
-void	wait_children(t_shell *shell, t_pids_array *child_pids);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
