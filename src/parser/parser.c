@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/17 20:31:58 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:49:43 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 t_cmd	*parser(char *input, t_shell *shell)
 {
-	char	*trimmed;
+	char	*p_input;
 	char	**input_array;
-	int		i;
 
-	i = -1;
-	trimmed = ft_strtrim(input, " \t\n\v\f\r");
-	free(input);
-	input = trimmed;
-	input = remove_empty_quotes(input, shell);
+	shell->tokens = NULL;
+	input = process_input(input, shell);
 	if (!input)
-		return (NULL);
-	input_array = split_input(input);
+		return (shell->tokens);
+	p_input = ft_strtrim(input, " \t\n\v\f\r");
+	if (!p_input)
+		return (shell->tokens);
+	input_array = split_parser(p_input);
 	if (!input_array)
-		return (NULL);
-	create_command_list(input_array, shell);
+		return (free(p_input), shell->tokens);
+	new_token_list(input_array, shell);
 	free_array(&input_array);
-	//print_shell(shell, 0, 1);
-	return (shell->tokens);
+	return (free(p_input), shell->tokens);
 }
