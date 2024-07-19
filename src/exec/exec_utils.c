@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:54:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/19 20:55:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 22:00:51 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ void	init_pids_array(t_pids_array *child_pids)
 	child_pids->capacity = 16;
 }
 
-void	wait_children(t_pids_array *child_pids)
+void	wait_children(t_shell *shell, t_pids_array *child_pids)
 {
+	int	status;
 	int	i;
 
 	i = 0;
 	while (i < child_pids->size)
-		waitpid(child_pids->pids[i++], NULL, 0);
+		waitpid(child_pids->pids[i++], &status, 0);
+	if (WIFEXITED(status))
+		shell->exit_status = WEXITSTATUS(status);
+	else
+		shell->exit_status = 130;
 }
