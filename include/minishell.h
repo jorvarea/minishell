@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 17:32:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 20:03:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,6 +331,7 @@ void	*safe_realloc(void *ptr, size_t new_size, size_t old_size);
 pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_des);
 void	safe_dup2(int oldfd, int newfd);
+int		safe_dup(int fd);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
