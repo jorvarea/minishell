@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/19 20:55:13 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/19 22:09:20 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,16 +45,15 @@ SRC = src/main.c
 
 SRC_PARSER = src/parser/parser.c \
 	src/parser/command_list.c \
-	src/parser/split_cmd.c \
-	src/parser/split_input.c \
+	src/parser/split_parser.c \
 	src/parser/init.c \
 	src/parser/env.c \
 	src/parser/utils/free.c src/parser/utils/free_utils.c \
-	src/parser/utils/print.c \
+	src/parser/utils/print_utils.c \
+	src/parser/utils/print_shell.c \
 	src/parser/utils/quotes.c \
 	src/parser/utils/last_node.c \
-	src/parser/utils/exit_program_nl.c
-#src/main_parser.c \
+	src/parser/utils/utils.c
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/exec_one.c \
