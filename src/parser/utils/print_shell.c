@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   print_shell.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/17 19:56:13 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:01:54 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	print_type(int type, int isToken)
+void	print_redir_type(int type)
 {
-	if (type == 0 && isToken)
-		printf("-> CMD(%i)", type);
-	else if (type == 1 && isToken)
-		printf ("-> AND(%i)", type);
-	else if (type == 2 && isToken)
-		printf ("-> OR(%i)", type);
-	else if (type == 4 && isToken)
-		printf ("-> PIPE(%i)", type);
-	else if (type == 5 && isToken)
-		printf ("-> OPEN PARENTHESIS(%i)", type);
-	else if (type == 6 && isToken)
-		printf ("-> CLOSE PARENTHESIS(%i)", type);
-	else if (isToken)
-		printf ("-> UNKNOWN(%i)", type);
-	else if (type == 0)
+	if (!type)
 		printf("NOT REDIR(%i)", type);
 	else if (type == 1)
 		printf("INFILE(%i:\'<\')", type);
@@ -40,6 +26,27 @@ static void	print_type(int type, int isToken)
 		printf("HEREDOC(%i:\'<<')", type);
 }
 
+void	print_type(int type)
+{
+	if (type == 0)
+		printf("-> CMD(%i)", type);
+	else if (type == 1)
+		printf ("-> AND(%i)", type);
+	else if (type == 2)
+		printf ("-> OR(%i)", type);
+	else if (type == 4)
+		printf ("-> PIPE(%i)", type);
+	else if (type == 5)
+		printf ("-> OPEN PARENTHESIS(%i)", type);
+	else if (type == 6)
+		printf ("-> CLOSE PARENTHESIS(%i)", type);
+	else if (type == 7)
+		printf ("-> REDIR(%i)", type);
+	else
+		printf ("-> UNKNOWN(%i)", type);
+
+}
+
 void	print_command_list(t_cmd *tokens)
 {
 	t_cmd	*tok_next;
@@ -47,20 +54,21 @@ void	print_command_list(t_cmd *tokens)
 	int		i;
 
 	i = 0;
-	printf("\n%sCOMMAND LIST>%s", RED, WHITE);
+	printf("\n%sCOMMAND LIST>\n%s", RED, WHITE);
 	if (!tokens)
 		printf("\t%s(null)%s\n\n", YELLOW, WHITE);
 	while (tokens)
 	{
 		tok_next = tokens->next;
-		printf("\n\n[%i] .%s%s%s. ", i++, BOLD, tokens->cmd, WHITE);
-		print_type(tokens->type, 1);
-		print_array(tokens->args, NULL);
+		printf("%sTOK[%i] %s", BOLD, i++, WHITE);
+		print_array_one_line(tokens->args, NULL);
+		print_type(tokens->type);
+		printf("\n");
 		while (tokens->redir)
 		{
 			red_next = tokens->redir->next;
 			printf("\n\tREDIR:\n\t -FD:%i \n\t -TYPE:", tokens->redir->fd);
-			print_type(tokens->redir->type, 0);
+			print_redir_type(tokens->redir->type);
 			printf("\n\t -FILE:|%s|\n", tokens->redir->file);
 			tokens->redir = red_next;
 		}
@@ -82,19 +90,6 @@ void	print_shell_l_env(t_env *l_env)
 		printf("%sKEY:%s%s\n\t", GREEN, WHITE, l_env->key);
 		printf("%sVALUE:%s%s\n", GREEN, WHITE, l_env->value);
 		l_env = next;
-	}
-}
-
-void	print_array(char **array, char *type)
-{
-	int	i;
-
-	i = -1;
-	if (type)
-		printf("\n%s%s>%s", RED, type, WHITE);
-	while (array[++i])
-	{
-		printf("\n\t%i:%s%s%s$", i + 1, GREEN, array[i], WHITE);
 	}
 }
 
