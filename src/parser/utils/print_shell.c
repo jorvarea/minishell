@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 19:01:54 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:25:43 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	print_type(int type)
 		printf ("-> REDIR(%i)", type);
 	else
 		printf ("-> UNKNOWN(%i)", type);
-
 }
 
 void	print_command_list(t_cmd *tokens)
