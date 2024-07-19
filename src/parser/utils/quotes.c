@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 13:36:16 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 19:45:56 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	only_space(char *s, int *start, int *end)
 	return (1);
 }
 
-char	*remove_empty_quotes(char *str, t_shell *shell)
+char	*process_input(char *str, t_shell *shell)
 {
 	int		i;
 	int		j;
@@ -69,14 +69,14 @@ char	*remove_empty_quotes(char *str, t_shell *shell)
 	char	*after;
 	int		quote_status;
 
-	i = 0;
-	while (str[i])
+	i = -1;
+	while (str[++i])
 	{
 		j = i;
 		quote_status = check_quotes(str, &i);
 		if (quote_status == 2)
 			return (ft_quotes_error(str, shell), NULL);
-		else if (!quote_status || only_space(str, &j, &i))
+		else if (!quote_status)
 		{
 			before = ft_substr(str, 0, j);
 			after = ft_substr(str, i + 1, ft_strlen(str));
@@ -85,7 +85,6 @@ char	*remove_empty_quotes(char *str, t_shell *shell)
 			str = ft_strjoin(before, after);
 			i = -1;
 		}
-		i++;
 	}
 	return (str);
 }

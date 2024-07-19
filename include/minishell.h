@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 20:03:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:11:37 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ typedef enum e_quote_status
 	UNCLOSED = 2
 }	t_quote_status;
 
-// NOT FINISHED
 typedef enum e_token
 {
 	CMD = 0,
@@ -71,16 +70,17 @@ typedef enum e_token
 	PIPE = 4,
 	OPEN_PAR = 5,
 	CLOSE_PAR = 6,
+	REDIR = 7,
 	UNKNOWN = -1
 }	t_token;
 
 typedef enum e_type_redir
 {
-	NOT_REDIR = 0,
-	INFILE = 1,
-	APPEND = 2,
-	OUTFILE = 3,
-	HEREDOC = 4
+	INFILE = 10,
+	APPEND = 11,
+	OUTFILE = 12,
+	HEREDOC = 13,
+	NOT_REDIR = -1
 }	t_type_redir;
 
 /*
@@ -105,46 +105,17 @@ typedef struct s_args
 /**
  * @struct Command List structure
  * @details
+ * enum e_token	type: Contains the type of token (AND OR CMD PIPE...);
  * char **args: Contains the command and arguments as: args[0]="ls" args[1]="-l"
- * char *infile: If cmd uses (<), it stores the name of the input file 
- * char *outfile: If cmd uses (> or >>), it stores the name of the output file 
- * int	out_append: If there is an outfile. Value 1 for (>>) and 0 for (<)
- * char *heredoc: Stores the end delimiter (string) as: 
- *		cat << hola --> heredoc="hola"
- * t_token	type: Contains the type of command (AND OR CMD PIPE...);
  * char	*cmd: Contains a string with the complete command;
  * char	**args: Contains an array with command + command arguments;
  * t_redir *redir: Contains a redir list with the file, type and next/prev;
  * struct s_cmd	*next: Pointer to the next command;
  * struct s_cmd	*prev: Pointer to the previous command;
 */
-/*
-EJEMPLO COMPLETO:
-COMANDO: echo hola > que * > tal && echo Malaga
-1.
- - type = commando
- - cmd = echo hola *
- - args -> args[0] = "echo", args[1] = "hola", args[2] = "*"
- - redir -> 1: infile file="que" next -> infile file="tal"
- - next: siguiente comando (2.)
- - prev: NULL
-2.
- - type = &&
- - todo lo demas NULL excepto el next
- - next: siguiente comando (3.)
- - prev: anterior comando (1.)
-3. 
- - type = COMMAND
- - cmd = "echo Malaga"
- - args -> args[0] = "echo", args[1] = "Malaga"
- - redir -> NULL
- - next: NULL
- - prev: anterior comando (2.)
- */
 typedef struct s_cmd
 {
 	enum e_token	type;
-	char			*cmd;
 	char			**args;
 	struct s_redir	*redir;
 	struct s_cmd	*next;
@@ -214,7 +185,6 @@ typedef struct s_args_array
 // ------------------------------------------------------ //
 
 char	*read_input(void);
-void	exit_program_nl(void);
 void	signal_handler(int signal);
 
 // -------------------SIGNAL HANDLING ------------------- //
@@ -238,13 +208,12 @@ char	**init_shell_env(char **envp);
 t_env	*assign_env_values(char *env, t_env *new_env);
 t_env	*set_env_list(char **env);
 
-// ----------------- SPLIT_INPUT/CMD.C ------------------ //
+// ----------------- SPLIT_PARSER.C ------------------ //
 char	**trim_split(char **split, int len);
-char	**split_input(char *input);
-char	**split_cmd(char *input);
+char	**split_parser(char *input);
 
-// ------------------- COMMAND_LIST.C ------------------- //
-void	create_command_list(char **input_array, t_shell *shell);
+// ------------------- TOKEN_LIST.C ------------------- //
+void	new_token_list(char **input_array, t_shell *shell);
 
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
@@ -261,24 +230,30 @@ void	sh_free_str(char *str);
 
 // -------------------- LAST_NODE.C --------------------- //
 t_env	*env_last_node(t_env *l_env);
-t_cmd	*cmd_last_node(t_cmd *cmd_lst);
+t_cmd	*token_last_node(t_cmd *cmd_lst);
 t_redir	*redir_last_node(t_redir *redir);
 
-// ---------------------- PRINT.C ----------------------- //
+// ------------------- PRINT_UTILS.C -------------------- //
+void	print_array(char **array, char *type);
+void	print_array_one_line(char **array, char *title);
+
+// ------------------- PRINT_SHELL.C -------------------- //
+void	print_type(int type);
+void	print_redir_type(int type);
 void	print_command_list(t_cmd *tokens);
 void	print_shell_l_env(t_env *l_env);
-void	print_array(char **array, char *type);
 void	print_shell(t_shell *shell, bool env, bool tokens);
 
 // --------------------- QUOTES.C ---------------------- //
 int		skip_quotes(char const *s, int *i);
 int		check_quotes(char const *s, int *i);
 int		only_space(char *s, int *start, int *end);
-char	*remove_empty_quotes(char *str, t_shell *shell);
+char	*process_input(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
-// ---------------- EXIT_PROGRAM_NL.C ------------------ //
+// ---------------- UTILS.C ------------------ //
 void	exit_program_nl(void);
+int		array_len(char **array);
 
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                        //
