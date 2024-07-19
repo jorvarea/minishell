@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 15:59:43 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:41:17 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,14 @@ static void	change_std_io(t_redir *redir)
 		dup2(redir->fd, STDOUT_FILENO);
 }
 
+static void	restore_original_io(int original_stdin, int original_stdout)
+{
+	dup2(original_stdin, STDIN_FILENO);
+	dup2(original_stdout, STDOUT_FILENO);
+	close(original_stdin);
+	close(original_stdout);
+}
+
 void	execute_redir(t_shell *shell, t_cmd *cmd)
 {
 	t_redir	*redir;
@@ -71,8 +79,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 	}
 	if (!error)
 		execute_cmd(shell, cmd);
-	dup2(original_stdin, STDIN_FILENO);
-	dup2(original_stdout, STDOUT_FILENO);
+	restore_original_io(original_stdin, original_stdout);
 	close_files(cmd->redir);
 	remove_tmp_heredoc_files(cmd->redir);
 }
