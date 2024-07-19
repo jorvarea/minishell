@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 21:10:45 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:11:37 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,6 @@ typedef struct s_args_array
 // ------------------------------------------------------ //
 
 char	*read_input(void);
-void	exit_program_nl(void);
 void	signal_handler(int signal);
 
 // -------------------SIGNAL HANDLING ------------------- //
@@ -209,13 +208,12 @@ char	**init_shell_env(char **envp);
 t_env	*assign_env_values(char *env, t_env *new_env);
 t_env	*set_env_list(char **env);
 
-// ----------------- SPLIT_INPUT/CMD.C ------------------ //
+// ----------------- SPLIT_PARSER.C ------------------ //
 char	**trim_split(char **split, int len);
-char	**split_input(char *input);
-char	**split_cmd(char *input);
+char	**split_parser(char *input);
 
-// ------------------- COMMAND_LIST.C ------------------- //
-void	create_command_list(char **input_array, t_shell *shell);
+// ------------------- TOKEN_LIST.C ------------------- //
+void	new_token_list(char **input_array, t_shell *shell);
 
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
@@ -232,24 +230,30 @@ void	sh_free_str(char *str);
 
 // -------------------- LAST_NODE.C --------------------- //
 t_env	*env_last_node(t_env *l_env);
-t_cmd	*cmd_last_node(t_cmd *cmd_lst);
+t_cmd	*token_last_node(t_cmd *cmd_lst);
 t_redir	*redir_last_node(t_redir *redir);
 
-// ---------------------- PRINT.C ----------------------- //
+// ------------------- PRINT_UTILS.C -------------------- //
+void	print_array(char **array, char *type);
+void	print_array_one_line(char **array, char *title);
+
+// ------------------- PRINT_SHELL.C -------------------- //
+void	print_type(int type);
+void	print_redir_type(int type);
 void	print_command_list(t_cmd *tokens);
 void	print_shell_l_env(t_env *l_env);
-void	print_array(char **array, char *type);
 void	print_shell(t_shell *shell, bool env, bool tokens);
 
 // --------------------- QUOTES.C ---------------------- //
 int		skip_quotes(char const *s, int *i);
 int		check_quotes(char const *s, int *i);
 int		only_space(char *s, int *start, int *end);
-char	*remove_empty_quotes(char *str, t_shell *shell);
+char	*process_input(char *str, t_shell *shell);
 void	ft_quotes_error(const char *cmd, t_shell *shell);
 
-// ---------------- EXIT_PROGRAM_NL.C ------------------ //
+// ---------------- UTILS.C ------------------ //
 void	exit_program_nl(void);
+int		array_len(char **array);
 
 // ------------------------------------------------------ //
 //                     EXEC FOLDER                        //
