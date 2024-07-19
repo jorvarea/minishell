@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 20:46:44 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 21:32:42 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	get_token_type(char **args)
 	return (CMD);
 }
 
-int	get_args_number(char **input)
+static int	get_args_number(char **input)
 {
 	int	len;
 	int	stop;
