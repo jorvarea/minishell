@@ -6,19 +6,19 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:48:16 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/16 20:41:51 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/19 18:46:12 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_cmd	*cmd_last_node(t_cmd *cmd_lst)
+t_cmd	*token_last_node(t_cmd *list)
 {
-	if (!cmd_lst)
+	if (!list)
 		return (NULL);
-	while (cmd_lst->next)
-		cmd_lst = cmd_lst->next;
-	return (cmd_lst);
+	while (list->next)
+		list = list->next;
+	return (list);
 }
 
 t_env	*env_last_node(t_env *l_env)
