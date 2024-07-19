@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 22:09:52 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/19 22:10:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,9 @@ char	**split_parser(char *input);
 
 // ------------------- TOKEN_LIST.C ------------------- //
 void	new_token_list(char **input_array, t_shell *shell);
+
+// ------------------- REDIRS.C ------------------- //
+void	assign_redirs(t_shell *shell);
 
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
