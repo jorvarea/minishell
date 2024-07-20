@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 23:05:47 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:13:17 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,6 @@ char	**trim_split(char **split, int len);
 char	**split_parser(char *input);
 
 // -------------------- TOKEN_LIST.C -------------------- //
-int		get_token_type(char **args);
 void	new_token_list(char **input_array, t_shell *shell);
 
 // ---------------------- REDIRS.C ---------------------- //
