@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   last_node.c                                        :+:      :+:    :+:   */
+/*   struct_nodes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:48:16 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 18:46:12 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:05:20 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	pop_node_from_list(t_cmd *node)
+{
+	t_cmd	*prev;
+	t_cmd	*next;
+
+	prev = node->prev;
+	next = node->next;
+	if (next)
+		next->prev = prev;
+	if (prev)
+		prev->next = next;
+	free_array(&node->args);
+	free(node);
+	node = NULL;
+}
 
 t_cmd	*token_last_node(t_cmd *list)
 {

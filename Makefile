@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/20 20:47:11 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/20 23:14:53 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,15 +48,15 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/env.c \
 	src/parser/split_parser.c \
 	src/parser/token_list.c \
-	src/parser/update_token_list.c \
 	src/parser/redirs.c \
+	src/parser/get_type.c \
 	src/parser/utils/error.c \
 	src/parser/utils/free.c \
 	src/parser/utils/free_utils.c \
 	src/parser/utils/print_utils.c \
 	src/parser/utils/print_shell.c \
 	src/parser/utils/quotes.c \
-	src/parser/utils/last_node.c \
+	src/parser/utils/struct_nodes.c \
 	src/parser/utils/utils.c
 
 SRC_EXEC = src/exec/exec.c \

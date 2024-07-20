@@ -6,25 +6,11 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 22:45:58 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:03:46 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-enum e_type_redir	get_redir_type(char *type)
-{
-	if (equal_str(type, "<"))
-		return (INFILE);
-	else if (equal_str(type, "<<"))
-		return (HEREDOC);
-	else if (equal_str(type, ">"))
-		return (OUTFILE);
-	else if (equal_str(type, ">>"))
-		return (APPEND);
-	else
-		return (NOT_REDIR);
-}
 
 bool	check_redir_args(char **redir, t_shell *shell)
 {
@@ -59,6 +45,21 @@ t_redir	*assign_redir(t_redir *assign, char **args)
 		redir_last_node(assign)->next = new_redir;
 	}
 	return (assign);
+}
+
+void	update_redir_token(t_cmd *node)
+{
+	if (!node || node->type != REDIR)
+		return ;
+	if (node->redir)
+	{
+		node->type = CMD;
+		free_array(&node->args);
+		node->args = (char **)malloc(sizeof(char *) * 1);
+		node->args[0] = NULL;
+	}
+	else
+		pop_node_from_list(node);
 }
 
 void	update_redir(t_cmd *redir, t_shell *shell)

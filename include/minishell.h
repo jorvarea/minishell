@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 22:41:11 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:13:17 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,14 +213,17 @@ char	**trim_split(char **split, int len);
 char	**split_parser(char *input);
 
 // -------------------- TOKEN_LIST.C -------------------- //
-int		get_token_type(char **args);
 void	new_token_list(char **input_array, t_shell *shell);
 
 // ---------------------- REDIRS.C ---------------------- //
 void	get_redirs(t_shell *shell);
+void	update_redir_token(t_cmd *node);
 
 // ---------------- UPDATE_TOKEN_LIST.C ----------------- //
-void	update_redir_token(t_cmd *node);
+
+// --------------------- GET_TYPE.C --------------------- //
+int		get_token_type(char **args);
+int		get_redir_type(char *type);
 
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
@@ -239,7 +242,8 @@ void	free_redir(t_redir	*redir);
 void	free_arg_lst(t_args *l_args); // ELIMINAR
 void	sh_free_str(char *str);
 
-// -------------------- LAST_NODE.C --------------------- //
+// ------------------- STRUCT_NODE.C -------------------- //
+void	pop_node_from_list(t_cmd *node);
 t_env	*env_last_node(t_env *l_env);
 t_cmd	*token_last_node(t_cmd *cmd_lst);
 t_redir	*redir_last_node(t_redir *redir);
