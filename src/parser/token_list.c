@@ -6,13 +6,13 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 22:26:20 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:32:21 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	get_token_type(char **args)
+enum e_token	get_token_type(char **args)
 {
 	if (!args || !args[0])
 		return (UNKNOWN);
