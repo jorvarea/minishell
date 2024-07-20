@@ -6,25 +6,11 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 22:45:58 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:02:02 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-enum e_type_redir	get_redir_type(char *type)
-{
-	if (equal_str(type, "<"))
-		return (INFILE);
-	else if (equal_str(type, "<<"))
-		return (HEREDOC);
-	else if (equal_str(type, ">"))
-		return (OUTFILE);
-	else if (equal_str(type, ">>"))
-		return (APPEND);
-	else
-		return (NOT_REDIR);
-}
 
 bool	check_redir_args(char **redir, t_shell *shell)
 {
