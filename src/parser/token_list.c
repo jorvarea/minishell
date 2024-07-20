@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_list.c                                     :+:      :+:    :+:   */
+/*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 21:32:42 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:41:51 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	get_token_type(char **args)
+int	get_token_type(char **args)
 {
 	if (!args || !args[0])
 		return (UNKNOWN);
@@ -113,4 +113,5 @@ void	new_token_list(char **input_array, t_shell *shell)
 			token_last_node(shell->tokens)->next = new_cmd;
 		}
 	}
+	get_redirs(shell);
 }

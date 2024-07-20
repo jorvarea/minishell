@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 18:23:11 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 21:27:50 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,11 @@ void	print_array_one_line(char **array, char *title)
 		printf("%s%s%s,", GREEN, array[i], WHITE);
 		i++;
 	}
-	printf("%s%i:%s%s", BLUE, i, array[i], WHITE);
+	if (i == 0)
+		printf("%s%s", RED, BOLD);
+	else
+		printf("%s", BLUE);
+	printf("%i:%s%s", i, array[i], WHITE);
 	printf("]");
 	if (title)
 		printf("\n");

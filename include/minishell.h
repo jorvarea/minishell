@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 00:52:12 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/20 22:41:11 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,19 +208,27 @@ char	**init_shell_env(char **envp);
 t_env	*assign_env_values(char *env, t_env *new_env);
 t_env	*set_env_list(char **env);
 
-// ----------------- SPLIT_PARSER.C ------------------ //
+// ------------------- SPLIT_PARSER.C ------------------- //
 char	**trim_split(char **split, int len);
 char	**split_parser(char *input);
 
-// ------------------- TOKEN_LIST.C ------------------- //
+// -------------------- TOKEN_LIST.C -------------------- //
+int		get_token_type(char **args);
 void	new_token_list(char **input_array, t_shell *shell);
 
-// ------------------- REDIRS.C ------------------- //
-void	assign_redirs(t_shell *shell);
+// ---------------------- REDIRS.C ---------------------- //
+void	get_redirs(t_shell *shell);
+
+// ---------------- UPDATE_TOKEN_LIST.C ----------------- //
+void	update_redir_token(t_cmd *node);
 
 // ------------------------------------------------------ //
 //                  PARSER UTILS FOLDER                   //
 // ------------------------------------------------------ //
+
+// ---------------------- ERROR.C ----------------------- //
+void	ft_quotes_error(const char *cmd, t_shell *shell);
+void	ft_redir_error(char *str, t_shell *shell);
 
 // --------------- FREE.C && FREE_UTILS.C --------------- //
 void	free_shell(t_shell *shell);
@@ -247,14 +255,13 @@ void	print_command_list(t_cmd *tokens);
 void	print_shell_l_env(t_env *l_env);
 void	print_shell(t_shell *shell, bool env, bool tokens);
 
-// --------------------- QUOTES.C ---------------------- //
+// ---------------------- QUOTES.C ---------------------- //
 int		skip_quotes(char const *s, int *i);
 int		check_quotes(char const *s, int *i);
 int		only_space(char *s, int *start, int *end);
 char	*process_input(char *str, t_shell *shell);
-void	ft_quotes_error(const char *cmd, t_shell *shell);
 
-// ---------------- UTILS.C ------------------ //
+// ----------------------- UTILS.C ---------------------- //
 void	exit_program_nl(void);
 int		array_len(char **array);
 
