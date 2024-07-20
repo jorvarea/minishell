@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 21:25:43 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 21:11:05 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	print_redir_type(int type)
 {
-	if (!type)
+	if (type == NOT_REDIR)
 		printf("NOT REDIR(%i)", type);
-	else if (type == 1)
+	else if (type == INFILE)
 		printf("INFILE(%i:\'<\')", type);
-	else if (type == 2)
+	else if (type == APPEND)
 		printf("APPEND(%i:\'>>')", type);
-	else if (type == 3)
+	else if (type == OUTFILE)
 		printf("OUTFILE(%i:\'>')", type);
-	else if (type == 4)
+	else if (type == HEREDOC)
 		printf("HEREDOC(%i:\'<<')", type);
 }
 
@@ -66,7 +66,7 @@ void	print_command_list(t_cmd *tokens)
 		while (tokens->redir)
 		{
 			red_next = tokens->redir->next;
-			printf("\n\tREDIR:\n\t -FD:%i \n\t -TYPE:", tokens->redir->fd);
+			printf("\tREDIR:\n\t -FD:%i \n\t -TYPE:", tokens->redir->fd);
 			print_redir_type(tokens->redir->type);
 			printf("\n\t -FILE:|%s|\n", tokens->redir->file);
 			tokens->redir = red_next;
