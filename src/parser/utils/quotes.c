@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 21:25:54 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 20:22:19 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,4 @@ char	*process_input(char *str, t_shell *shell)
 		}
 	}
 	return (str);
-}
-
-void	ft_quotes_error(const char *cmd, t_shell *shell)
-{
-	shell->exit_status = 127;
-	ft_putstr_fd("-minishell: ", STDERR_FILENO);
-	ft_putstr_fd((char *)cmd, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putendl_fd("unclosed quotes", STDERR_FILENO);
 }
