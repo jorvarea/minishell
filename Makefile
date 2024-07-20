@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
+#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/20 00:52:07 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/20 20:23:34 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/split_parser.c \
 	src/parser/token_list.c \
 	src/parser/redirs.c \
+	src/parser/utils/error.c \
 	src/parser/utils/free.c \
 	src/parser/utils/free_utils.c \
 	src/parser/utils/print_utils.c \
