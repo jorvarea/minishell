@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 23:02:02 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/20 23:03:46 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,21 @@ t_redir	*assign_redir(t_redir *assign, char **args)
 		redir_last_node(assign)->next = new_redir;
 	}
 	return (assign);
+}
+
+void	update_redir_token(t_cmd *node)
+{
+	if (!node || node->type != REDIR)
+		return ;
+	if (node->redir)
+	{
+		node->type = CMD;
+		free_array(&node->args);
+		node->args = (char **)malloc(sizeof(char *) * 1);
+		node->args[0] = NULL;
+	}
+	else
+		pop_node_from_list(node);
 }
 
 void	update_redir(t_cmd *redir, t_shell *shell)
