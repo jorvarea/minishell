@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/21 16:24:16 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/22 01:17:11 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,6 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/utils/utils.c
 
 SRC_EXEC = src/exec/exec.c \
-	src/exec/exec_single_cmd.c \
 	src/exec/execute_cmd.c \
 	src/exec/execute_redir.c \
 	src/exec/heredoc.c \
