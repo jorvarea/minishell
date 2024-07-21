@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 23:03:46 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:17:59 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 bool	check_redir_args(char **redir, t_shell *shell)
 {
 	if (array_len(redir) != 2 || !redir[0] || get_redir_type(redir[0]) < 0)
-		ft_redir_error(redir[0], shell);
+		parser_error(U_TOK, redir[0], U_TOK, shell);
 	else if (!redir[1] || get_token_type(redir + 1) != CMD)
-		ft_redir_error(redir[1], shell);
+		parser_error(U_TOK, redir[1], U_TOK, shell);
 	else
 		return (0);
 	return (1);
@@ -62,14 +62,12 @@ void	update_redir_token(t_cmd *node)
 		pop_node_from_list(node);
 }
 
-void	update_redir(t_cmd *redir, t_shell *shell)
+void	update_redir(t_cmd *redir)
 {
 	t_cmd	*prev;
 	t_cmd	*next;
 	t_cmd	*assign;
 
-	if (check_redir_args(redir->args, shell))
-		return ;
 	prev = redir->prev;
 	next = redir->next;
 	while (next && next->type == REDIR)
@@ -86,7 +84,7 @@ void	update_redir(t_cmd *redir, t_shell *shell)
 	update_redir_token(redir);
 }
 
-void	get_redirs(t_shell *shell)
+bool	get_redirs(t_shell *shell)
 {
 	t_cmd	*node;
 
@@ -94,7 +92,12 @@ void	get_redirs(t_shell *shell)
 	while (node)
 	{
 		if (node->type == REDIR)
-			update_redir(node, shell);
+		{
+			if (check_redir_args(node->args, shell))
+				return (1);
+			update_redir(node);
+		}
 		node = node->next;
 	}
+	return (0);
 }
