@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/20 23:14:53 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/21 15:34:14 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,10 +118,6 @@ TURQUOISE=\033[36m
 
 all : head libft $(NAME)
 
-parser : head libft line $(OBJ_PAR)
-	@echo "✦ ---------------------- ✦$(END)"
-	@$(CC) $(FLAGS) $(OBJ_PAR) $(INCLUDE) -o $(NAME)
-
 head :
 	@echo "$(MAGENTA)"
 	@echo "\t███    ███ ██ ███    ██ ██ ███████ ██   ██ ███████ ██      ██      "
@@ -172,4 +168,4 @@ re :
 	@clear
 	@$(MAKE) -s all
 
-.PHONY: all parser executer bonus clean fclean re
+.PHONY: all bonus clean fclean re
