@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/21 15:57:26 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/21 16:24:16 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,16 @@ SRC = src/main.c
 SRC_PARSER = src/parser/parser.c \
 	src/parser/init.c \
 	src/parser/env.c \
-	src/parser/split_parser.c \
-	src/parser/token_list.c \
-	src/parser/redirs.c \
-	src/parser/get_type.c \
+	src/parser/tokenizer/split_parser.c \
+	src/parser/tokenizer/quotes.c \
+	src/parser/lexer/token_list.c \
+	src/parser/lexer/redirs.c \
 	src/parser/utils/error.c \
 	src/parser/utils/free_structs.c \
 	src/parser/utils/free_utils.c \
-	src/parser/utils/print_utils.c \
+	src/parser/utils/get_type.c \
 	src/parser/utils/print_shell.c \
-	src/parser/utils/quotes.c \
+	src/parser/utils/print_utils.c \
 	src/parser/utils/struct_nodes.c \
 	src/parser/utils/utils.c
 
