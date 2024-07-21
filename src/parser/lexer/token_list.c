@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 22:59:40 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:16:00 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_cmd	*new_token(char **arr, int *pos)
 	return (node);
 }
 
-void	new_token_list(char **input_array, t_shell *shell)
+bool	new_token_list(char **input_array, t_shell *shell)
 {
 	int		i;
 	int		len;
@@ -77,7 +77,7 @@ void	new_token_list(char **input_array, t_shell *shell)
 	{
 		new_cmd = new_token(input_array, &i);
 		if (!new_cmd)
-			return ;
+			return (parser_error(ENOMEM, NULL, ENOMEM, shell), 1);
 		new_cmd->next = NULL;
 		if (!shell->tokens)
 		{
@@ -90,5 +90,5 @@ void	new_token_list(char **input_array, t_shell *shell)
 			token_last_node(shell->tokens)->next = new_cmd;
 		}
 	}
-	get_redirs(shell);
+	return (get_redirs(shell));
 }
