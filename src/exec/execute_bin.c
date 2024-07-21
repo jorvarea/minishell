@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 19:02:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:02:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	execute_bin(t_shell *shell, char **args)
 	update_envp(shell);
 	errno = 0;
 	execve(args[0], args, shell->env);
-	if (errno == ENOENT)
+	if (args[0][0] != '.' && errno == ENOENT)
 		find_executable_in_path(shell, args);
 	else
 		ft_perror(shell, "execve", args[0]);
