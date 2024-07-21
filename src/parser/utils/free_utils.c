@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:05:01 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/17 20:24:30 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:41:37 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,6 @@ void	free_array(char ***array)
 			free((*array)[i]);
 		free(*array);
 		*array = NULL;
-	}
-}
-
-void	free_arg_lst(t_args *l_args)
-{
-	t_args	*next;
-
-	while (l_args)
-	{
-		next = l_args->next;
-		free(l_args->arg);
-		free(l_args);
-		l_args = NULL;
-		l_args = next;
-		l_args->prev = NULL;
 	}
 }
 

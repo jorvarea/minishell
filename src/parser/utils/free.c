@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 19:22:27 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:41:42 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,5 @@ void	free_shell(t_shell *shell)
 		free_array(&shell->env);
 	if (shell->l_env)
 		free_env_list(shell->l_env);
-	if (shell->files)
-		free_arg_lst(shell->files);
 	free(shell);
 }
