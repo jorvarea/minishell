@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 23:13:17 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:42:41 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,6 @@ typedef struct s_redir
 	struct s_redir		*prev;
 }	t_redir;
 
-typedef struct s_args
-{
-	char			*arg;
-	struct s_args	*next;
-	struct s_args	*prev;
-}	t_args;
-
 /**
  * @struct Command List structure
  * @details
@@ -145,7 +138,6 @@ typedef struct s_shell
 	char			**env;
 	struct s_env	*l_env;
 	struct s_cmd	*tokens;
-	struct s_args	*files;
 }	t_shell;
 
 // ---------------------- EXEC STRUCTURES -------------------- //
@@ -239,7 +231,6 @@ void	free_commands(t_cmd *command_lst);
 void	free_array(char ***array);
 void	free_env_list(t_env	*l_env);
 void	free_redir(t_redir	*redir);
-void	free_arg_lst(t_args *l_args); // ELIMINAR
 void	sh_free_str(char *str);
 
 // ------------------- STRUCT_NODE.C -------------------- //
