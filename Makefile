@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/21 15:34:14 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/21 15:57:26 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/redirs.c \
 	src/parser/get_type.c \
 	src/parser/utils/error.c \
-	src/parser/utils/free.c \
+	src/parser/utils/free_structs.c \
 	src/parser/utils/free_utils.c \
 	src/parser/utils/print_utils.c \
 	src/parser/utils/print_shell.c \
