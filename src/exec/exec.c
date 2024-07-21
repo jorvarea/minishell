@@ -38,7 +38,7 @@ static void	exec_last(t_shell *shell, t_cmd *cmd, int original_stdout)
 	}
 }
 
-static void exec_left(t_shell *shell, t_cmd *cmd, int pipe_fds[2])
+static void	exec_left(t_shell *shell, t_cmd *cmd, int pipe_fds[2])
 {
 	close(pipe_fds[0]);
 	safe_dup2(pipe_fds[1], STDOUT_FILENO);

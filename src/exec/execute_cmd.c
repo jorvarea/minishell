@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/10 16:37:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/21 23:50:59 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,25 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 {
 	char	**args;
 
-	expand_wildcards(cmd);
-	args = cmd->args;
-	expand_cmd(shell, args);
-	trim_quotes(args);
-	if (args && equal_str(args[0], "echo"))
-		echo(shell, args);
-	else if (equal_str(args[0], "pwd"))
-		pwd(shell, args);
-	else if (equal_str(args[0], "env"))
-		env(shell, args);
-	else if (equal_str(args[0], "cd"))
-		cd(shell, args);
-	else if (equal_str(args[0], "export"))
-		export(shell, args);
-	else if (equal_str(args[0], "unset"))
-		unset(shell, args);
-	else
-		execute_bin(shell, args);
+	if (cmd && cmd->args)
+	{
+		expand_wildcards(cmd);
+		args = cmd->args;
+		expand_cmd(shell, args);
+		trim_quotes(args);
+		if (args && equal_str(args[0], "echo"))
+			echo(shell, args);
+		else if (equal_str(args[0], "pwd"))
+			pwd(shell, args);
+		else if (equal_str(args[0], "env"))
+			env(shell, args);
+		else if (equal_str(args[0], "cd"))
+			cd(shell, args);
+		else if (equal_str(args[0], "export"))
+			export(shell, args);
+		else if (equal_str(args[0], "unset"))
+			unset(shell, args);
+		else
+			execute_bin(shell, args);
+	}
 }
