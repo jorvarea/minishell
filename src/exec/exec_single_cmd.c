@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_one.c                                         :+:      :+:    :+:   */
+/*   exec_single_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 20:28:15 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/20 00:26:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:11:46 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	exec_single_cmd(t_shell *shell, t_cmd *cmd)
 		if (pid == 0)
 		{
 			execute_redir(shell, cmd);
-			exit(0);
+			exit(shell->exit_status);
 		}
 		wait(&status);
 		if (WIFEXITED(status))
