@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 00:52:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/21 23:07:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,19 @@ char	*read_input(void)
 	return (input);
 }
 
-bool	manage_input(t_shell *shell, t_cmd *parsed_input)
+bool	manage_input(t_shell *shell)
 {
 	bool	stop;
 
 	stop = false;
-	if (parsed_input)
+	if (shell->tokens)
 	{
-		if (equal_str(parsed_input->args[0], "exit"))
-			stop = exit_cmd(shell, parsed_input->args);
-		else if (parsed_input->next == NULL)
-			exec_single_cmd(shell, parsed_input);
+		if (equal_str(shell->tokens->args[0], "exit"))
+			stop = exit_cmd(shell, shell->tokens->args);
+		else if (shell->tokens->next == NULL)
+			exec_single_cmd(shell, shell->tokens);
 		else
-			exec(shell, parsed_input, safe_dup(STDOUT_FILENO));
-		free_array(&parsed_input->args);
-		free(parsed_input);
+			exec(shell, shell->tokens, safe_dup(STDOUT_FILENO));
 		free_commands(shell->tokens);
 	}
 	return (stop);
@@ -57,7 +55,6 @@ int	exit_shell(t_shell *shell)
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	*shell;
-	t_cmd	*parsed_input;
 	char	*input;
 	bool	stop;
 
@@ -72,8 +69,8 @@ int	main(int argc, char **argv, char **envp)
 			stop = true;
 		else if (input[0] != '\0')
 		{
-			parsed_input = parser(input, shell);
-			stop = manage_input(shell, parsed_input);
+			parser(input, shell);
+			stop = manage_input(shell);
 		}
 	}
 	free(input);
