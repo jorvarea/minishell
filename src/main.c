@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 23:07:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/21 23:48:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	manage_input(t_shell *shell)
 	stop = false;
 	if (shell->tokens)
 	{
-		if (equal_str(shell->tokens->args[0], "exit"))
+		if (shell->tokens->args && equal_str(shell->tokens->args[0], "exit"))
 			stop = exit_cmd(shell, shell->tokens->args);
 		else if (shell->tokens->next == NULL)
 			exec_single_cmd(shell, shell->tokens);
