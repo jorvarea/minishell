@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 21:02:10 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:59:13 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,9 @@ typedef enum e_type_redir
 // IN PROGRESS
 typedef enum e_type_error
 {
-	U_TOK = 2,		// 
-	U_QUOTE = 3,	//syntax error near unexpected tkn (missing keyword/command)
-	ENOPERM = 126,	//permission denied
-	//ENOMEM = 12	 //linux default (out of memory)
+	E_NOMEM = 12,
+	E_UTOK = 258,
+	E_UQUOTE = 259,
 }	t_type_error;
 
 typedef struct s_redir
@@ -221,6 +220,7 @@ bool	get_redirs(t_shell *shell);
 void	update_redir_token(t_cmd *node);
 
 // ---------------- UPDATE_TOKEN_LIST.C ----------------- //
+bool	update_token_list(t_shell *shell);
 
 // --------------------- GET_TYPE.C --------------------- //
 int		get_token_type(char **args);
@@ -236,7 +236,7 @@ int		check_error_tokens(t_shell *shell);
 
 // --------------- FREE.C && FREE_UTILS.C --------------- //
 void	free_shell(t_shell *shell);
-void	free_commands(t_cmd *command_lst);
+void	*free_commands(t_cmd **command_lst);
 void	free_array(char ***array);
 void	free_env_list(t_env	*l_env);
 void	free_redir(t_redir	*redir);
