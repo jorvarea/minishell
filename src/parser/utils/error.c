@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:22:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 21:07:42 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:50:15 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	*parser_error(int error, char *str, int exit_code, t_shell *shell)
 {
 	shell->exit_status = exit_code;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
-	if (error == U_QUOTE)
+	if (error == E_UQUOTE)
 		ft_putendl_fd("parser error: unclosed quotes", STDERR_FILENO);
-	else if (error == U_TOK)
+	else if (error == E_UTOK)
 	{
 		ft_putstr_fd("syntax error near unexpected token `", STDERR_FILENO);
 		if (str && str[0])
@@ -71,6 +71,6 @@ int	check_error_tokens(t_shell *shell)
 		node = node->next;
 	}
 	if (error || par_check)
-		return (parser_error(U_TOK, error, U_TOK, shell), 1);
+		return (parser_error(E_UTOK, error, E_UTOK, shell), 1);
 	return (0);
 }
