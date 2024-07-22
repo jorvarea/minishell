@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 17:18:18 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 19:49:33 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*process_input(char *str, t_shell *shell)
 		j = i;
 		quote_status = check_quotes(str, &i);
 		if (quote_status == 2)
-			return (parser_error(U_QUOTE, NULL, U_QUOTE, shell));
+			return (parser_error(E_UQUOTE, NULL, E_UQUOTE, shell));
 		else if (!quote_status)
 		{
 			before = ft_substr(str, 0, j);
