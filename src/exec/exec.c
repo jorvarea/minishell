@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 23:41:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:56:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	exec(t_shell *shell)
 	bk_in = dup(STDIN_FILENO);
 	bk_out = dup(STDOUT_FILENO);
 	cmd = shell->tokens;
+	save_heredocs(shell);
 	init_fds_pid(cmd);
 	assign_pipes(cmd);
 	while (cmd)
@@ -34,4 +35,5 @@ void	exec(t_shell *shell)
 	close(bk_in);
 	close(bk_out);
 	wait_pids(shell, shell->tokens);
+	remove_tmp_heredoc_files(cmd->redir);
 }

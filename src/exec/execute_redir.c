@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 23:09:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:50:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 	// prev_stdout = dup(STDOUT_FILENO);
 	redir = cmd->redir;
 	error = false;
-	save_heredocs(shell, redir);
 	while (redir && !error)
 	{
 		if (redir->file && open_file(shell, redir))
@@ -95,5 +94,4 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 		execute_cmd(shell, cmd);
 	// restore_prev_io(prev_stdin, prev_stdout);
 	close_files(cmd->redir);
-	remove_tmp_heredoc_files(cmd->redir);
 }
