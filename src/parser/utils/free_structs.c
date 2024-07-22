@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 15:55:51 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:01:32 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,24 @@ void	free_env_list(t_env	*l_env)
 	}
 }
 
-void	free_commands(t_cmd *command_lst)
+void	*free_commands(t_cmd **command_lst)
 {
 	t_cmd	*next;
 
 	next = (t_cmd *)malloc(sizeof(t_cmd));
-	while (command_lst)
+	while (*command_lst)
 	{
-		next = command_lst->next;
+		next = (*command_lst)->next;
 		if (next)
 			next->prev = NULL;
-		free_array(&command_lst->args);
-		free_redir(command_lst->redir);
-		free(command_lst);
-		command_lst = NULL;
-		command_lst = next;
+		free_array(&(*command_lst)->args);
+		free_redir((*command_lst)->redir);
+		free(*command_lst);
+		*command_lst = NULL;
+		*command_lst = next;
 	}
 	free(next);
+	return (NULL);
 }
 
 void	free_shell(t_shell *shell)
