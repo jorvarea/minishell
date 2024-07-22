@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 21:07:33 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:59:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static int	get_args_number(char **input)
 	return (len);
 }
 
-static	char	**get_token_args(char **args, char **arr, int *i)
+static char	**get_token_args(char **args, char **arr, int *i)
 {
 	int	len;
 	int	j;
 
 	len = get_args_number(arr + *i);
-	args = (char **)malloc(sizeof(char *) * len + 1);
+	args = (char **)malloc(sizeof(char *) * (len + 1));
 	j = 0;
 	while (j < len && arr[*i])
 		args[j++] = ft_strdup(arr[(*i)++]);
