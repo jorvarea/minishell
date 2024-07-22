@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 01:16:38 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:07:41 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,10 +271,10 @@ int		array_len(char **array);
 // ------------------------------------------------------ //
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
-void	exec(t_shell *shell, t_cmd *cmd, int original_stdout);
+void	exec(t_shell *shell, t_cmd *cmd, int original_stdint, int original_stdout);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
-void	execute_redir(t_shell *shell, t_cmd *cmd);
+void	execute_redir(t_shell *shell, t_cmd *cmd, int original_stdin, int original_stdout);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
 void	save_heredocs(t_shell *shell, t_redir *redir);
