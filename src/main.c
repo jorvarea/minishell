@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 20:41:27 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:58:46 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool	manage_input(t_shell *shell)
 			execute_redir(shell, shell->tokens);
 		else
 			exec(shell);
-		free_commands(shell->tokens);
+		free_commands(&shell->tokens);
 	}
 	return (stop);
 }
