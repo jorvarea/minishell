@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 22:57:57 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:59:04 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ bool	get_redirs(t_shell *shell);
 void	update_redir_token(t_cmd *node);
 
 // ---------------- UPDATE_TOKEN_LIST.C ----------------- //
+bool	update_token_list(t_shell *shell);
 
 // --------------------- GET_TYPE.C --------------------- //
 int		get_token_type(char **args);
