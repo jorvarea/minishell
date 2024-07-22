@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 22:58:46 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:53:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*read_input(void)
 {
 	char	*input;
 
-	input = readline("\033[1;35mminishell ➜\033[0m ");
+	input = readline("\001\e[1;35m\002minishell ➜ \001\e[0m\002");
 	if (input && input[0] != '\0')
 		add_history(input);
 	return (input);
