@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 13:09:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 17:58:15 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,22 @@ static void	close_files(t_redir *redir)
 static void	change_std_io(t_redir *redir)
 {
 	if (redir->type == INFILE || redir->type == HEREDOC)
+	{
 		dup2(redir->fd, STDIN_FILENO);
+		close(redir->fd);
+	}
 	else if (redir->type == OUTFILE || redir->type == APPEND)
+	{
 		dup2(redir->fd, STDOUT_FILENO);
+		close(redir->fd);
+	}
 }
 
 static void	restore_prev_io(int prev_stdin, int prev_stdout)
 {
 	dup2(prev_stdin, STDIN_FILENO);
-	dup2(prev_stdout, STDOUT_FILENO);
 	close(prev_stdin);
+	dup2(prev_stdout, STDOUT_FILENO);
 	close(prev_stdout);
 }
 
