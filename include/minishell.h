@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 21:02:10 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:57:57 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,7 @@ int		check_error_tokens(t_shell *shell);
 
 // --------------- FREE.C && FREE_UTILS.C --------------- //
 void	free_shell(t_shell *shell);
-void	free_commands(t_cmd *command_lst);
+void	*free_commands(t_cmd **command_lst);
 void	free_array(char ***array);
 void	free_env_list(t_env	*l_env);
 void	free_redir(t_redir	*redir);
