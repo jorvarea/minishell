@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 21:17:59 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:45:10 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 bool	check_redir_args(char **redir, t_shell *shell)
 {
 	if (array_len(redir) != 2 || !redir[0] || get_redir_type(redir[0]) < 0)
-		parser_error(U_TOK, redir[0], U_TOK, shell);
+		parser_error(E_UTOK, redir[0], E_UTOK, shell);
 	else if (!redir[1] || get_token_type(redir + 1) != CMD)
-		parser_error(U_TOK, redir[1], U_TOK, shell);
+		parser_error(E_UTOK, redir[1], E_UTOK, shell);
 	else
 		return (0);
 	return (1);
