@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/19 21:25:05 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:45:07 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**split_parser(char *input)
 	int		len;
 
 	len = ft_strlen(input);
-	result = (char **)malloc(sizeof(char *) * how_many(input) + 1);
+	result = (char **)malloc(sizeof(char *) * (how_many(input) + 1));
 	if (!result || !input)
 		return (NULL);
 	start = 0;
