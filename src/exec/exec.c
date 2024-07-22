@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 02:19:09 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 13:01:18 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 static void	exec_left(t_shell *shell, t_cmd *cmd, int pipe_fds[2])
 {
+	printf("izq\n");
+	if (!cmd->prev->prev)
+	{
+		safe_dup2(pipe_fds[0], STDIN_FILENO);
+		close(pipe_fds[0]);
+	}
 	safe_dup2(pipe_fds[1], STDOUT_FILENO);
 	close(pipe_fds[1]);
 	execute_redir(shell, cmd->prev);
 	close(pipe_fds[0]);
+	close(pipe_fds[1]);
 	exit(shell->exit_status);
 }
 
@@ -28,12 +35,12 @@ void	exec(t_shell *shell, t_cmd *cmd, int original_stdout)
 
 	if (!cmd->next)
 	{
+		printf("last\n");
 		close(pipe_fds[1]);
 		safe_dup2(original_stdout, STDOUT_FILENO);
         close(original_stdout);
         execute_redir(shell, cmd);
-		close(STDIN_FILENO);
-		close(STDOUT_FILENO);
+		close(pipe_fds[0]);
         return ;
 	}
 	if (cmd->type == CMD)
@@ -44,9 +51,13 @@ void	exec(t_shell *shell, t_cmd *cmd, int original_stdout)
 		exec_left(shell, cmd, pipe_fds);
 	else
 	{
+		printf("der\n");
+		safe_dup2(pipe_fds[1], STDOUT_FILENO);
+		close(pipe_fds[1]);
 		safe_dup2(pipe_fds[0], STDIN_FILENO);
 		close(pipe_fds[0]);
 		exec(shell, cmd->next, original_stdout);
+		close(pipe_fds[0]);
 		close(pipe_fds[1]);
 		waitpid(pid, NULL, 0);
 	}
