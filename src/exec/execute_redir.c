@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 17:58:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:42:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@ static void	close_files(t_redir *redir)
 static void	change_std_io(t_redir *redir)
 {
 	if (redir->type == INFILE || redir->type == HEREDOC)
-	{
 		dup2(redir->fd, STDIN_FILENO);
-		close(redir->fd);
-	}
 	else if (redir->type == OUTFILE || redir->type == APPEND)
-	{
 		dup2(redir->fd, STDOUT_FILENO);
-		close(redir->fd);
-	}
 }
 
 static void	restore_prev_io(int prev_stdin, int prev_stdout)
@@ -63,11 +57,15 @@ static void	restore_prev_io(int prev_stdin, int prev_stdout)
 	close(prev_stdout);
 }
 
-void	execute_redir(t_shell *shell, t_cmd *cmd, int prev_stdin, int prev_stdout)
+void	execute_redir(t_shell *shell, t_cmd *cmd)
 {
 	t_redir	*redir;
 	bool	error;
+	int		prev_stdin;
+	int		prev_stdout;
 
+	prev_stdin = dup(STDIN_FILENO);
+	prev_stdout = dup(STDOUT_FILENO);
 	redir = cmd->redir;
 	error = false;
 	save_heredocs(shell, redir);
