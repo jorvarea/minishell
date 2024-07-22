@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 21:25:46 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:16:38 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,6 @@ int		array_len(char **array);
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell, t_cmd *cmd, int original_stdout);
-void	exec_single_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 void	execute_redir(t_shell *shell, t_cmd *cmd);
@@ -323,6 +322,7 @@ void	ft_invalid_flag_error(t_shell *shell, char *cmd,
 void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
+void	ft_permission_denied(t_shell *shell, char *filename);
 
 	// ------------------------------------------------------ //
 	//                     BUILT_INS FOLDER                   //

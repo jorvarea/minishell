@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 18:22:55 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/15 22:14:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 00:24:55 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_perror(t_shell *shell, char *function, char *arg)
 	perror("");
 }
 
-void	ft_invalid_flag_error(t_shell *shell, char *cmd,
-		char invalid_flag, char *usage)
+void	ft_invalid_flag_error(t_shell *shell, char *cmd, char invalid_flag,
+		char *usage)
 {
 	shell->exit_status = 2;
 	ft_putstr_fd("-minishell: ", STDERR_FILENO);
@@ -56,4 +56,13 @@ void	ft_command_not_found_error(t_shell *shell, char *cmd)
 	ft_putstr_fd(cmd, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
 	ft_putendl_fd("command not found", STDERR_FILENO);
+}
+
+void	ft_permission_denied(t_shell *shell, char *filename)
+{
+	shell->exit_status = 126;
+	ft_putstr_fd("-minishell: ", STDERR_FILENO);
+	ft_putstr_fd(filename, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putendl_fd("Permission denied", STDERR_FILENO);
 }
