@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 21:00:54 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/22 21:11:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void	exec(t_shell *shell)
 	while (cmd)
 	{
 		if (cmd->type == CMD)
-		{
-			printf("fdin %i fdout %i\n", cmd->infd, cmd->outfd);
 			exec_one(shell, cmd);
-		}
 		cmd = cmd->next;
 	}
 	wait_pids(shell, shell->tokens);
