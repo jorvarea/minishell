@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 19:20:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:20:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	add_arg(t_args_array *new_args, char *new_arg)
 {
-	if (new_args->size == new_args->maximum_size)
+	if (new_args->n_args >= new_args->maximum_size - 1)
 	{
 		new_args->args = safe_realloc(new_args->args, 2 * new_args->maximum_size
-				* sizeof(char *), new_args->maximum_size);
+				* sizeof(char *), new_args->maximum_size * sizeof(char *));
 		new_args->maximum_size *= 2;
 	}
-	new_args->args[new_args->size++] = ft_strdup(new_arg);
+	new_args->args[new_args->n_args++] = ft_strdup(new_arg);
+	new_args->args[new_args->n_args] = NULL;
 }
 
 static void	replace_wildcard(char *arg, t_args_array *new_args)
@@ -34,10 +35,18 @@ static void	replace_wildcard(char *arg, t_args_array *new_args)
 		dir_entry = readdir(dirp);
 		while (dir_entry)
 		{
+			printf("-----------------------------------\n");
+			printf("entry: %s\n", dir_entry->d_name);
+			printf("array before:\n");
+			print_array(new_args->args, NULL);
+			printf("\n");
 			if (dir_entry->d_name[0] != '.' && matching_pattern(arg,
 					dir_entry->d_name))
 				add_arg(new_args, dir_entry->d_name);
 			dir_entry = readdir(dirp);
+			printf("array after:\n");
+			print_array(new_args->args, NULL);
+			printf("\n");
 		}
 		closedir(dirp);
 	}
@@ -75,10 +84,9 @@ static void	expand_wildcards_cmd(t_cmd *cmd)
 
 	args = cmd->args;
 	new_args.maximum_size = count_words(args) * 2;
-	new_args.size = 0;
+	new_args.n_args = 0;
 	new_args.args = safe_malloc(new_args.maximum_size * sizeof(char *));
-	new_args.args[new_args.size++] = ft_strdup(args[0]);
-	i = 1;
+	i = 0;
 	while (args[i])
 	{
 		if (contains_wildcard(args[i]))
@@ -87,7 +95,7 @@ static void	expand_wildcards_cmd(t_cmd *cmd)
 			add_arg(&new_args, args[i]);
 		i++;
 	}
-	new_args.args[new_args.size] = NULL;
+	new_args.args[new_args.n_args] = NULL;
 	free_array(&cmd->args);
 	cmd->args = new_args.args;
 }
