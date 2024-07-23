@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/21 15:40:54 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:23:28 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_shell	*init_shell(char **envp)
 	shell->exit_status = 0;
 	shell->tokens = NULL;
 	shell->l_env = set_env_list(shell->env);
-	initialize_signal_handler_cli();
+	init_signal_handler_cli();
 	disable_echoctl(shell);
 	rl_event_hook = event_hook_readline;
 	update_shell_env(shell);

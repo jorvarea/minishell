@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   error_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:15:00 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/23 12:52:39 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/23 12:54:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_shell *shell)
+void	ft_is_a_directory_error(t_shell *shell, char *path)
 {
-	t_cmd	*cmd;
-
-	cmd = shell->tokens;
-	init_fds_pid(cmd);
-	init_signal_handler_exec();
-	while (cmd)
-	{
-		if (cmd->type == CMD)
-			exec_one(shell, cmd);
-		cmd = cmd->next;
-	}
-	wait_pids(shell, shell->tokens);
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	init_signal_handler_cli();
+	shell->exit_status = 126;
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd(path, STDERR_FILENO);
+	ft_putendl_fd(": is a directory", STDERR_FILENO);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 12:16:49 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:17:27 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	manage_input(t_shell *shell)
 		if (shell->tokens->args && equal_str(shell->tokens->args[0], "exit"))
 			stop = exit_cmd(shell, shell->tokens->args);
 		else if (shell->tokens->next == NULL)
-			execute_redir(shell, shell->tokens);
+			exec_single_cmd(shell);
 		else
 			exec(shell);
 		free_tokens(&shell->tokens);

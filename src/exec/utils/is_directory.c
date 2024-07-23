@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   is_directory.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:15:00 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/23 12:48:28 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/23 12:50:39 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_shell *shell)
+bool	is_directory(t_shell *shell, char *path)
 {
-	t_cmd	*cmd;
+	struct stat	statbuf;
 
-	cmd = shell->tokens;
-	init_fds_pid(cmd);
-	init_signal_handler_exec();
-	while (cmd)
+	if (stat(path, &statbuf) != 0)
 	{
-		if (cmd->type == CMD)
-			exec_one(shell, cmd);
-		cmd = cmd->next;
+		ft_perror(shell, "stat", "");
+		return (false);
 	}
-	wait_pids(shell, shell->tokens);
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	init_signal_handler_cli();
+	return (S_ISDIR(statbuf.st_mode));
 }

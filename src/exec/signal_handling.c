@@ -6,13 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:47:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 19:44:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:22:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	initialize_signal_handler_cli(void)
+void	init_signal_handler_cli(void)
 {
 	g_signal = 0;
 	signal(SIGQUIT, SIG_IGN);
@@ -28,7 +28,7 @@ void	signal_handler_cli(int signal)
 	rl_redisplay();
 }
 
-void	initialize_signal_handler_heredoc(void)
+void	init_signal_handler_heredoc(void)
 {
 	g_signal = 0;
 	signal(SIGQUIT, SIG_IGN);
@@ -39,4 +39,10 @@ void	signal_handler_heredoc(int signal)
 {
 	g_signal = signal;
 	rl_done = 1;
+}
+
+void	init_signal_handler_exec(void)
+{
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGINT, SIG_DFL);
 }

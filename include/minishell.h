@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 12:26:31 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:52:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,11 @@ char	*read_input(void);
 void	signal_handler(int signal);
 
 // -------------------SIGNAL HANDLING ------------------- //
-void	initialize_signal_handler_cli(void);
+void	init_signal_handler_cli(void);
 void	signal_handler_cli(int signal);
-void	initialize_signal_handler_heredoc(void);
+void	init_signal_handler_heredoc(void);
 void	signal_handler_heredoc(int signal);
+void	init_signal_handler_exec(void);
 
 // ------------------------------------------------------ //
 //                     PARSER FOLDER                      //
@@ -275,6 +276,7 @@ int		array_len(char **array);
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell);
+void	exec_single_cmd(t_shell *shell);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 void	execute_redir(t_shell *shell, t_cmd *cmd);
@@ -282,7 +284,6 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 	// ---------------- EXEC_UTILS FUNCTIONS ----------------- //
 void	exec_one(t_shell *shell, t_cmd *cmd);
 void	wait_pids(t_shell *shell, t_cmd *cmd);
-void	assign_pipes(t_cmd *cmd);
 void	init_fds_pid(t_cmd *cmd);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
@@ -321,6 +322,7 @@ pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_des);
 void	safe_dup2(int oldfd, int newfd);
 int		safe_dup(int fd);
+bool	is_directory(t_shell *shell, char *path);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
@@ -332,6 +334,7 @@ void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
 void	ft_permission_denied(t_shell *shell, char *filename);
+void	ft_is_a_directory_error(t_shell *shell, char *path);
 
 	// ------------------------------------------------------ //
 	//                     BUILT_INS FOLDER                   //

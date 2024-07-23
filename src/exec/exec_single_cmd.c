@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_single_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:15:00 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/23 15:14:47 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/23 15:16:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec(t_shell *shell)
+void	exec_single_cmd(t_shell *shell)
 {
-	t_cmd	*cmd;
+	pid_t	pid;
+	int		status;
 
-	cmd = shell->tokens;
-	init_fds_pid(cmd);
-	init_signal_handler_exec();
-	while (cmd)
+	pid = safe_fork();
+	if (pid == 0)
 	{
-		if (cmd->type == CMD)
-			exec_one(shell, cmd);
-		cmd = cmd->next;
+		execute_redir(shell, shell->tokens);
+		exit(shell->exit_status);
 	}
-	wait_pids(shell, shell->tokens);
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	init_signal_handler_cli();
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			shell->exit_status = WEXITSTATUS(status);
+		else
+			shell->exit_status = 130;
+		close(STDIN_FILENO);
+		close(STDOUT_FILENO);
+	}
 }

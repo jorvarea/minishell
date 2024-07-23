@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/23 02:19:29 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/23 15:17:54 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SRC_PARSER = src/parser/parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/exec_utils.c \
+	src/exec/exec_single_cmd.c \
 	src/exec/execute_cmd.c \
 	src/exec/execute_redir.c \
 	src/exec/heredoc.c \
@@ -69,9 +70,11 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/execute_bin.c \
 	src/exec/signal_handling.c \
 	src/exec/utils/flag_utils.c \
+	src/exec/utils/is_directory.c \
 	src/exec/utils/env_utils.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
+	src/exec/utils/error_utils2.c \
 	src/exec/utils/safe_malloc.c \
 	src/exec/utils/safe_realloc.c \
 	src/exec/utils/safe_dup2.c \

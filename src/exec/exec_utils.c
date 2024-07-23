@@ -6,29 +6,49 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 21:07:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:27:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static void	peek_pipes(t_cmd *cmd)
+{
+	int	pipes_fd[2];
+
+	if (cmd->next && cmd->next->type == PIPE)
+	{
+		safe_pipe(pipes_fd);
+		cmd->outfd = pipes_fd[1];
+		cmd->next->next->infd = pipes_fd[0];
+	}
+}
+
+static void	manage_pipes_cmd(t_cmd *cmd)
+{
+	if (cmd->infd != -1)
+	{
+		dup2(cmd->infd, STDIN_FILENO);
+		close(cmd->infd);
+	}
+	if (cmd->outfd != -1)
+	{
+		dup2(cmd->outfd, STDOUT_FILENO);
+		close(cmd->outfd);
+	}
+	if (cmd->next && cmd->next->type == PIPE)
+		close(cmd->next->next->infd);
+}
+
 void	exec_one(t_shell *shell, t_cmd *cmd)
 {
 	pid_t	pid;
 
+	peek_pipes(cmd);
 	pid = safe_fork();
 	if (pid == 0)
 	{
-		if (cmd->infd != -1)
-		{
-			dup2(cmd->infd, STDIN_FILENO);
-			close(cmd->infd);
-		}
-		if (cmd->outfd != -1)
-		{
-			dup2(cmd->outfd, STDOUT_FILENO);
-			close(cmd->outfd);
-		}
+		manage_pipes_cmd(cmd);
 		execute_redir(shell, cmd);
 		exit(shell->exit_status);
 	}
@@ -55,22 +75,6 @@ void	wait_pids(t_shell *shell, t_cmd *cmd)
 				shell->exit_status = 130;
 			cmd = cmd->next;
 		}
-	}
-}
-
-void	assign_pipes(t_cmd *cmd)
-{
-	int	pipes_fd[2];
-
-	while (cmd)
-	{
-		if (cmd->type == PIPE)
-		{
-			safe_pipe(pipes_fd);
-			cmd->prev->outfd = pipes_fd[1];
-			cmd->next->infd = pipes_fd[0];
-		}
-		cmd = cmd->next;
 	}
 }
 
