@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/23 02:00:59 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/23 02:19:29 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ else
   $(error No compiler found)
 endif
 
-FLAGS = -Wall -Wextra -g
+FLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 MINISHELL = include/
-INCLUDE = -L/usr/local/opt/readline/lib -lreadline -L ./lib/libft -lft
-DEPS = -I include -I $(LIBFT)/include -I/usr/local/opt/readline/include
+INCLUDE = -lreadline -L ./lib/libft -lft
+DEPS = -I include -I $(LIBFT)/include
 
 ################################################################################
 ##                              SOURCES AND OBJECTS                           ##
