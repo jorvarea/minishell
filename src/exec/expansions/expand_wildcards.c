@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 19:18:18 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:20:48 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static bool	contains_wildcard(char *arg)
 	return (wildcard);
 }
 
-void	expand_wildcards_cmd(t_cmd *cmd)
+static void	expand_wildcards_cmd(t_cmd *cmd)
 {
 	t_args_array	new_args;
 	char			**args;
