@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 19:46:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:55:29 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,31 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 	manage_end_heredoc(redir, filename, line);
 }
 
-void	save_heredocs(t_shell *shell, t_redir *redir)
+static void	save_heredocs_cmd(t_shell *shell, t_cmd *cmd, int *heredoc_num)
 {
-	int	heredoc_num;
+	t_redir	*redir;
 
-	initialize_signal_handler_heredoc();
-	heredoc_num = 0;
+	redir = cmd->redir;
 	while (redir)
 	{
 		if (redir->type == HEREDOC)
-			heredoc2file(shell, redir, ft_itoa(heredoc_num++));
+			heredoc2file(shell, redir, ft_itoa((*heredoc_num)++));
 		redir = redir->next;
+	}
+}
+
+void	save_heredocs(t_shell *shell)
+{
+	t_cmd	*cmd;
+	int		heredocs_num;
+
+	initialize_signal_handler_heredoc();
+	cmd = shell->tokens;
+	heredocs_num = 0;
+	while (cmd)
+	{
+		save_heredocs_cmd(shell, cmd, &heredocs_num);
+		cmd = cmd->next;
 	}
 	initialize_signal_handler_cli();
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 23:09:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:12:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,13 @@ static void	change_std_io(t_redir *redir)
 		dup2(redir->fd, STDOUT_FILENO);
 }
 
-void	restore_prev_io(int prev_stdin, int prev_stdout)
-{
-	dup2(prev_stdin, STDIN_FILENO);
-	close(prev_stdin);
-	dup2(prev_stdout, STDOUT_FILENO);
-	close(prev_stdout);
-}
-
 void	execute_redir(t_shell *shell, t_cmd *cmd)
 {
 	t_redir	*redir;
 	bool	error;
 
-	// int		prev_stdin;
-	// int		prev_stdout;
-	// prev_stdin = dup(STDIN_FILENO);
-	// prev_stdout = dup(STDOUT_FILENO);
 	redir = cmd->redir;
 	error = false;
-	save_heredocs(shell, redir);
 	while (redir && !error)
 	{
 		if (redir->file && open_file(shell, redir))
@@ -77,23 +64,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 			error = true;
 		redir = redir->next;
 	}
-	if (cmd->next)
-	{
-		if (cmd->next->infd > 2)
-			close(cmd->next->infd);
-		if (cmd->next->outfd > 2)
-			close(cmd->next->outfd);
-	}
-	if (cmd->prev)
-	{
-		if (cmd->prev->infd > 2)
-			close(cmd->prev->infd);
-		if (cmd->prev->outfd > 2)
-			close(cmd->prev->outfd);
-	}
 	if (!error)
 		execute_cmd(shell, cmd);
-	// restore_prev_io(prev_stdin, prev_stdout);
 	close_files(cmd->redir);
-	remove_tmp_heredoc_files(cmd->redir);
 }

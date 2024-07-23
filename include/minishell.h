@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 22:59:13 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:09:17 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -286,8 +286,8 @@ void	assign_pipes(t_cmd *cmd);
 void	init_fds_pid(t_cmd *cmd);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
-void	save_heredocs(t_shell *shell, t_redir *redir);
-void	remove_tmp_heredoc_files(t_redir *redir);
+void	save_heredocs(t_shell *shell);
+void	remove_tmp_heredoc_files(t_shell *shell);
 void	expand_arg_heredoc(t_shell *shell, char **ptr_arg);
 char	*generate_filename(char *heredoc_num);
 
