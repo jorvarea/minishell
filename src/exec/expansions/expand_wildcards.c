@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 20:20:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 20:24:33 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,10 @@ static void	replace_wildcard(char *arg, t_args_array *new_args)
 		dir_entry = readdir(dirp);
 		while (dir_entry)
 		{
-			printf("-----------------------------------\n");
-			printf("entry: %s\n", dir_entry->d_name);
-			printf("array before:\n");
-			print_array(new_args->args, NULL);
-			printf("\n");
 			if (dir_entry->d_name[0] != '.' && matching_pattern(arg,
 					dir_entry->d_name))
 				add_arg(new_args, dir_entry->d_name);
 			dir_entry = readdir(dirp);
-			printf("array after:\n");
-			print_array(new_args->args, NULL);
-			printf("\n");
 		}
 		closedir(dirp);
 	}
