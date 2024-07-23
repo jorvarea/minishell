@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 18:44:00 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:56:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,22 @@ void	exit_cmd(t_shell *shell, char **args)
 	exit = true;
 	shell->exit_status = 0;
 	if (args[1] && ft_isnum(args[1]))
-		shell->exit_status = ft_atoi(args[1]) % 256;
+	{
+		if (args[2])
+		{
+			exit = false;
+			shell->exit_status = 1;
+			ft_putendl_fd("minishell: exit: too many arguments", STDERR_FILENO);
+		}
+		else
+			shell->exit_status = ft_atoi(args[1]) % 256;
+	}
 	else if (args[1])
 	{
 		shell->exit_status = 2;
-		ft_putstr_fd("-minishell: exit: ", STDERR_FILENO);
+		ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
 		ft_putstr_fd(args[1], STDERR_FILENO);
 		ft_putendl_fd(": numeric argument required", STDERR_FILENO);
-	}
-	if (args[1] && args[2])
-	{
-		exit = false;
-		shell->exit_status = 1;
-		ft_putendl_fd("-minishell: exit: too many arguments", STDERR_FILENO);
 	}
 	if (exit)
 		exit_shell(shell);
