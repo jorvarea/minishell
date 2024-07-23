@@ -6,13 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:07:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:27:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	peek_pipe(t_cmd *cmd)
+static void	peek_pipes(t_cmd *cmd)
 {
 	int	pipes_fd[2];
 
@@ -24,24 +24,31 @@ static void	peek_pipe(t_cmd *cmd)
 	}
 }
 
+static void	manage_pipes_cmd(t_cmd *cmd)
+{
+	if (cmd->infd != -1)
+	{
+		dup2(cmd->infd, STDIN_FILENO);
+		close(cmd->infd);
+	}
+	if (cmd->outfd != -1)
+	{
+		dup2(cmd->outfd, STDOUT_FILENO);
+		close(cmd->outfd);
+	}
+	if (cmd->next && cmd->next->type == PIPE)
+		close(cmd->next->next->infd);
+}
+
 void	exec_one(t_shell *shell, t_cmd *cmd)
 {
 	pid_t	pid;
 
-	peek_pipe(cmd);
+	peek_pipes(cmd);
 	pid = safe_fork();
 	if (pid == 0)
 	{
-		if (cmd->infd != -1)
-		{
-			dup2(cmd->infd, STDIN_FILENO);
-			close(cmd->infd);
-		}
-		if (cmd->outfd != -1)
-		{
-			dup2(cmd->outfd, STDOUT_FILENO);
-			close(cmd->outfd);
-		}
+		manage_pipes_cmd(cmd);
 		execute_redir(shell, cmd);
 		exit(shell->exit_status);
 	}

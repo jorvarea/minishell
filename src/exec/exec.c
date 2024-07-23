@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:22:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:15:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	exec(t_shell *shell)
 		cmd = cmd->next;
 	}
 	wait_pids(shell, shell->tokens);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
 	init_signal_handler_cli();
 }
