@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 17:47:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:50:07 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,23 @@ char	*read_input(void)
 void	restore_io(int original_stdin, int original_stdout)
 {
 	dup2(original_stdin, STDIN_FILENO);
-	dup2(original_stdout, STDOUT_FILENO);
 	close(original_stdin);
+	dup2(original_stdout, STDOUT_FILENO);
 	close(original_stdout);
 }
 
-bool	manage_input(t_shell *shell)
+void	manage_input(t_shell *shell)
 {
-	bool	stop;
 	int		original_stdout;
 	int		original_stdin;
 
 	original_stdin = dup(STDIN_FILENO);
 	original_stdout = dup(STDOUT_FILENO);
 	save_heredocs(shell);
-	stop = false;
-	if (shell->tokens)
+	if (shell->tokens && shell->tokens->args)
 	{
 		init_signal_handler_exec();
-		if (shell->tokens->args && equal_str(shell->tokens->args[0], "exit"))
-			stop = exit_cmd(shell, shell->tokens->args);
-		else if (shell->tokens->next == NULL)
+		if (shell->tokens->next == NULL)
 			exec_single_cmd(shell);
 		else
 			exec(shell);
@@ -56,40 +52,27 @@ bool	manage_input(t_shell *shell)
 	}
 	remove_tmp_heredoc_files(shell);
 	restore_io(original_stdin, original_stdout);
-	return (stop);
-}
-
-int	exit_shell(t_shell *shell)
-{
-	int	status;
-
-	status = shell->exit_status;
-	printf("exit\n");
-	free_shell(&shell);
-	return (status);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	*shell;
 	char	*input;
-	bool	stop;
 
 	(void)argc;
 	(void)argv;
 	shell = init_shell(envp);
-	stop = false;
-	while (!stop)
+	while (true)
 	{
 		input = read_input();
 		if (!input)
-			stop = true;
+			exit_shell(shell);
 		else if (input[0] != '\0')
 		{
 			parser(input, shell);
-			stop = manage_input(shell);
+			manage_input(shell);
 		}
+		free(input);
 	}
-	free(input);
-	return (exit_shell(shell));
+	return (0);
 }

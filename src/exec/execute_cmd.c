@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/21 23:50:59 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:45:16 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 			export(shell, args);
 		else if (equal_str(args[0], "unset"))
 			unset(shell, args);
+		else if (equal_str(args[0], "exit"))
+			exit_cmd(shell, args);
 		else
 			execute_bin(shell, args);
 	}
