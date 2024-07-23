@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 13:39:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:17:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,7 @@ int		array_len(char **array);
 
 	// ------------------- EXEC FUNCTIONS ------------------- //
 void	exec(t_shell *shell);
+void	exec_single_cmd(t_shell *shell);
 void	execute_cmd(t_shell *shell, t_cmd *cmd);
 void	execute_bin(t_shell *shell, char **args);
 void	execute_redir(t_shell *shell, t_cmd *cmd);
