@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 12:26:31 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:38:53 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,6 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 	// ---------------- EXEC_UTILS FUNCTIONS ----------------- //
 void	exec_one(t_shell *shell, t_cmd *cmd);
 void	wait_pids(t_shell *shell, t_cmd *cmd);
-void	assign_pipes(t_cmd *cmd);
 void	init_fds_pid(t_cmd *cmd);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //

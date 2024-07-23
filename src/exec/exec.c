@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:27 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 02:16:25 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:28:52 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	exec(t_shell *shell)
 
 	cmd = shell->tokens;
 	init_fds_pid(cmd);
-	assign_pipes(cmd);
 	while (cmd)
 	{
 		if (cmd->type == CMD)
