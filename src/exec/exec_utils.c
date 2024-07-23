@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 12:30:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:07:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	peek_pipe(t_cmd *cmd)
 {
 	int	pipes_fd[2];
 
-	if (cmd->next->type == PIPE)
+	if (cmd->next && cmd->next->type == PIPE)
 	{
 		safe_pipe(pipes_fd);
 		cmd->outfd = pipes_fd[1];
