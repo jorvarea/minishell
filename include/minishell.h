@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 19:22:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:51:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ typedef struct s_quotes
 typedef struct s_args_array
 {
 	char	**args;
-	int		size;
+	int		n_args;
 	int		maximum_size;
 }			t_args_array;
 
