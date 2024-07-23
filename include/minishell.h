@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 16:51:38 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:51:48 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,10 +188,11 @@ char	*read_input(void);
 void	signal_handler(int signal);
 
 // -------------------SIGNAL HANDLING ------------------- //
-void	initialize_signal_handler_cli(void);
+void	init_signal_handler_cli(void);
 void	signal_handler_cli(int signal);
-void	initialize_signal_handler_heredoc(void);
+void	init_signal_handler_heredoc(void);
 void	signal_handler_heredoc(int signal);
+void	init_signal_handler_exec(void);
 
 // ------------------------------------------------------ //
 //                     PARSER FOLDER                      //
