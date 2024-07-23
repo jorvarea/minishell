@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/17 13:33:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 18:44:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ static bool	ft_isnum(char *str)
 	return (is_num);
 }
 
-bool	exit_cmd(t_shell *shell, char **args)
+void	exit_shell(t_shell *shell)
+{
+	int	status;
+
+	status = shell->exit_status;
+	printf("exit\n");
+	free_shell(&shell);
+	exit(status);
+}
+
+void	exit_cmd(t_shell *shell, char **args)
 {
 	bool	exit;
 
@@ -49,5 +59,6 @@ bool	exit_cmd(t_shell *shell, char **args)
 		shell->exit_status = 1;
 		ft_putendl_fd("-minishell: exit: too many arguments", STDERR_FILENO);
 	}
-	return (exit);
+	if (exit)
+		exit_shell(shell);
 }
