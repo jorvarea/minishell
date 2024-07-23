@@ -75,7 +75,7 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 
 static void	save_heredocs_cmd(t_shell *shell, t_cmd *cmd, int *heredoc_num)
 {
-	t_redir *redir;
+	t_redir	*redir;
 
 	redir = cmd->redir;
 	while (redir)
@@ -86,10 +86,10 @@ static void	save_heredocs_cmd(t_shell *shell, t_cmd *cmd, int *heredoc_num)
 	}
 }
 
-void save_heredocs(t_shell *shell)
+void	save_heredocs(t_shell *shell)
 {
-	t_cmd *cmd;
-	int heredocs_num;
+	t_cmd	*cmd;
+	int		heredocs_num;
 
 	initialize_signal_handler_heredoc();
 	cmd = shell->tokens;

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 23:59:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:15:38 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,23 @@ char	*read_input(void)
 	return (input);
 }
 
+void	restore_io(int original_stdin, int original_stdout)
+{
+	dup2(original_stdin, STDIN_FILENO);
+	dup2(original_stdout, STDOUT_FILENO);
+	close(original_stdin);
+	close(original_stdout);
+}
+
 bool	manage_input(t_shell *shell)
 {
 	bool	stop;
+	int		original_stdout;
+	int		original_stdin;
 
+	original_stdin = dup(STDIN_FILENO);
+	original_stdout = dup(STDOUT_FILENO);
+	save_heredocs(shell);
 	stop = false;
 	if (shell->tokens)
 	{
@@ -39,6 +52,8 @@ bool	manage_input(t_shell *shell)
 			exec(shell);
 		free_commands(&shell->tokens);
 	}
+	remove_tmp_heredoc_files(shell);
+	restore_io(original_stdin, original_stdout);
 	return (stop);
 }
 

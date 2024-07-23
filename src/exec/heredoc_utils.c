@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 22:12:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 17:41:42 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:08:32 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,21 @@ void	expand_arg_heredoc(t_shell *shell, char **ptr_arg)
 	}
 }
 
-void	remove_tmp_heredoc_files(t_redir *redir)
+void	remove_tmp_heredoc_files(t_shell *shell)
 {
-	while (redir)
+	t_cmd	*cmd;
+	t_redir	*redir;
+
+	cmd = shell->tokens;
+	while (cmd)
 	{
-		if (redir->type == HEREDOC)
-			unlink(redir->file);
-		redir = redir->next;
+		redir = cmd->redir;
+		while (redir)
+		{
+			if (redir->type == HEREDOC)
+				unlink(redir->file);
+			redir = redir->next;
+		}
+		cmd = cmd->next;
 	}
 }
