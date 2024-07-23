@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:14:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:16:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:46:46 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	exec_single_cmd(t_shell *shell)
 	pid = safe_fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		execute_redir(shell, shell->tokens);
 		exit(shell->exit_status);
 	}

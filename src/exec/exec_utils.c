@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:27:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:44:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	exec_one(t_shell *shell, t_cmd *cmd)
 	pid = safe_fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		manage_pipes_cmd(cmd);
 		execute_redir(shell, cmd);
 		exit(shell->exit_status);
@@ -55,8 +56,10 @@ void	exec_one(t_shell *shell, t_cmd *cmd)
 	else
 	{
 		cmd->pid = pid;
-		close(cmd->outfd);
-		close(cmd->infd);
+		if (cmd->outfd >= 0)
+			close(cmd->outfd);
+		if (cmd->infd >= 0)
+			close(cmd->infd);
 	}
 }
 

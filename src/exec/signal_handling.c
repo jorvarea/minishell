@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:47:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:22:33 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 17:51:20 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	signal_handler_heredoc(int signal)
 void	init_signal_handler_exec(void)
 {
 	signal(SIGQUIT, SIG_DFL);
-	signal(SIGINT, SIG_DFL);
+	signal(SIGINT, SIG_IGN);
 }
