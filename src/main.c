@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 02:15:38 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:16:49 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*read_input(void)
 {
 	char	*input;
 
-	input = readline("\001\e[1;35m\002minishell ➜ \001\e[0m\002");
+	input = readline("\033[1;35mminishell ➜\033[0m ");
 	if (input && input[0] != '\0')
 		add_history(input);
 	return (input);
@@ -50,7 +50,7 @@ bool	manage_input(t_shell *shell)
 			execute_redir(shell, shell->tokens);
 		else
 			exec(shell);
-		free_commands(&shell->tokens);
+		free_tokens(&shell->tokens);
 	}
 	remove_tmp_heredoc_files(shell);
 	restore_io(original_stdin, original_stdout);
@@ -63,7 +63,7 @@ int	exit_shell(t_shell *shell)
 
 	status = shell->exit_status;
 	printf("exit\n");
-	free_shell(shell);
+	free_shell(&shell);
 	return (status);
 }
 
