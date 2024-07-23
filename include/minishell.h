@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 16:51:10 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:51:25 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,6 +320,7 @@ pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_des);
 void	safe_dup2(int oldfd, int newfd);
 int		safe_dup(int fd);
+bool	is_directory(t_shell *shell, char *path);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);
@@ -331,6 +332,7 @@ void	ft_perror(t_shell *shell, char *function, char *arg);
 void	ft_minishell_error(t_shell *shell, char *msg);
 void	ft_command_not_found_error(t_shell *shell, char *cmd);
 void	ft_permission_denied(t_shell *shell, char *filename);
+void	ft_is_a_directory_error(t_shell *shell, char *path);
 
 	// ------------------------------------------------------ //
 	//                     BUILT_INS FOLDER                   //

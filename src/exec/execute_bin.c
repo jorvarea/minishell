@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/22 01:34:19 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:42:15 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ static void	find_executable_in_path(t_shell *shell, char **args, char **paths)
 
 static void	directly_executable(t_shell *shell, char **args)
 {
-	if (access(args[0], F_OK) == 0 && access(args[0], X_OK) == 0)
+	if (is_directory(shell, args[0]))
+		ft_is_a_directory_error(shell, args[0]);
+	else if (access(args[0], F_OK) == 0 && access(args[0], X_OK) == 0)
 		fork_and_execute(shell, args[0], args);
 	else if (access(args[0], F_OK) == 0)
 		ft_permission_denied(shell, args[0]);
