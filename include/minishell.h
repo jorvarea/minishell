@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 02:09:17 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:30:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -282,7 +282,6 @@ void	execute_redir(t_shell *shell, t_cmd *cmd);
 	// ---------------- EXEC_UTILS FUNCTIONS ----------------- //
 void	exec_one(t_shell *shell, t_cmd *cmd);
 void	wait_pids(t_shell *shell, t_cmd *cmd);
-void	assign_pipes(t_cmd *cmd);
 void	init_fds_pid(t_cmd *cmd);
 
 	// ------------------- HEREDOC FUNCTIONS ------------------- //
