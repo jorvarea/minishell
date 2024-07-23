@@ -6,32 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 13:42:15 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:16:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	fork_and_execute(t_shell *shell, char *file, char **args)
-{
-	pid_t	pid;
-	int		status;
-
-	pid = safe_fork();
-	if (pid == 0)
-	{
-		execve(file, args, shell->env);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			shell->exit_status = WEXITSTATUS(status);
-		else
-			shell->exit_status = 128 + WTERMSIG(status);
-	}
-}
 
 static char	*generate_full_path(char *path, char *arg)
 {
@@ -48,22 +27,19 @@ static void	find_executable_in_path(t_shell *shell, char **args, char **paths)
 {
 	char	*full_path;
 	int		i;
-	int		stop;
+	bool	stop;
 
-	stop = 0;
+	stop = false;
 	i = 0;
 	while (paths && paths[i] && stop == 0)
 	{
 		full_path = generate_full_path(paths[i++], args[0]);
 		if (access(full_path, F_OK) == 0 && access(full_path, X_OK) == 0)
-		{
-			fork_and_execute(shell, full_path, args);
-			stop = 1;
-		}
+			execve(full_path, args, shell->env);
 		else if (access(full_path, F_OK) == 0)
 		{
 			ft_permission_denied(shell, full_path);
-			stop = 2;
+			stop = true;
 		}
 		free(full_path);
 	}
@@ -77,7 +53,7 @@ static void	directly_executable(t_shell *shell, char **args)
 	if (is_directory(shell, args[0]))
 		ft_is_a_directory_error(shell, args[0]);
 	else if (access(args[0], F_OK) == 0 && access(args[0], X_OK) == 0)
-		fork_and_execute(shell, args[0], args);
+		execve(args[0], args, shell->env);
 	else if (access(args[0], F_OK) == 0)
 		ft_permission_denied(shell, args[0]);
 	else
