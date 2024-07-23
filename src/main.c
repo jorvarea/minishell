@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 18:50:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/23 19:22:58 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ void	restore_io(int original_stdin, int original_stdout)
 
 void	manage_input(t_shell *shell)
 {
-	int		original_stdout;
-	int		original_stdin;
+	int	original_stdout;
+	int	original_stdin;
 
 	original_stdin = dup(STDIN_FILENO);
 	original_stdout = dup(STDOUT_FILENO);
+	expand_wildcards(shell);
+	expand_env(shell);
 	save_heredocs(shell);
 	if (shell->tokens && shell->tokens->args)
 	{
