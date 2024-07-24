@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 19:24:25 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:03:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	expand_arg(t_shell *shell, char **ptr_arg)
 	}
 }
 
-static void	expand_env_cmd(t_shell *shell, char **args)
+void	expand_env_cmd(t_shell *shell, char **args)
 {
 	int	i;
 
@@ -61,17 +61,5 @@ static void	expand_env_cmd(t_shell *shell, char **args)
 	{
 		expand_arg(shell, &args[i]);
 		i++;
-	}
-}
-
-void	expand_env(t_shell *shell)
-{
-	t_cmd	*cmd;
-
-	cmd = shell->tokens;
-	while (cmd)
-	{
-		expand_env_cmd(shell, cmd->args);
-		cmd = cmd->next;
 	}
 }
