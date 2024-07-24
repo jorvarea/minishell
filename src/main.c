@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 18:35:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:03:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ static void	manage_input(t_shell *shell)
 			exec_single_cmd(shell);
 		else
 			exec(shell);
-		free_tokens(&shell->tokens);
 		init_signal_handler_cli();
 	}
+	free_tokens(&shell->tokens);
 	remove_tmp_heredoc_files(shell);
 	restore_io(original_stdin, original_stdout);
 }
