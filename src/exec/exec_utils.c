@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 20:21:39 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:42:42 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,17 @@ void	exec_one(t_shell *shell, t_cmd *cmd)
 	}
 }
 
-void	wait_pids(t_shell *shell, t_cmd *cmd)
+void	wait_pids(t_shell *shell, t_cmd *cmd, t_cmd *end_node)
 {
 	int	status;
 
-	while (cmd)
+	while (cmd != end_node)
 	{
 		if (cmd->pid != -1)
 		{
 			waitpid(cmd->pid, &status, 0);
 			update_exit_status_process(shell, status);
 		}
-		cmd = cmd->next;
-	}
-}
-
-void	init_fds_pid(t_cmd *cmd)
-{
-	while (cmd)
-	{
-		cmd->infd = -1;
-		cmd->outfd = -1;
-		cmd->pid = -1;
 		cmd = cmd->next;
 	}
 }
