@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 14:16:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:07:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	find_executable_in_path(t_shell *shell, char **args, char **paths)
 
 static void	directly_executable(t_shell *shell, char **args)
 {
-	if (is_directory(shell, args[0]))
+	if (access(args[0], F_OK) == 0 && is_directory(shell, args[0]))
 		ft_is_a_directory_error(shell, args[0]);
 	else if (access(args[0], F_OK) == 0 && access(args[0], X_OK) == 0)
 		execve(args[0], args, shell->env);
