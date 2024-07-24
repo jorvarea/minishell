@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/08 17:11:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:27:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	replace_env(t_shell *shell, char **arg, int start_index)
 		}
 		free(value);
 	}
+	else
+		*arg = ft_strdup("");
 }
 
 void	replace_home(t_shell *shell, char **arg, int start_index)
