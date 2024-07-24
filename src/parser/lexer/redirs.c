@@ -6,21 +6,31 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 12:17:04 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:16:28 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	check_redir_args(char **redir, t_shell *shell)
+bool	delete_redir_token(t_shell *shell)
 {
-	if (array_len(redir) != 2 || !redir[0] || get_redir_type(redir[0]) < 0)
-		parser_error(E_UTOK, redir[0], E_UTOK, shell);
-	else if (!redir[1] || get_token_type(redir + 1) != CMD)
-		parser_error(E_UTOK, redir[1], E_UTOK, shell);
-	else
-		return (0);
-	return (1);
+	t_cmd	*head;
+	t_cmd	*node;
+	t_cmd	*next;
+
+	node = shell->tokens;
+	head = NULL;
+	while (node)
+	{
+		next = node->next;
+		if (node->type == REDIR)
+			pop_node_from_list(node);
+		else if (!head)
+			head = node;
+		node = next;
+	}
+	shell->tokens = head;
+	return (0);
 }
 
 t_redir	*assign_redir(t_redir *assign, char **args)
@@ -58,8 +68,6 @@ void	update_redir_token(t_cmd *node)
 		node->args = (char **)malloc(sizeof(char *) * 1);
 		node->args[0] = NULL;
 	}
-	else
-		pop_node_from_list(node);
 }
 
 void	update_redir(t_cmd *redir)
@@ -99,5 +107,5 @@ bool	get_redirs(t_shell *shell)
 		}
 		node = node->next;
 	}
-	return (0);
+	return (delete_redir_token(shell));
 }
