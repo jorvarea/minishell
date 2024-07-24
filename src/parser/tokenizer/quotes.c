@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 20:13:29 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:13:55 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	skip_quotes(char const *s, int *i)
 	return (CLOSED);
 }
 
-int	check_quotes(char const *s, int *i)
+static int	check_quotes(char const *s, int *i)
 {
 	int	check;
 
@@ -42,7 +42,7 @@ int	check_quotes(char const *s, int *i)
 	return (CLOSED);
 }
 
-char	*remove_empty_quotes(char *str, int end_s1, int start_s2)
+static char	*remove_empty_quotes(char *str, int end_s1, int start_s2)
 {
 	char	*s1;
 	char	*s2;

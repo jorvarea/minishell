@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 20:16:29 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:18:03 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,6 @@ t_env	*set_env_list(char **env);
 
 		// ------------------ QUOTES.C ------------------ //
 int		skip_quotes(char const *s, int *i);
-int		check_quotes(char const *s, int *i);
 char	*process_input(char *str, t_shell *shell);
 
 		// --------------- SPLIT_PARSER.C --------------- //
