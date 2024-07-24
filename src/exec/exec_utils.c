@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 11:42:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:40:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	wait_pids(t_shell *shell, t_cmd *cmd)
 		{
 			waitpid(cmd->pid, &status, 0);
 			update_exit_status_process(shell, status);
-			cmd = cmd->next;
 		}
+		cmd = cmd->next;
 	}
 }
 
