@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:23:03 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:03:12 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	heredoc2file(t_shell *shell, t_redir *redir, char *heredoc_num)
 			line = ft_strdup("\n");
 		}
 		expand_arg_heredoc(shell, &line);
-		write(fd, line, ft_strlen(line));
+		ft_putendl_fd(line, fd);
 		free(line);
 		line = readline("heredoc> ");
 	}
