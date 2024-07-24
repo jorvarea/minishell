@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 17:58:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:56:08 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,35 +207,49 @@ char	**init_shell_env(char **envp);
 t_env	*assign_env_values(char *env, t_env *new_env);
 t_env	*set_env_list(char **env);
 
-// ------------------- SPLIT_PARSER.C ------------------- //
+	// -------------------------------------------------- //
+	//                 TOKENIZER FOLDER                   //
+	// -------------------------------------------------- //
+
+		// ------------------ QUOTES.C ------------------ //
+int		skip_quotes(char const *s, int *i);
+int		check_quotes(char const *s, int *i);
+int		only_space(char *s, int *start, int *end);
+char	*process_input(char *str, t_shell *shell);
+
+		// --------------- SPLIT_PARSER.C --------------- //
 char	**trim_split(char **split, int len);
 char	**split_parser(char *input);
 
-// -------------------- TOKEN_LIST.C -------------------- //
+	// -------------------------------------------------- //
+	//                   LEXER FOLDER                     //
+	// -------------------------------------------------- //
+
+		// --------------- TOKEN_LIST.C ----------------- //
 bool	new_token_list(char **input_array, t_shell *shell);
 
-// ---------------------- REDIRS.C ---------------------- //
+		// ----------------- REDIRS.C ------------------- //
 bool	get_redirs(t_shell *shell);
 void	update_redir_token(t_cmd *node);
 bool	delete_redir_token(t_shell *shell);
 
-// ---------------- UPDATE_TOKEN_LIST.C ----------------- //
+		// ----------- UPDATE_TOKEN_LIST.C -------------- //
 bool	update_token_list(t_shell *shell);
 
-// --------------------- GET_TYPE.C --------------------- //
+		// ---------------- GET_TYPE.C ------------------ //
 int		get_token_type(char **args);
 int		get_redir_type(char *type);
 
-// ------------------------------------------------------ //
-//                  PARSER UTILS FOLDER                   //
-// ------------------------------------------------------ //
+	// -------------------------------------------------- //
+	//                PARSER UTILS FOLDER                 //
+	// -------------------------------------------------- //
 
-// ---------------------- ERROR.C ----------------------- //
+		// ------------------ ERROR.C ------------------- //
 void	*parser_error(int error, char *str, int exit_code, t_shell *shell);
 bool	check_redir_args(char **redir, t_shell *shell);
 int		check_error_tokens(t_shell *shell);
 
-// --------------- FREE.C && FREE_UTILS.C --------------- //
+		// ----------- FREE.C && FREE_UTILS.C ----------- //
 void	*free_shell(t_shell **shell);
 void	*free_tokens(t_cmd **command_lst);
 void	free_array(char ***array);
@@ -243,30 +257,24 @@ void	free_env_list(t_env	**l_env);
 void	free_redir(t_redir	**redir);
 void	sh_free_str(char *str);	// UNUSED
 
-// ------------------- STRUCT_NODE.C -------------------- //
+		// --------------- STRUCT_NODE.C ---------------- //
 void	pop_node_from_list(t_cmd *node);
 t_env	*env_last_node(t_env *l_env);
 t_cmd	*token_last_node(t_cmd *cmd_lst);
 t_redir	*redir_last_node(t_redir *redir);
 
-// ------------------- PRINT_UTILS.C -------------------- //
+		// --------------- PRINT_UTILS.C ---------------- //
 void	print_array(char **array, char *type);
 void	print_array_one_line(char **array, char *title);
 
-// ------------------- PRINT_SHELL.C -------------------- //
+		// --------------- PRINT_SHELL.C ---------------- //
 void	print_type(int type);
 void	print_redir_type(int type);
 void	print_command_list(t_cmd *tokens);
 void	print_shell_l_env(t_env *l_env);
 void	print_shell(t_shell *shell, bool env, bool tokens);
 
-// ---------------------- QUOTES.C ---------------------- //
-int		skip_quotes(char const *s, int *i);
-int		check_quotes(char const *s, int *i);
-int		only_space(char *s, int *start, int *end);
-char	*process_input(char *str, t_shell *shell);
-
-// ----------------------- UTILS.C ---------------------- //
+		// ------------------- UTILS.C ------------------ //
 void	exit_program_nl(void);
 int		array_len(char **array);
 
