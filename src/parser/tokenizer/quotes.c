@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 17:18:56 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 19:49:33 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:14:52 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,26 @@ int	only_space(char *s, int *start, int *end)
 	return (1);
 }
 
+char	*remove_empty_quotes(char *str, int end_s1, int start_s2)
+{
+	char	*s1;
+	char	*s2;
+	char	*join;
+
+	s1 = ft_substr(str, 0, end_s1);
+	s2 = ft_substr(str, start_s2, ft_strlen(str));
+	join = ft_strjoin(s1, s2);
+	free_str(&s1);
+	free_str(&s2);
+	free_str(&str);
+	str = NULL;
+	return (join);
+}
+
 char	*process_input(char *str, t_shell *shell)
 {
 	int		i;
 	int		j;
-	char	*before;
-	char	*after;
 	int		quote_status;
 
 	i = -1;
@@ -75,14 +89,13 @@ char	*process_input(char *str, t_shell *shell)
 		j = i;
 		quote_status = check_quotes(str, &i);
 		if (quote_status == 2)
+		{
+			free_str(&str);
 			return (parser_error(E_UQUOTE, NULL, E_UQUOTE, shell));
+		}
 		else if (!quote_status)
 		{
-			before = ft_substr(str, 0, j);
-			after = ft_substr(str, i + 1, ft_strlen(str));
-			str = NULL;
-			free(str);
-			str = ft_strjoin(before, after);
+			str = remove_empty_quotes(str, j, i + 1);
 			i = -1;
 		}
 	}

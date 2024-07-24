@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 12:25:42 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 19:24:40 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_cmd	*parser(char *input, t_shell *shell)
 	if (!input)
 		return (shell->tokens);
 	p_input = ft_strtrim(input, " \t\n\v\f\r");
+	free_str(&input);
 	if (!p_input)
 		return (shell->tokens);
 	input_array = split_parser(p_input);
