@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:22:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 16:12:42 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:14:48 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	check_redir_args(char **redir, t_shell *shell)
 	return (1);
 }
 
-char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
+static char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
 {
 	t_cmd	*prev;
 
@@ -60,7 +60,7 @@ char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
 	return (NULL);
 }
 
-int	check_error_tokens(t_shell *shell)
+int	check_token_err(t_shell *shell)
 {
 	t_cmd	*node;
 	char	*error;
