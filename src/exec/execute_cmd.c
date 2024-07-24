@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 19:22:28 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:21:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 
 	if (cmd && cmd->args)
 	{
+		expand_env_cmd(shell, cmd->args);
 		args = cmd->args;
 		trim_quotes(args);
 		if (args && equal_str(args[0], "echo"))
