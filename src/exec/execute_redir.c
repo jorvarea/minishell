@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 02:12:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:11:24 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	execute_redir(t_shell *shell, t_cmd *cmd)
 	error = false;
 	while (redir && !error)
 	{
+		expand_env_arg(shell, &redir->file);
 		if (redir->file && open_file(shell, redir))
 			change_std_io(redir);
 		else if (redir->file)
