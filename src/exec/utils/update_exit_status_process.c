@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   get_exit_status_process.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 21:52:17 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 12:11:07 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/24 11:37:10 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/24 11:40:01 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	unset(t_shell *shell, char **args)
+void	update_exit_status_process(t_shell *shell, int status)
 {
-	int	i;
-
-	if (found_flags(args))
-		ft_invalid_flag_error(shell, "unset", args[1][1], "unset [name ...]");
+	if (WIFEXITED(status))
+		shell->exit_status = WEXITSTATUS(status);
 	else
-	{
-		shell->exit_status = 0;
-		i = 1;
-		while (args[i])
-			remove_key(shell, args[i++]);
-	}
+		shell->exit_status = 130;
 }

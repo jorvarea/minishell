@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 17:44:04 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:40:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,9 @@ void	wait_pids(t_shell *shell, t_cmd *cmd)
 		if (cmd->pid != -1)
 		{
 			waitpid(cmd->pid, &status, 0);
-			if (WIFEXITED(status))
-				shell->exit_status = WEXITSTATUS(status);
-			else
-				shell->exit_status = 130;
-			cmd = cmd->next;
+			update_exit_status_process(shell, status);
 		}
+		cmd = cmd->next;
 	}
 }
 
