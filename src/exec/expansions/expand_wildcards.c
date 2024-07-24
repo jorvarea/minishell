@@ -16,7 +16,8 @@ static void	add_arg(t_args_array *new_args, char *new_arg)
 {
 	if (new_args->n_args >= new_args->maximum_size - 1)
 	{
-		new_args->args = safe_realloc_array(new_args->args, 2 * new_args->maximum_size);
+		new_args->args = safe_realloc_array(new_args->args, 2
+				* new_args->maximum_size);
 		new_args->maximum_size *= 2;
 	}
 	new_args->args[new_args->n_args++] = ft_strdup(new_arg);
