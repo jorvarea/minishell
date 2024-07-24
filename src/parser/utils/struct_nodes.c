@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:48:16 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 12:30:38 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:28:04 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	pop_node_from_list(t_cmd *node)
 		next->prev = prev;
 	if (prev)
 		prev->next = next;
+	free_array(&node->args);
 	free(node);
 	node = NULL;
 }
