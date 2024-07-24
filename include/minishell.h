@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 19:56:08 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:17:48 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,8 +213,6 @@ t_env	*set_env_list(char **env);
 
 		// ------------------ QUOTES.C ------------------ //
 int		skip_quotes(char const *s, int *i);
-int		check_quotes(char const *s, int *i);
-int		only_space(char *s, int *start, int *end);
 char	*process_input(char *str, t_shell *shell);
 
 		// --------------- SPLIT_PARSER.C --------------- //
@@ -229,9 +227,7 @@ char	**split_parser(char *input);
 bool	new_token_list(char **input_array, t_shell *shell);
 
 		// ----------------- REDIRS.C ------------------- //
-bool	get_redirs(t_shell *shell);
-void	update_redir_token(t_cmd *node);
-bool	delete_redir_token(t_shell *shell);
+bool	redir_structs(t_shell *shell);
 
 		// ----------- UPDATE_TOKEN_LIST.C -------------- //
 bool	update_token_list(t_shell *shell);
@@ -247,15 +243,14 @@ int		get_redir_type(char *type);
 		// ------------------ ERROR.C ------------------- //
 void	*parser_error(int error, char *str, int exit_code, t_shell *shell);
 bool	check_redir_args(char **redir, t_shell *shell);
-int		check_error_tokens(t_shell *shell);
+int		check_token_err(t_shell *shell);
 
-		// ----------- FREE.C && FREE_UTILS.C ----------- //
+		// ---------------- FREE_UTILS.C ---------------- //
 void	*free_shell(t_shell **shell);
 void	*free_tokens(t_cmd **command_lst);
 void	free_array(char ***array);
 void	free_env_list(t_env	**l_env);
 void	free_redir(t_redir	**redir);
-void	sh_free_str(char *str);	// UNUSED
 
 		// --------------- STRUCT_NODE.C ---------------- //
 void	pop_node_from_list(t_cmd *node);

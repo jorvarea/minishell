@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
+#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/24 17:27:43 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/24 21:17:30 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/lexer/token_list.c \
 	src/parser/lexer/update_token_list.c \
 	src/parser/utils/error.c \
-	src/parser/utils/free_structs.c \
 	src/parser/utils/free_utils.c \
 	src/parser/utils/get_type.c \
 	src/parser/utils/print_shell.c \

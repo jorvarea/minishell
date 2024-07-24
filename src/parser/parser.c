@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 19:24:40 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:35:59 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_cmd	*parser(char *input, t_shell *shell)
 	free_array(&input_array);
 	free(p_input);
 	update_token_list(shell);
-	if (list_error || check_error_tokens(shell))
+	if (list_error || check_token_err(shell))
 		return (free_tokens(&shell->tokens));
 	return (shell->tokens);
 }
