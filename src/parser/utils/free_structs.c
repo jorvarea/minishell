@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 12:20:58 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:17:24 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ void	free_redir(t_redir	**redir)
 		next = (*redir)->next;
 		if (next)
 			next->prev = NULL;
-		free((*redir)->file);
+		if ((*redir)->file)
+		{
+			free((*redir)->file);
+			(*redir)->file = NULL;
+		}
 		if ((*redir)->fd > 0)
 			close((*redir)->fd);
 		(*redir)->fd = 0;
@@ -52,7 +56,6 @@ void	*free_tokens(t_cmd **tokens)
 {
 	t_cmd	*next;
 
-	next = (t_cmd *)malloc(sizeof(t_cmd));
 	while (*tokens)
 	{
 		next = (*tokens)->next;
@@ -64,7 +67,6 @@ void	*free_tokens(t_cmd **tokens)
 		*tokens = NULL;
 		*tokens = next;
 	}
-	free(next);
 	return (NULL);
 }
 
