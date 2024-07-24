@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 19:51:12 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:40:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,6 @@ typedef struct s_args_array
 // ------------------------------------------------------ //
 
 char	*read_input(void);
-void	signal_handler(int signal);
 
 // -------------------SIGNAL HANDLING ------------------- //
 void	init_signal_handler_cli(void);
@@ -323,6 +322,7 @@ void	safe_pipe(int *pipe_des);
 void	safe_dup2(int oldfd, int newfd);
 int		safe_dup(int fd);
 bool	is_directory(t_shell *shell, char *path);
+void	update_exit_status_process(t_shell *shell, int status);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);

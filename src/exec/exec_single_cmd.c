@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:14:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 18:33:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:55:05 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	exec_single_cmd(t_shell *shell)
 		else
 		{
 			waitpid(pid, &status, 0);
-			if (WIFEXITED(status))
-				shell->exit_status = WEXITSTATUS(status);
-			else
-				shell->exit_status = 130;
+			update_exit_status_process(shell, status);
 			close(STDIN_FILENO);
 			close(STDOUT_FILENO);
 		}
