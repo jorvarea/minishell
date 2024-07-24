@@ -6,13 +6,13 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 16:16:28 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:46:38 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-bool	delete_redir_token(t_shell *shell)
+static void	del_redir_tokens(t_shell *shell)
 {
 	t_cmd	*head;
 	t_cmd	*node;
@@ -33,7 +33,20 @@ bool	delete_redir_token(t_shell *shell)
 	return (0);
 }
 
-t_redir	*assign_redir(t_redir *assign, char **args)
+static void	update_redir_token(t_cmd *node)
+{
+	if (!node || node->type != REDIR)
+		return ;
+	if (node->redir)
+	{
+		node->type = CMD;
+		free_array(&node->args);
+		node->args = (char **)malloc(sizeof(char *) * 1);
+		node->args[0] = NULL;
+	}
+}
+
+static t_redir	*new_redir_struct(t_redir *assign, char **args)
 {
 	t_redir	*new_redir;
 
@@ -57,20 +70,7 @@ t_redir	*assign_redir(t_redir *assign, char **args)
 	return (assign);
 }
 
-void	update_redir_token(t_cmd *node)
-{
-	if (!node || node->type != REDIR)
-		return ;
-	if (node->redir)
-	{
-		node->type = CMD;
-		free_array(&node->args);
-		node->args = (char **)malloc(sizeof(char *) * 1);
-		node->args[0] = NULL;
-	}
-}
-
-void	update_redir(t_cmd *redir)
+static void	type_redir_to_struct(t_cmd *redir)
 {
 	t_cmd	*prev;
 	t_cmd	*next;
@@ -88,11 +88,11 @@ void	update_redir(t_cmd *redir)
 		assign = next;
 	else
 		assign = redir;
-	assign->redir = assign_redir(assign->redir, redir->args);
+	assign->redir = new_redir_struct(assign->redir, redir->args);
 	update_redir_token(redir);
 }
 
-bool	get_redirs(t_shell *shell)
+bool	redir_structs(t_shell *shell)
 {
 	t_cmd	*node;
 
@@ -103,9 +103,10 @@ bool	get_redirs(t_shell *shell)
 		{
 			if (check_redir_args(node->args, shell))
 				return (1);
-			update_redir(node);
+			type_redir_to_struct(node);
 		}
 		node = node->next;
 	}
-	return (delete_redir_token(shell));
+	del_redir_tokens(shell);
+	return (0);
 }
