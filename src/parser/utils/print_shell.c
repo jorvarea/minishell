@@ -6,50 +6,31 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 21:11:05 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:08:51 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	print_redir_type(int type)
+void	print_token_redir(t_cmd *token)
 {
-	if (type == NOT_REDIR)
-		printf("NOT REDIR(%i)", type);
-	else if (type == INFILE)
-		printf("INFILE(%i:\'<\')", type);
-	else if (type == APPEND)
-		printf("APPEND(%i:\'>>')", type);
-	else if (type == OUTFILE)
-		printf("OUTFILE(%i:\'>')", type);
-	else if (type == HEREDOC)
-		printf("HEREDOC(%i:\'<<')", type);
-}
+	t_redir	*tk_redir;
+	t_redir	*rd_next;
 
-void	print_type(int type)
-{
-	if (type == 0)
-		printf("-> CMD(%i)", type);
-	else if (type == 1)
-		printf ("-> AND(%i)", type);
-	else if (type == 2)
-		printf ("-> OR(%i)", type);
-	else if (type == 4)
-		printf ("-> PIPE(%i)", type);
-	else if (type == 5)
-		printf ("-> OPEN PARENTHESIS(%i)", type);
-	else if (type == 6)
-		printf ("-> CLOSE PARENTHESIS(%i)", type);
-	else if (type == 7)
-		printf ("-> REDIR(%i)", type);
-	else
-		printf ("-> UNKNOWN(%i)", type);
+	tk_redir = token->redir;
+	while (tk_redir)
+	{
+		rd_next = tk_redir->next;
+		printf("\tREDIR:\n\t -FD:%i \n\t -TYPE:", tk_redir->fd);
+		print_redir_type(tk_redir->type);
+		printf("\n\t -FILE:|%s|\n", tk_redir->file);
+		tk_redir = rd_next;
+	}
 }
 
 void	print_command_list(t_cmd *tokens)
 {
 	t_cmd	*tok_next;
-	t_redir	*red_next;
 	int		i;
 
 	i = 0;
@@ -63,14 +44,7 @@ void	print_command_list(t_cmd *tokens)
 		print_array_one_line(tokens->args, NULL);
 		print_type(tokens->type);
 		printf("\n");
-		while (tokens->redir)
-		{
-			red_next = tokens->redir->next;
-			printf("\tREDIR:\n\t -FD:%i \n\t -TYPE:", tokens->redir->fd);
-			print_redir_type(tokens->redir->type);
-			printf("\n\t -FILE:|%s|\n", tokens->redir->file);
-			tokens->redir = red_next;
-		}
+		print_token_redir(tokens);
 		tokens = tok_next;
 	}
 }

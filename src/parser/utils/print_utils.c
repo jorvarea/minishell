@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:54:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/20 21:27:50 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:08:19 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,57 @@ void	print_array_one_line(char **array, char *title)
 	int		len;
 	int		i;
 
-	len = array_len(array);
-	if (title)
-		printf("\n%s%s (len = %i)>%s\n", RED, title, len, WHITE);
-	printf(" [");
-	i = 0;
-	while (i < len)
-	{
-		printf("%s%s%s,", GREEN, array[i], WHITE);
-		i++;
-	}
-	if (i == 0)
-		printf("%s%s", RED, BOLD);
+	if (!array || !array[0])
+		printf("[%s%s(null)%s]", RED, BOLD, WHITE);
 	else
-		printf("%s", BLUE);
-	printf("%i:%s%s", i, array[i], WHITE);
-	printf("]");
-	if (title)
-		printf("\n");
+	{
+		len = array_len(array);
+		if (title)
+			printf("\n%s%s (len = %i)>%s\n", RED, title, len, WHITE);
+		printf(" %s[%i]%s[", BOLD, len, WHITE);
+		i = 0;
+		while (i < len)
+		{
+			printf("%s%s%s,", GREEN, array[i], WHITE);
+			i++;
+		}
+		printf("%s%i:(null)%s", BLUE, i, WHITE);
+		printf("]");
+		if (title)
+			printf("\n");
+	}
+}
+
+void	print_redir_type(int type)
+{
+	if (type == NOT_REDIR)
+		printf("NOT REDIR(%i)", type);
+	else if (type == INFILE)
+		printf("INFILE(%i:\'<\')", type);
+	else if (type == APPEND)
+		printf("APPEND(%i:\'>>')", type);
+	else if (type == OUTFILE)
+		printf("OUTFILE(%i:\'>')", type);
+	else if (type == HEREDOC)
+		printf("HEREDOC(%i:\'<<')", type);
+}
+
+void	print_type(int type)
+{
+	if (type == 0)
+		printf("-> CMD(%i)", type);
+	else if (type == 1)
+		printf ("-> AND(%i)", type);
+	else if (type == 2)
+		printf ("-> OR(%i)", type);
+	else if (type == 4)
+		printf ("-> PIPE(%i)", type);
+	else if (type == 5)
+		printf ("-> OPEN PARENTHESIS(%i)", type);
+	else if (type == 6)
+		printf ("-> CLOSE PARENTHESIS(%i)", type);
+	else if (type == 7)
+		printf ("-> REDIR(%i)", type);
+	else
+		printf ("-> UNKNOWN(%i)", type);
 }
