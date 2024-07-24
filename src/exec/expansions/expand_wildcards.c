@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:11:40 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 13:49:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:55:04 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ static void	add_arg(t_args_array *new_args, char *new_arg)
 {
 	if (new_args->n_args >= new_args->maximum_size - 1)
 	{
-		new_args->args = safe_realloc(new_args->args, 2 * new_args->maximum_size
-				* sizeof(char *), new_args->maximum_size * sizeof(char *));
+		new_args->args = safe_realloc_array(new_args->args, 2 * new_args->maximum_size);
 		new_args->maximum_size *= 2;
 	}
 	new_args->args[new_args->n_args++] = ft_strdup(new_arg);
