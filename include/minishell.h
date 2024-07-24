@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 13:10:58 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:50:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,6 +357,6 @@ void	replace_home(t_shell *shell, char **arg, int start_index);
 void	replace_env(t_shell *shell, char **arg, int start_index);
 void	replace_exit_status(t_shell *shell, char **arg, int start_index);
 bool	matching_pattern(char *pattern, char *str);
-void	expand_wildcards(t_shell *shell);
+void	expand_wildcards_cmd(t_cmd *cmd);
 
 #endif /* MINISHELL_H */

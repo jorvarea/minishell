@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:25:52 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 13:21:31 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:50:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	execute_cmd(t_shell *shell, t_cmd *cmd)
 
 	if (cmd && cmd->args)
 	{
+		expand_wildcards_cmd(cmd);
 		expand_env_cmd(shell, cmd->args);
 		args = cmd->args;
 		trim_quotes(args);
