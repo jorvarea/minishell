@@ -6,24 +6,29 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 22:13:34 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 22:24:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:57:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*safe_realloc(void *ptr, size_t new_size, size_t old_size)
+char	**safe_realloc_array(char **array, size_t new_size)
 {
-	void	*new_ptr;
+	char	**new_array;
+	int		i;
 
-	new_ptr = safe_malloc(new_size);
-	if (ptr)
+	if (array)
 	{
-		if (old_size <= new_size)
-			ft_memcpy(new_ptr, ptr, old_size);
-		else
-			ft_memcpy(new_ptr, ptr, new_size);
+		new_array = safe_malloc(new_size * sizeof(char *));
+		i = 0;
+		while (array[i])
+		{
+			new_array[i] = array[i];
+			i++;
+		}
+		free(array);
 	}
-	free(ptr);
-	return (new_ptr);
+	else
+		new_array = NULL;
+	return (new_array);
 }

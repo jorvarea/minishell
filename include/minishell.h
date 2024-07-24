@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 17:26:06 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:58:26 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,7 +317,7 @@ int		count_words(char **ptr);
 bool	equal_str(char *s1, char *s2);
 t_env	*find_last_env(t_env *lst);
 void	*safe_malloc(size_t size);
-void	*safe_realloc(void *ptr, size_t new_size, size_t old_size);
+char	**safe_realloc_array(char **array, size_t new_size);
 pid_t	safe_fork(void);
 void	safe_pipe(int *pipe_des);
 void	safe_dup2(int oldfd, int newfd);

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:10:57 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/02 14:25:29 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:44:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ char	*ft_strrep(char *str, char *insertion, int start_index, int end_index)
 		return (NULL);
 	new_str = (char *)safe_malloc(len_str - (end_index - start_index)
 			+ len_insertion + 1);
-	if (!new_str)
-		return (NULL);
 	i = -1;
 	while (++i < start_index)
 		new_str[i] = str[i];
@@ -47,7 +45,7 @@ char	*ft_strrep(char *str, char *insertion, int start_index, int end_index)
 	while (++i < len_insertion)
 		new_str[start_index + i] = insertion[i];
 	i = -1;
-	while (++i < len_str)
+	while (str[end_index + ++i])
 		new_str[start_index + len_insertion + i] = str[end_index + i];
 	new_str[len_insertion + len_str - (end_index - start_index)] = '\0';
 	return (new_str);

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:14:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 11:55:05 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:01:21 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static bool	is_built_in(t_cmd *cmd)
 	cmd_str = cmd->args[0];
 	return (equal_str(cmd_str, "echo") || equal_str(cmd_str, "cd")
 		|| equal_str(cmd_str, "env") || equal_str(cmd_str, "pwd")
-		|| equal_str(cmd_str, "export") || equal_str(cmd_str, "unset") 
+		|| equal_str(cmd_str, "export") || equal_str(cmd_str, "unset")
 		|| equal_str(cmd_str, "exit"));
 }
 
