@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:22:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 19:50:15 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:12:42 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ void	*parser_error(int error, char *str, int exit_code, t_shell *shell)
 	else if (error == ENOMEM)
 		ft_putendl_fd(" out of memory", STDERR_FILENO);
 	return (NULL);
+}
+
+bool	check_redir_args(char **redir, t_shell *shell)
+{
+	if (array_len(redir) != 2 || !redir[0] || get_redir_type(redir[0]) < 0)
+		parser_error(E_UTOK, redir[0], E_UTOK, shell);
+	else if (!redir[1] || get_token_type(redir + 1) != CMD)
+		parser_error(E_UTOK, redir[1], E_UTOK, shell);
+	else
+		return (0);
+	return (1);
 }
 
 char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
@@ -60,7 +71,7 @@ int	check_error_tokens(t_shell *shell)
 	par_check = 0;
 	while (node && !error && !(par_check < 0))
 	{
-		if (node->type == REDIR || node->type == UNKNOWN)
+		if (node->type == UNKNOWN)
 			error = node->args[0];
 		else if (node->type == AND || node->type == OR || node->type == PIPE)
 			error = check_node(node, "&|(", 0, &par_check);
