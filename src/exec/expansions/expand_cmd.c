@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 13:10:51 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:02:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	expand_env_arg(t_shell *shell, char **ptr_arg)
 	while (arg[i])
 	{
 		if (arg[i] == '\'' || arg[i] == '\"')
-			manage_quotes(arg[i], &quotes);
+			manage_quotes(arg[i++], &quotes);
 		else if (arg[i] == '~' && !quotes.single_quotes && !quotes.double_quotes
 			&& i == 0 && (arg[i + 1] == '/' || arg[i + 1] == '\0'))
 			replace_home(shell, ptr_arg, i);
@@ -47,8 +47,9 @@ void	expand_env_arg(t_shell *shell, char **ptr_arg)
 		else if (arg[i] == '$' && (!quotes.single_quotes
 				|| (quotes.double_quotes && quotes.inner_q == SINGLE)))
 			replace_env(shell, ptr_arg, i);
+		else
+			i++;
 		arg = *ptr_arg;
-		i++;
 	}
 }
 
