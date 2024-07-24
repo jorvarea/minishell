@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 16:25:37 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:26:06 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,14 +184,13 @@ typedef struct s_args_array
 //                     MAIN FUNCTIONS                     //
 // ------------------------------------------------------ //
 
-char	*read_input(void);
-
-// -------------------SIGNAL HANDLING ------------------- //
+// ---------------------- SIGNALS ----------------------- //
 void	init_signal_handler_cli(void);
 void	signal_handler_cli(int signal);
 void	init_signal_handler_heredoc(void);
 void	signal_handler_heredoc(int signal);
 void	init_signal_handler_exec(void);
+void	sigquit_handler(int signal);
 
 // ------------------------------------------------------ //
 //                     PARSER FOLDER                      //

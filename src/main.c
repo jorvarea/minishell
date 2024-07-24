@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 13:49:22 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:25:50 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_signal;
 
-char	*read_input(void)
+static char	*read_input(void)
 {
 	char	*input;
 
@@ -24,7 +24,7 @@ char	*read_input(void)
 	return (input);
 }
 
-void	restore_io(int original_stdin, int original_stdout)
+static void	restore_io(int original_stdin, int original_stdout)
 {
 	dup2(original_stdin, STDIN_FILENO);
 	close(original_stdin);
@@ -32,7 +32,7 @@ void	restore_io(int original_stdin, int original_stdout)
 	close(original_stdout);
 }
 
-void	manage_input(t_shell *shell)
+static void	manage_input(t_shell *shell)
 {
 	int	original_stdout;
 	int	original_stdin;
