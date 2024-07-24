@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 12:40:19 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:22:54 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	exec_one(t_shell *shell, t_cmd *cmd)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		manage_pipes_cmd(cmd);
 		execute_redir(shell, cmd);
 		exit(shell->exit_status);

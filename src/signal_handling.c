@@ -6,18 +6,11 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 13:47:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 17:51:20 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:29:49 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	init_signal_handler_cli(void)
-{
-	g_signal = 0;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, signal_handler_cli);
-}
 
 void	signal_handler_cli(int signal)
 {
@@ -28,21 +21,14 @@ void	signal_handler_cli(int signal)
 	rl_redisplay();
 }
 
-void	init_signal_handler_heredoc(void)
-{
-	g_signal = 0;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, signal_handler_heredoc);
-}
-
 void	signal_handler_heredoc(int signal)
 {
 	g_signal = signal;
 	rl_done = 1;
 }
 
-void	init_signal_handler_exec(void)
+void	sigquit_handler(int signal)
 {
-	signal(SIGQUIT, SIG_DFL);
-	signal(SIGINT, SIG_IGN);
+	(void)signal;
+	ft_putendl_fd("Quit (core dumped)", STDOUT_FILENO);
 }

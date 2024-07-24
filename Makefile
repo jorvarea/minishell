@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/24 16:25:54 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/24 17:27:43 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ DEPS = -I include -I $(LIBFT)/include
 ##                              SOURCES AND OBJECTS                           ##
 ################################################################################
 
-SRC = src/main.c
+SRC = src/main.c \
+	src/init_signals.c \
+	src/signal_handling.c \
 
 SRC_PARSER = src/parser/parser.c \
 	src/parser/init.c \
@@ -68,7 +70,6 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/heredoc.c \
 	src/exec/heredoc_utils.c \
 	src/exec/execute_bin.c \
-	src/exec/signal_handling.c \
 	src/exec/utils/update_exit_status_process.c \
 	src/exec/utils/flag_utils.c \
 	src/exec/utils/is_directory.c \
