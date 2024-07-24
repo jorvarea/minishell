@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 12:30:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 18:24:28 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 21:41:59 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,8 @@ void	replace_home(t_shell *shell, char **arg, int start_index)
 	if (home)
 	{
 		str_replaced = ft_strrep(*arg, home, start_index, start_index + 1);
-		if (str_replaced)
-		{
-			free_array(&arg);
-			*arg = str_replaced;
-		}
+		free(*arg);
+		*arg = str_replaced;
 		free(home);
 	}
 }

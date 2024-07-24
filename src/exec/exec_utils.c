@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 17:22:54 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:21:39 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,9 @@ void	init_fds_pid(t_cmd *cmd)
 {
 	while (cmd)
 	{
-		if (cmd->type == CMD)
-		{
-			cmd->infd = -1;
-			cmd->outfd = -1;
-			cmd->pid = -1;
-		}
+		cmd->infd = -1;
+		cmd->outfd = -1;
+		cmd->pid = -1;
 		cmd = cmd->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:07:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 17:03:12 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:54:32 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,9 @@ void	save_heredocs(t_shell *shell)
 	init_signal_handler_heredoc();
 	cmd = shell->tokens;
 	heredocs_num = 0;
-	while (cmd)
+	while (cmd && g_signal != SIGINT)
 	{
 		save_heredocs_cmd(shell, cmd, &heredocs_num);
 		cmd = cmd->next;
 	}
-	init_signal_handler_cli();
 }

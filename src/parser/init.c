@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/23 15:23:28 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:00:11 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,23 @@ static void	update_shell_env(t_shell *shell)
 	}
 }
 
+static void	update_shlvl(t_shell *shell)
+{
+	char	*shlvl;
+	int		num;
+	char	*new_shlvl;
+
+	shlvl = get_value(shell, "SHLVL");
+	if (shlvl)
+	{
+		num = ft_atoi(shlvl) + 1;
+		free(shlvl);
+		new_shlvl = ft_itoa(num);
+		update_env(shell, "SHLVL", new_shlvl);
+		free(new_shlvl);
+	}
+}
+
 t_shell	*init_shell(char **envp)
 {
 	t_shell	*shell;
@@ -63,5 +80,6 @@ t_shell	*init_shell(char **envp)
 	disable_echoctl(shell);
 	rl_event_hook = event_hook_readline;
 	update_shell_env(shell);
+	update_shlvl(shell);
 	return (shell);
 }
