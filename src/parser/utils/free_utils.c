@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_structs.c                                     :+:      :+:    :+:   */
+/*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 19:21:11 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 21:16:20 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:11:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	*free_shell(t_shell **shell)
 		free_array(&(*shell)->env);
 	if ((*shell)->l_env)
 		free_env_list(&(*shell)->l_env);
+	close((*shell)->original_stdin);
+	close((*shell)->original_stdout);
 	free(*shell);
 	return (NULL);
 }
