@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:57:45 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 11:51:51 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:31:30 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ bool	join_tokens(t_cmd **node)
 		redir_last_node((*node)->redir)->next = (*node)->next->redir;
 	}
 	pop_node_from_list((*node)->next);
-	//print_array_one_line((*node)->args, NULL);
-	//printf("\n");
 	return (0);
 }
 
