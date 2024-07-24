@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 23:32:42 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/23 18:56:35 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:40:45 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	exit_shell(t_shell *shell)
 
 	status = shell->exit_status;
 	printf("exit\n");
+	if (shell->tokens)
+		free_tokens(&shell->tokens);
 	free_shell(&shell);
 	exit(status);
 }

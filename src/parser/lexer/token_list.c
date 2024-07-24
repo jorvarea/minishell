@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 23:59:30 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:06:09 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	get_args_number(char **input)
 	{
 		if (ft_strchr("();|><&", input[len][0]) && ++stop && !len)
 		{
-			if (get_token_type(input + len) == REDIR)
+			if (get_token_type(input + len) == REDIR && input[len + 1])
 				len++;
 		}
 		else if (ft_strchr("();|><&", input[len][0]))
@@ -40,6 +40,8 @@ static char	**get_token_args(char **args, char **arr, int *i)
 
 	len = get_args_number(arr + *i);
 	args = (char **)malloc(sizeof(char *) * (len + 1));
+	if (!args)
+		return (NULL);
 	j = 0;
 	while (j < len && arr[*i])
 		args[j++] = ft_strdup(arr[(*i)++]);
