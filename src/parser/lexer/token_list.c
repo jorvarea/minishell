@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 12:06:09 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:53:02 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,5 @@ bool	new_token_list(char **input_array, t_shell *shell)
 			token_last_node(shell->tokens)->next = new_cmd;
 		}
 	}
-	return (get_redirs(shell));
+	return (redir_structs(shell));
 }
