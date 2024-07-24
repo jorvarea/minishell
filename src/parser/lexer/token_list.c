@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 00:18:16 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:42:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ static t_cmd	*new_token(char **arr, int *pos)
 		return (free(node), NULL);
 	node->type = get_token_type(node->args);
 	node->redir = NULL;
+	node->pid = -1;
+	node->infd = -1;
+	node->outfd = -1;
 	return (node);
 }
 
