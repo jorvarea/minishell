@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 17:58:26 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:02:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,8 @@ typedef struct s_env
 typedef struct s_shell
 {
 	int				exit_status;
+	int				original_stdin;
+	int				original_stdout;
 	char			**env;
 	struct s_env	*l_env;
 	struct s_cmd	*tokens;

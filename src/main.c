@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 20:57:25 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/24 22:04:13 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,18 @@ static char	*read_input(void)
 	return (input);
 }
 
-static void	restore_io(int original_stdin, int original_stdout)
+static void	restore_io(t_shell *shell)
 {
-	dup2(original_stdin, STDIN_FILENO);
-	close(original_stdin);
-	dup2(original_stdout, STDOUT_FILENO);
-	close(original_stdout);
+	dup2(shell->original_stdin, STDIN_FILENO);
+	close(shell->original_stdin);
+	dup2(shell->original_stdout, STDOUT_FILENO);
+	close(shell->original_stdout);
 }
 
 static void	manage_input(t_shell *shell)
 {
-	int	original_stdout;
-	int	original_stdin;
-
-	original_stdin = dup(STDIN_FILENO);
-	original_stdout = dup(STDOUT_FILENO);
+	shell->original_stdin = dup(STDIN_FILENO);
+	shell->original_stdout = dup(STDOUT_FILENO);
 	save_heredocs(shell);
 	if (g_signal != SIGINT && shell->tokens->args && shell->tokens->args[0])
 	{
@@ -51,7 +48,7 @@ static void	manage_input(t_shell *shell)
 	init_signal_handler_cli();
 	free_tokens(&shell->tokens);
 	remove_tmp_heredoc_files(shell);
-	restore_io(original_stdin, original_stdout);
+	restore_io(shell);
 }
 
 int	main(int argc, char **argv, char **envp)
