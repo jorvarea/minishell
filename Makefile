@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/24 16:25:06 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/24 16:25:54 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/tokenizer/split_parser.c \
 	src/parser/tokenizer/quotes.c \
 	src/parser/lexer/redirs.c \
-	src/parser/lexer/delete_redir_token.c \
 	src/parser/lexer/token_list.c \
 	src/parser/lexer/update_token_list.c \
 	src/parser/utils/error.c \
