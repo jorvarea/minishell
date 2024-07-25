@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/25 12:54:56 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:55:55 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	find_executable_in_path(t_shell *shell, char **args, char **paths)
 		free(full_path);
 	}
 	free_array(&paths);
-	if (stop == 0)
+	if (stop)
 		ft_command_not_found_error(shell, args[0]);
 }
 
