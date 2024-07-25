@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 20:28:08 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:27:29 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:33:06 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ t_cmd	*parser(char *input, t_shell *shell)
 {
 	char	*p_input;
 	char	**input_array;
-	int		list_error;
 
 	shell->tokens = NULL;
 	shell->parser_error = 0;
