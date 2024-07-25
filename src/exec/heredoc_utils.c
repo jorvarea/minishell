@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 22:12:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 18:38:19 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/26 00:42:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	remove_tmp_heredoc_files(t_shell *shell)
 		{
 			if (redir->type == HEREDOC)
 				unlink(redir->file);
-			free(redir->file);
 			redir = redir->next;
 		}
 		cmd = cmd->next;
