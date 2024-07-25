@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_removal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:50:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:56:54 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:53:01 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,20 @@ void	remove_str_quotes(char **str)
 {
 	int		i;
 	int		q_end;
+	int		len;
 
 	i = -1;
-	while ((*str)[++i])
+	len = ft_strlen(*str);
+	while (i < len && (*str)[++i])
 	{
 		q_end = i + 1;
 		if (ft_strchr("\"\'", (*str)[i]))
 		{
-			while ((*str)[i] && (*str)[i] != (*str)[q_end])
+			while ((*str)[q_end] && (*str)[i] != (*str)[q_end])
 				q_end++;
 			remove_quotes(str, i, q_end);
-			i = -1;
+			i = q_end - 1;
+			len = ft_strlen(*str);
 		}
 	}
 }
