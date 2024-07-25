@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/30 13:03:19 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 18:02:50 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:46:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	expand_env_arg(t_shell *shell, char **ptr_arg)
 			i++;
 		arg = *ptr_arg;
 	}
+	remove_str_quotes(ptr_arg);
 }
 
 void	expand_env_cmd(t_shell *shell, char **args)

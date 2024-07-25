@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_removal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:50:41 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:22:05 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:56:54 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,3 @@ void	remove_array_quotes(char **array)
 	while (++i < array_len(array) && array[i])
 		remove_str_quotes(&array[i]);
 }
-
-// void	remove_all_quotes(t_cmd *tokens)
-// {
-// 	t_cmd	*node;
-// 	int		i;
-
-// 	node = tokens;
-// 	while (node)
-// 	{
-// 		i = -1;
-// 		remove_array_quotes(node->args);
-// 		node = node->next;
-// 	}
-// }
