@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 22:09:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:52:22 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	manage_input(t_shell *shell)
 		if (shell->tokens->next == NULL)
 			exec_single_cmd(shell);
 		else
-			exec(shell);
+			exec(shell, shell->tokens, NULL);
 	}
 	init_signal_handler_cli();
 	free_tokens(&shell->tokens);
