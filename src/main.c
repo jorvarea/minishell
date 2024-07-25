@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:15:48 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:32:46 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	manage_input(t_shell *shell)
 	shell->original_stdin = dup(STDIN_FILENO);
 	shell->original_stdout = dup(STDOUT_FILENO);
 	save_heredocs(shell);
-	if (g_signal != SIGINT && shell->tokens && shell->tokens->args
+	if (g_signal != SIGINT && !shell->parser_error && shell->tokens->args
 		&& shell->tokens->args[0])
 	{
 		init_signal_handler_exec();
@@ -68,7 +68,8 @@ int	main(int argc, char **argv, char **envp)
 		else if (input[0] != '\0')
 		{
 			parser(ft_strdup(input), shell);
-			manage_input(shell);
+			if (shell->tokens)
+				manage_input(shell);
 		}
 		free(input);
 	}
