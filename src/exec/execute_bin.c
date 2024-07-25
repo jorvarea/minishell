@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:07:39 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 21:07:01 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:54:56 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	find_executable_in_path(t_shell *shell, char **args, char **paths)
 
 	stop = false;
 	i = 0;
-	while (paths && paths[i] && stop == 0)
+	while (paths && paths[i] && stop)
 	{
 		full_path = generate_full_path(paths[i++], args[0]);
 		if (access(full_path, F_OK) == 0 && access(full_path, X_OK) == 0)
