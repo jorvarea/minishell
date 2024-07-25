@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_token_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:57:45 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 15:49:57 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:05:40 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ char	**join_args(char **args1, char **args2)
 
 bool	join_tokens(t_cmd **node)
 {
-	int	len;
-
-	len = array_len((*node)->args) + array_len((*node)->next->args);
 	(*node)->args = join_args((*node)->args, (*node)->next->args);
 	if (!(*node)->args)
 		return (1);

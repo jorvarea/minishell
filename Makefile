@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
+#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/24 21:17:30 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/25 13:11:48 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ SRC_PARSER = src/parser/parser.c \
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/exec_utils.c \
+	src/exec/parenthesis.c \
 	src/exec/exec_single_cmd.c \
 	src/exec/execute_cmd.c \
 	src/exec/execute_redir.c \
@@ -83,6 +84,7 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/utils/safe_fork.c \
 	src/exec/utils/safe_pipe.c \
 	src/exec/utils/ft_strrep.c \
+	src/exec/utils/exit_shell_child.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \
 	src/exec/built-ins/pwd.c \

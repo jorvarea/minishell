@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 20:53:02 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:42:37 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ static char	**get_token_args(char **args, char **arr, int *i)
 static t_cmd	*new_token(char **arr, int *pos)
 {
 	t_cmd	*node;
-	int		start;
 
-	start = *pos;
 	node = (t_cmd *)malloc(sizeof(t_cmd));
 	if (!node)
 		return (NULL);
@@ -63,6 +61,9 @@ static t_cmd	*new_token(char **arr, int *pos)
 		return (free(node), NULL);
 	node->type = get_token_type(node->args);
 	node->redir = NULL;
+	node->pid = -1;
+	node->infd = -1;
+	node->outfd = -1;
 	return (node);
 }
 
