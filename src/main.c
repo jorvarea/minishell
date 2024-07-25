@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:15 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:32:46 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:28:28 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	manage_input(t_shell *shell)
 		else
 			exec(shell, shell->tokens, NULL);
 	}
+	else if (shell->parser_error)
+		parser_error(shell->parser_error, shell->err_msg, 2, shell);
 	init_signal_handler_cli();
 	free_tokens(&shell->tokens);
 	remove_tmp_heredoc_files(shell);

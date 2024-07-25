@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 18:57:35 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 00:42:37 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:01:02 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static t_cmd	*new_token(char **arr, int *pos)
 	return (node);
 }
 
-bool	new_token_list(char **input_array, t_shell *shell)
+int	new_token_list(char **input_array, t_shell *shell)
 {
 	int		i;
 	int		len;
@@ -80,7 +80,7 @@ bool	new_token_list(char **input_array, t_shell *shell)
 	{
 		new_cmd = new_token(input_array, &i);
 		if (!new_cmd)
-			return (parser_error(E_NOMEM, NULL, E_NOMEM, shell), 1);
+			return (E_NOMEM);
 		new_cmd->next = NULL;
 		if (!shell->tokens)
 		{

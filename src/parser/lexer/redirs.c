@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 21:30:21 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 20:56:27 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:12:58 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	type_redir_to_struct(t_cmd *redir)
 	update_redir_token(redir);
 }
 
-bool	redir_structs(t_shell *shell)
+int	redir_structs(t_shell *shell)
 {
 	t_cmd	*node;
 
@@ -102,8 +102,10 @@ bool	redir_structs(t_shell *shell)
 		if (node->type == REDIR)
 		{
 			if (check_redir_args(node->args, shell))
-				return (1);
+				return (E_UTOK);
 			type_redir_to_struct(node);
+			if (!node)
+				return (E_NOMEM);
 		}
 		node = node->next;
 	}
