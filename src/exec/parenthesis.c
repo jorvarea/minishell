@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 00:31:23 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/25 16:10:57 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:11:35 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	execute_redirs_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
 static void	execute_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
 {
 	pid_t	pid;
-	int		status;
 
 	peek_pipes_parenthesis(end);
 	pid = safe_fork();
@@ -78,8 +77,7 @@ static void	execute_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
 	}
 	else
 	{
-		waitpid(pid, &status, 0);
-		update_exit_status_process(shell, status);
+		head->prev->pid = pid;
 		if (end->outfd >= 0)
 			close(end->outfd);
 		if (head->prev->infd >= 0)
