@@ -3,27 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 19:12:17 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/03/05 18:35:42 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:10:30 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-char	*ft_strtrim(char const *s1, char const *set)
+static int	ft_char_in_set(char const *set, char const c)
+{
+	int	i;
+
+	i = 0;
+	while (set[i])
+	{
+		if (set[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strtrim(char const *str, char const *set)
 {
 	int		start;
 	int		end;
-	char	*trim;
+	int		len;
+	char	*strim;
 
+	if (!str || !set)
+		return (NULL);
+	len = ft_strlen(str);
 	start = 0;
-	while (ft_strchr(set, s1[start]) && s1[start])
+	while (str[start] && ft_char_in_set(set, str[start]))
 		start++;
-	end = ft_strlen((char *)s1) - 1;
-	while (ft_strchr(set, s1[end]))
+	end = len - 1;
+	while (end >= 0 && ft_char_in_set(set, str[end]))
 		end--;
-	trim = ft_substr(s1, start, end - start + 1);
-	return (trim);
+	if (start > end)
+		return (ft_strdup(""));
+	strim = ft_substr(str, start, end - start + 1);
+	return (strim);
 }
