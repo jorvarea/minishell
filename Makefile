@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
+#    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/25 13:11:48 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/25 13:19:12 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ SRC_PARSER = src/parser/parser.c \
 	src/parser/utils/print_shell.c \
 	src/parser/utils/print_utils.c \
 	src/parser/utils/struct_nodes.c \
-	src/parser/utils/utils.c
+	src/parser/utils/utils.c \
+	src/parser/quote_removal.c
 
 SRC_EXEC = src/exec/exec.c \
 	src/exec/exec_utils.c \
