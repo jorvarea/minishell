@@ -6,13 +6,13 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 13:05:21 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 13:11:24 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:06:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static bool	open_file(t_shell *shell, t_redir *redir)
+bool	open_file(t_shell *shell, t_redir *redir)
 {
 	bool	no_error;
 
@@ -31,7 +31,7 @@ static bool	open_file(t_shell *shell, t_redir *redir)
 	return (no_error);
 }
 
-static void	close_files(t_redir *redir)
+void	close_files(t_redir *redir)
 {
 	while (redir)
 	{
@@ -41,7 +41,7 @@ static void	close_files(t_redir *redir)
 	}
 }
 
-static void	change_std_io(t_redir *redir)
+void	change_std_io(t_redir *redir)
 {
 	if (redir->type == INFILE || redir->type == HEREDOC)
 		dup2(redir->fd, STDIN_FILENO);

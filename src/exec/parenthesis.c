@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 00:31:23 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/25 15:56:49 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:10:57 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	peek_pipes_parenthesis(t_cmd *end)
 	}
 }
 
-static void	manage_redir_pipes_parenthesis(t_cmd *head, t_cmd *end)
+static void	manage_pipes_parenthesis(t_cmd *head, t_cmd *end)
 {
 	if (head->prev->infd != -1)
 	{
@@ -40,6 +40,27 @@ static void	manage_redir_pipes_parenthesis(t_cmd *head, t_cmd *end)
 		close(end->next->next->infd);
 }
 
+static void	execute_redirs_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
+{
+	t_redir	*redir;
+	bool	error;
+
+	redir = end->redir;
+	error = false;
+	while (redir && !error)
+	{
+		expand_env_arg(shell, &redir->file);
+		if (redir->file && open_file(shell, redir))
+			change_std_io(redir);
+		else if (redir->file)
+			error = true;
+		redir = redir->next;
+	}
+	if (!error)
+		exec(shell, head, end);
+	close_files(end->redir);
+}
+
 static void	execute_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
 {
 	pid_t	pid;
@@ -51,8 +72,8 @@ static void	execute_parenthesis(t_shell *shell, t_cmd *head, t_cmd *end)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		manage_redir_pipes_parenthesis(head, end);
-		exec(shell, head, end);
+		manage_pipes_parenthesis(head, end);
+		execute_redirs_parenthesis(shell, head, end);
 		exit_shell_child(shell);
 	}
 	else
