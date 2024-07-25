@@ -6,7 +6,7 @@
 #    By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/25 01:30:46 by jorvarea         ###   ########.fr        #
+#    Updated: 2024/07/25 13:11:48 by jorvarea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/utils/safe_fork.c \
 	src/exec/utils/safe_pipe.c \
 	src/exec/utils/ft_strrep.c \
+	src/exec/utils/exit_shell_child.c \
 	src/exec/utils/utils.c \
 	src/exec/built-ins/echo.c \
 	src/exec/built-ins/pwd.c \

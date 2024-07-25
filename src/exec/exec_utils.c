@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:00:35 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/25 12:49:45 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:11:14 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ void	exec_one(t_shell *shell, t_cmd *cmd)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		manage_pipes_cmd(cmd);
-		close(shell->original_stdin);
-		close(shell->original_stdout);
 		execute_redir(shell, cmd);
-		exit(shell->exit_status);
+		exit_shell_child(shell);
 	}
 	else
 	{

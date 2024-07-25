@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 00:58:02 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:11:00 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,6 +329,7 @@ void	safe_dup2(int oldfd, int newfd);
 int		safe_dup(int fd);
 bool	is_directory(t_shell *shell, char *path);
 void	update_exit_status_process(t_shell *shell, int status);
+void	exit_shell_child(t_shell *shell);
 
 		// ------------------- FT_STRREP FUNCTIONS ------------------- //
 char	*ft_strrep(char *str, char *insertion, int start_index, int end_index);

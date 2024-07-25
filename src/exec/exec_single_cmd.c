@@ -6,7 +6,7 @@
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:14:47 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/24 18:01:21 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:11:10 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exec_single_cmd(t_shell *shell)
 		{
 			signal(SIGINT, SIG_DFL);
 			execute_redir(shell, shell->tokens);
-			exit(shell->exit_status);
+			exit_shell_child(shell);
 		}
 		else
 		{
