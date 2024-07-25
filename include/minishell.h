@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:29:12 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:33:53 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,10 @@ typedef struct s_env
 typedef struct s_shell
 {
 	int				exit_status;
-	int				parser_error;
 	int				original_stdin;
 	int				original_stdout;
+	int				parser_error;
+	char			*err_msg;
 	char			**env;
 	struct s_env	*l_env;
 	struct s_cmd	*tokens;
@@ -229,13 +230,13 @@ char	**split_parser(char *input);
 	// -------------------------------------------------- //
 
 		// --------------- TOKEN_LIST.C ----------------- //
-bool	new_token_list(char **input_array, t_shell *shell);
+int		new_token_list(char **input_array, t_shell *shell);
 
 		// ----------------- REDIRS.C ------------------- //
-bool	redir_structs(t_shell *shell);
+int		redir_structs(t_shell *shell);
 
 		// ----------- UPDATE_TOKEN_LIST.C -------------- //
-bool	update_token_list(t_shell *shell);
+void	update_token_list(t_shell *shell);
 
 		// ---------------- GET_TYPE.C ------------------ //
 int		get_token_type(char **args);

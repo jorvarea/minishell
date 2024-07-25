@@ -6,7 +6,7 @@
 /*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 20:22:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 21:14:48 by ana-cast         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:27:22 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*parser_error(int error, char *str, int exit_code, t_shell *shell)
 			ft_putstr_fd(str, STDERR_FILENO);
 		ft_putendl_fd("\'", STDERR_FILENO);
 	}
-	else if (error == ENOMEM)
+	else if (error == E_NOMEM)
 		ft_putendl_fd(" out of memory", STDERR_FILENO);
 	return (NULL);
 }
@@ -33,12 +33,12 @@ void	*parser_error(int error, char *str, int exit_code, t_shell *shell)
 bool	check_redir_args(char **redir, t_shell *shell)
 {
 	if (array_len(redir) != 2 || !redir[0] || get_redir_type(redir[0]) < 0)
-		parser_error(E_UTOK, redir[0], E_UTOK, shell);
+		shell->err_msg = redir[0];
 	else if (!redir[1] || get_token_type(redir + 1) != CMD)
-		parser_error(E_UTOK, redir[1], E_UTOK, shell);
+		shell->err_msg = redir[1];
 	else
 		return (0);
-	return (1);
+	return (E_UTOK);
 }
 
 static char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
@@ -63,25 +63,23 @@ static char	*check_node(t_cmd *node, char *not_prev, int is_par, int *par_check)
 int	check_token_err(t_shell *shell)
 {
 	t_cmd	*node;
-	char	*error;
 	int		par_check;
 
 	node = shell->tokens;
-	error = NULL;
 	par_check = 0;
-	while (node && !error && !(par_check < 0))
+	while (node && !shell->err_msg && !(par_check < 0))
 	{
 		if (node->type == UNKNOWN)
-			error = node->args[0];
+			shell->err_msg = node->args[0];
 		else if (node->type == AND || node->type == OR || node->type == PIPE)
-			error = check_node(node, "&|(", 0, &par_check);
+			shell->err_msg = check_node(node, "&|(", 0, &par_check);
 		else if (node->type == OPEN_PAR)
-			error = check_node(node, ")", 1, &par_check);
+			shell->err_msg = check_node(node, ")", 1, &par_check);
 		else if (node->type == CLOSE_PAR)
-			error = check_node(node, "&|(", -1, &par_check);
+			shell->err_msg = check_node(node, "&|(", -1, &par_check);
 		node = node->next;
 	}
-	if (error || par_check)
-		return (parser_error(E_UTOK, error, E_UTOK, shell), 1);
+	if (shell->err_msg || par_check)
+		return (E_UTOK);
 	return (0);
 }

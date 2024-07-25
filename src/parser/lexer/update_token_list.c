@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update_token_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 19:57:45 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 01:05:40 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:22:19 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,7 @@ bool	join_tokens(t_cmd **node)
 	return (0);
 }
 
-/*
- - unir comandos
- - quitar comillas de comando + expansion variables
-*/
-bool	update_token_list(t_shell *shell)
+void	update_token_list(t_shell *shell)
 {
 	t_cmd	*node;
 	int		i;
@@ -87,5 +83,4 @@ bool	update_token_list(t_shell *shell)
 		}
 		node = node->next;
 	}
-	return (0);
 }

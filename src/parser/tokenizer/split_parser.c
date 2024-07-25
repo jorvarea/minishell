@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 17:21:04 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/22 21:45:07 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:57:29 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ char	**trim_split(char **split, int len)
 	int		i;
 
 	trim = (char **)malloc(sizeof(char *) * len);
+	if (!trim)
+		return (NULL);
 	i = -1;
 	while (split[++i])
 		trim[i] = ft_strtrim(split[i], " \t\n\v\f\r");
