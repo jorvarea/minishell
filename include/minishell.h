@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:53:03 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/25 16:07:14 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:29:12 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ typedef struct s_env
 typedef struct s_shell
 {
 	int				exit_status;
+	int				parser_error;
 	int				original_stdin;
 	int				original_stdout;
 	char			**env;
@@ -200,6 +201,8 @@ void	sigquit_handler(int signal);
 
 // ---------------------- PARSER.C ---------------------- //
 t_cmd	*parser(char *input, t_shell *shell);
+void	remove_array_quotes(char **array);
+void	remove_str_quotes(char **str);
 
 // ----------------------- INIT.C ----------------------- //
 t_shell	*init_shell(char **envp);
