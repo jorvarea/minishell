@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 17:44:05 by ana-cast          #+#    #+#             */
-/*   Updated: 2024/07/24 22:00:11 by jorvarea         ###   ########.fr       */
+/*   Updated: 2024/07/25 18:49:50 by ana-cast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_shell	*init_shell(char **envp)
 	shell->env = init_shell_env(envp);
 	shell->exit_status = 0;
 	shell->tokens = NULL;
+	shell->original_stdin = -1;
+	shell->original_stdout = -1;
 	shell->l_env = set_env_list(shell->env);
 	init_signal_handler_cli();
 	disable_echoctl(shell);

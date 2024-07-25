@@ -6,7 +6,7 @@
 #    By: ana-cast <ana-cast@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/08 15:05:47 by ana-cast          #+#    #+#              #
-#    Updated: 2024/07/25 13:19:12 by ana-cast         ###   ########.fr        #
+#    Updated: 2024/07/25 19:10:22 by ana-cast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ else
   $(error No compiler found)
 endif
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 RM = rm -f
 MINISHELL = include/
 INCLUDE = -lreadline -L ./lib/libft -lft
@@ -103,10 +103,6 @@ OBJECTS = $(SRC:.c=.o)
 OBJ_PAR = $(SRC_PARSER:.c=.o)
 OBJ_EXEC = $(SRC_EXEC:.c=.o)
 
-#BONUS_SR = \
-	
-#BONUS_OB = $(BONUS_SR:.c=.o)
-
 ################################################################################
 ##                                    COLORS                                 ##
 ################################################################################
@@ -125,6 +121,8 @@ TURQUOISE=\033[36m
 ################################################################################
 
 all : head libft $(NAME)
+
+bonus : all
 
 head :
 	@echo "$(MAGENTA)"
@@ -146,10 +144,6 @@ $(NAME) : line $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "✦ ---------------------- ✦$(END)"
 	@$(CC) $(FLAGS) $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC) $(INCLUDE) -o $(NAME)
 
-bonus : all line $(BONUS_OB)
-	@echo "✦ ---------------------- ✦$(END)"
-	@$(CC) $(FLAGS) $(BONUS_OB) $(INCLUDE) -o $(NAME)
-
 %.o : %.c $(MINISHELL)
 	@$(CC) $(FLAGS) -c $< -o $@ $(DEPS)
 	@echo "$(GREEN)  ✓ Compiled: $(notdir $<)"
@@ -161,7 +155,7 @@ line :
 
 clean :
 	@printf "\n$(YELLOW) 🗑   Removing objects$(END)"
-	@$(RM) $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC) $(BONUS_OB) 
+	@$(RM) $(OBJECTS) $(OBJ_PAR) $(OBJ_EXEC)
 	@echo "$(GREEN)\r  ✓  $(RED)Removed  objects from $(NAME) $(END)"
 	@make clean -s -C $(LIBFT)
 
