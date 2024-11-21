@@ -69,7 +69,7 @@ t_shell	*init_shell(char **envp)
 {
 	t_shell	*shell;
 
-	shell = (t_shell *)malloc(sizeof(t_shell));
+	shell = (t_shell *)safe_malloc(sizeof(t_shell));
 	if (!shell)
 		exit_program_nl();
 	shell->env = init_shell_env(envp);

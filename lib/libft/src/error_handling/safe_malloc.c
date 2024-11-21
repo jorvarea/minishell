@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_pipe.c                                        :+:      :+:    :+:   */
+/*   safe_malloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 21:36:05 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/18 21:38:47 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/02 14:12:14 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/15 20:04:19 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	safe_pipe(int *pipe_des)
+void	*safe_malloc(size_t size)
 {
-	if (pipe(pipe_des) == -1)
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
 	{
-		perror("pipe");
+		perror("safe_malloc");
 		exit(EXIT_FAILURE);
 	}
+	return (ptr);
 }

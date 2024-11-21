@@ -78,12 +78,6 @@ SRC_EXEC = src/exec/exec.c \
 	src/exec/utils/update_envp.c \
 	src/exec/utils/error_utils.c \
 	src/exec/utils/error_utils2.c \
-	src/exec/utils/safe_malloc.c \
-	src/exec/utils/safe_realloc.c \
-	src/exec/utils/safe_dup2.c \
-	src/exec/utils/safe_dup.c \
-	src/exec/utils/safe_fork.c \
-	src/exec/utils/safe_pipe.c \
 	src/exec/utils/ft_strrep.c \
 	src/exec/utils/exit_shell_child.c \
 	src/exec/utils/utils.c \
@@ -132,7 +126,8 @@ head :
 	@echo "\t██  ██  ██ ██ ██  ██ ██ ██      ██ ██   ██ ██      ██      ██      "
 	@echo "\t██      ██ ██ ██   ████ ██ ███████ ██   ██ ███████ ███████ ███████ "
 	@echo ""
-	@echo "\t        42MLG: by ana-cast && jorvarea"
+	@echo "\t        Original project(42MLG): by ana-cast && jorvarea"
+	@echo "\t     Extension for the subject Operating Systems: by jorvarea"
 	@echo "\tProyect: \033[36m minishell $(MAGENTA)"
 	@echo "\tCommands:\033[36m all clean fclean re bonus $(BLUE)"
 	@echo "\t🛠   Compiler: $(CC) $(END)\n"

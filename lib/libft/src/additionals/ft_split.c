@@ -58,7 +58,7 @@ char	**ft_split(char const *s, char c)
 	int		end;
 	int		j;
 
-	result = (char **)malloc(sizeof(char *) * (how_many(s, c) + 1));
+	result = (char **)safe_malloc(sizeof(char *) * (how_many(s, c) + 1));
 	if (!result || !s)
 		return (NULL);
 	start = 0;

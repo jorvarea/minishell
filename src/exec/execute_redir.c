@@ -35,7 +35,7 @@ void	close_files(t_redir *redir)
 {
 	while (redir)
 	{
-		if (redir->file >= 0)
+		if (redir->fd >= 0)
 			close(redir->fd);
 		redir = redir->next;
 	}

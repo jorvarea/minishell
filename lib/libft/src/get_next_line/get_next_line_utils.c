@@ -38,7 +38,7 @@ char	*ft_gn_strjoin(char const *s1, char const *s2)
 	len_s1 = ft_strlen((char *)s1);
 	len_s2 = ft_strlen((char *)s2);
 	i = len_s1 + len_s2;
-	result = (char *)malloc(sizeof(char) * i + 1);
+	result = (char *)safe_malloc(sizeof(char) * i + 1);
 	if (!result)
 		return (free_str((char **)(&s1)));
 	i = -1;

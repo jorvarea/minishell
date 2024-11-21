@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_dup2.c                                        :+:      :+:    :+:   */
+/*   safe_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 17:20:51 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/19 17:31:24 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/02 14:12:14 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/15 20:04:31 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	safe_dup2(int oldfd, int newfd)
+pid_t	safe_fork(void)
 {
-	if (dup2(oldfd, newfd) == -1)
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
 	{
-		perror("dup2");
+		perror("fork");
 		exit(EXIT_FAILURE);
 	}
+	return (pid);
 }

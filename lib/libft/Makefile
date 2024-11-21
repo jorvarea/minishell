@@ -85,6 +85,13 @@ AO_SRCS = src/additionals/output_functions/ft_putchar_fd.c \
 	src/additionals/output_functions/ft_putnbr_fd.c \
 	src/additionals/output_functions/ft_putstr_fd.c
 
+EH_SRCS = src/error_handling/safe_malloc.c \
+	src/error_handling/safe_realloc_array.c \
+	src/error_handling/safe_dup2.c \
+	src/error_handling/safe_dup.c \
+	src/error_handling/safe_fork.c \
+	src/error_handling/safe_pipe.c \
+
 CC_OBJECTS = $(CC_SRCS:.c=.o)
 CC2_OBJECTS = $(CC2_SRCS:.c=.o)
 MM_OBJECTS = $(MM_SRCS:.c=.o)
@@ -92,8 +99,9 @@ SM_OBJECTS = $(SM_SRCS:.c=.o)
 SS_OBJECTS = $(SS_SRCS:.c=.o)
 A_OBJECTS = $(A_SRCS:.c=.o)
 AO_OBJECTS = $(AO_SRCS:.c=.o)
+EH_OBJECTS = $(EH_SRCS:.c=.o)
 
-OBJECTS = $(CC_OBJECTS) $(CC2_OBJECTS) $(MM_OBJECTS) $(SM_OBJECTS) $(SS_OBJECTS) $(A_OBJECTS) $(AO_OBJECTS)
+OBJECTS = $(CC_OBJECTS) $(CC2_OBJECTS) $(MM_OBJECTS) $(SM_OBJECTS) $(SS_OBJECTS) $(A_OBJECTS) $(AO_OBJECTS) $(EH_OBJECTS)
 
 BONUS_SR = src/bonus/ft_lstadd_back_bonus.c \
 	src/bonus/ft_lstadd_front_bonus.c \

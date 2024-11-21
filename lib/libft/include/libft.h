@@ -30,6 +30,7 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 /**
  * @brief Checks if the int passed as argument is a letter or not.
@@ -286,7 +287,7 @@ long				ft_atol(char *str);
  * and returns a pointer to it
  * @param s1 string to copy
  * @return Returns a pointer to the copy created of s1
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  */
 char				*ft_strdup(char *s1);
 
@@ -297,28 +298,28 @@ char				*ft_strdup(char *s1);
  * @param count Number of objects
  * @param size Size bytes of memory of each object
  * @return Returns a pointer to the allocated memory or NULL in case of error
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  */
 void				*ft_calloc(size_t count, size_t size);
 
 /**
- * @brief Allocates using malloc and returns a substring of the string s. The
+ * @brief Allocates using safe_malloc and returns a substring of the string s. The
  * substring starts from index start and has a maximum length of len
  * @param s String from which create the substring
  * @param start Index of character in s from which to start the substring
  * @param len Maximum length of the substring
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  * @return Returns the substring resultant or NULL if the allocation fails
  */
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 
 /**
- * @brief Allocates using malloc and returns a new string resultant from the
+ * @brief Allocates using safe_malloc and returns a new string resultant from the
  * concatenation of strings s1 and s2.
  * @param s1 First string
  * @param s2 String to concatenate with s1.
  * @return Returns a new string resultant from the concatenation.
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  */
 char				*ft_strjoin(char const *s1, char const *s2);
 
@@ -327,29 +328,29 @@ char				*ft_strjoin(char const *s1, char const *s2);
  * end of s1 until finding a character that is not part of set
  * @param s1 String to be modified
  * @param set Characters to remove in s1
- * @return Returns the new string having allocated memory for it with malloc
- * @warning This function uses malloc
+ * @return Returns the new string having allocated memory for it with safe_malloc
+ * @warning This function uses safe_malloc
  */
 char				*ft_strtrim(char const *s1, char const *set);
 
 /**
- * @brief Allocates using malloc an array of strings resulting from separating
+ * @brief Allocates using safe_malloc an array of strings resulting from separating
  * the string s in substrings using the character char c as separator. The array
  * must end with a NULL pointer.
  * @param s String to separate
  * @param c Delimiter character
  * @return Returns an array of the strings resultant from the separation or NULL
- * in case of malloc error.
- * @warning This function uses malloc and free
+ * in case of safe_malloc error.
+ * @warning This function uses safe_malloc and free
  */
 char				**ft_split(char const *s, char c);
 
 /**
- * @brief Using malloc, generates a string that represents the value received
+ * @brief Using safe_malloc, generates a string that represents the value received
  * as argument. Negative numbers must be taken into account.
  * @param n Number to convert
- * @return Returns the string that equals to such number or NULL if malloc fails
- * @warning This function uses malloc
+ * @return Returns the string that equals to such number or NULL if safe_malloc fails
+ * @warning This function uses safe_malloc
  */
 char				*ft_itoa(int n);
 
@@ -361,7 +362,7 @@ char				*ft_itoa(int n);
  * @param f Function to apply over each character
  * @return String created after the right use of f over each character or NULL
  * if memory fails.
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  */
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
@@ -422,7 +423,7 @@ typedef struct s_list
  * @brief Creates a new list with the content specified
  * @param content Content to fill the new list with
  * @return Returns the newly created list
- * @warning This function uses malloc
+ * @warning This function uses safe_malloc
  */
 t_list				*ft_lstnew(void *content);
 
@@ -490,10 +491,18 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
  * @param del pointer to the function used to free the nodes' content if 
  * necessary
  * @return Returns the newly created list
- * @warning This function uses malloc and free
+ * @warning This function uses safe_malloc and free
  */
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+
+/* Error handling functions */
+void	*safe_malloc(size_t size);
+char	**safe_realloc_array(char **array, size_t new_size);
+pid_t	safe_fork(void);
+void	safe_pipe(int *pipe_des);
+void	safe_dup2(int oldfd, int newfd);
+int		safe_dup(int fd);
 
 /* GET_NEXT_LINE FUNCTIONS */
 int					ft_gn_strchr(const char *s, int c);

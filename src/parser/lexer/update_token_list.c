@@ -35,7 +35,7 @@ char	**join_args(char **args1, char **args2)
 	len_arg1 = array_len(args1);
 	len_arg2 = array_len(args2);
 	i = len_arg1 + len_arg2;
-	join = (char **)malloc(sizeof(char *) * (i + 1));
+	join = (char **)safe_malloc(sizeof(char *) * (i + 1));
 	if (!join)
 		return (NULL);
 	i = -1;

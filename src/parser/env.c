@@ -22,7 +22,7 @@ char	**init_shell_env(char **envp)
 	{
 		while (envp[len])
 			len++;
-		env = (char **)malloc(sizeof(char *) * (len + 1));
+		env = (char **)safe_malloc(sizeof(char *) * (len + 1));
 		if (!env)
 			return (NULL);
 		len = -1;
@@ -61,7 +61,7 @@ t_env	*set_env_list(char **env)
 	l_env = NULL;
 	while (env[++i])
 	{
-		new_env = (t_env *)malloc(sizeof(t_env));
+		new_env = (t_env *)safe_malloc(sizeof(t_env));
 		if (!new_env)
 			return (NULL);
 		new_env = assign_env_values(env[i], new_env);

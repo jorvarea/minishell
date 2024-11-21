@@ -52,7 +52,7 @@ char	*ft_add_buffer(char *buffer, int fd)
 	int		b_read;
 
 	b_read = 1;
-	addbuff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	addbuff = (char *)safe_malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!addbuff)
 		return (free_str(&buffer));
 	while (b_read > 0 && !ft_gn_strchr(buffer, '\n'))

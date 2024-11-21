@@ -72,7 +72,7 @@ char	**trim_split(char **split, int len)
 	char	**trim;
 	int		i;
 
-	trim = (char **)malloc(sizeof(char *) * len);
+	trim = (char **)safe_malloc(sizeof(char *) * len);
 	if (!trim)
 		return (NULL);
 	i = -1;
@@ -92,7 +92,7 @@ char	**split_parser(char *input)
 	int		len;
 
 	len = ft_strlen(input);
-	result = (char **)malloc(sizeof(char *) * (how_many(input) + 1));
+	result = (char **)safe_malloc(sizeof(char *) * (how_many(input) + 1));
 	if (!result || !input)
 		return (NULL);
 	start = 0;

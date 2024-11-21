@@ -39,7 +39,7 @@ static char	**get_token_args(char **args, char **arr, int *i)
 	int	j;
 
 	len = get_args_number(arr + *i);
-	args = (char **)malloc(sizeof(char *) * (len + 1));
+	args = (char **)safe_malloc(sizeof(char *) * (len + 1));
 	if (!args)
 		return (NULL);
 	j = 0;
@@ -53,7 +53,7 @@ static t_cmd	*new_token(char **arr, int *pos)
 {
 	t_cmd	*node;
 
-	node = (t_cmd *)malloc(sizeof(t_cmd));
+	node = (t_cmd *)safe_malloc(sizeof(t_cmd));
 	if (!node)
 		return (NULL);
 	node->args = get_token_args(node->args, arr, pos);

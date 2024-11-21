@@ -41,7 +41,7 @@ static void	update_redir_token(t_cmd *node)
 	{
 		node->type = CMD;
 		free_array(&node->args);
-		node->args = (char **)malloc(sizeof(char *) * 1);
+		node->args = (char **)safe_malloc(sizeof(char *) * 1);
 		node->args[0] = NULL;
 	}
 }
@@ -50,7 +50,7 @@ static t_redir	*new_redir_struct(t_redir *assign, char **args)
 {
 	t_redir	*new_redir;
 
-	new_redir = (t_redir *)malloc(sizeof(t_redir));
+	new_redir = (t_redir *)safe_malloc(sizeof(t_redir));
 	if (!new_redir)
 		return (NULL);
 	new_redir->fd = -1;

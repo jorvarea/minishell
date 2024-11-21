@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   safe_dup.c                                         :+:      :+:    :+:   */
+/*   safe_realloc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jorvarea <jorvarea@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 19:59:57 by jorvarea          #+#    #+#             */
-/*   Updated: 2024/07/19 20:04:15 by jorvarea         ###   ########.fr       */
+/*   Created: 2024/07/18 22:13:34 by jorvarea          #+#    #+#             */
+/*   Updated: 2024/07/24 17:57:09 by jorvarea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	safe_dup(int fd)
+char	**safe_realloc_array(char **array, size_t new_size)
 {
-	int	dup_fd;
+	char	**new_array;
+	int		i;
 
-	dup_fd = dup(fd);
-	if (dup_fd == -1)
+	if (array)
 	{
-		perror("dup");
-		exit(EXIT_FAILURE);
+		new_array = safe_malloc(new_size * sizeof(char *));
+		i = 0;
+		while (array[i])
+		{
+			new_array[i] = array[i];
+			i++;
+		}
+		free(array);
 	}
-	return (dup_fd);
+	else
+		new_array = NULL;
+	return (new_array);
 }
